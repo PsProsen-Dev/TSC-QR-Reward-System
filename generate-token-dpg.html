@@ -1,0 +1,655 @@
+<!--
+🔧 Developed by Jarvis (RTX⚡)
+🤝 Engineered for The Shankar Communications (TSC)
+🧠 AI Assistant: ChatGPT Jarvis, Visual Dev: VS Code Jarvis (Claude Sonnet 4)
+🎨 Theme: Gold Royal Luxe ✨
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎫 TSC Dhupguri - Token Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="theme-color" content="#FFD700">
+    <meta name="description" content="Generate your token for TSC Dhupguri store - Tempered Glass ₹19 offer">
+    <meta property="og:title" content="TSC Dhupguri Token Generator">
+    <meta property="og:description" content="Claim your tempered glass offer at TSC Dhupguri store">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #fff;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* RTX Enhanced Background Effects */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
+            animation: rtx-glow 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes rtx-glow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-10px) rotate(1deg); }
+            66% { transform: translateY(5px) rotate(-1deg); }
+        }
+        
+        .container {
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 30px 20px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 
+                        0 0 0 1px rgba(255, 215, 0, 0.1) inset;
+            transition: all 0.3s ease;
+        }
+        
+        .container:hover {
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7),
+                        0 0 0 1px rgba(255, 215, 0, 0.2) inset;
+            transform: translateY(-2px);
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255, 215, 0, 0.6);
+            margin-bottom: 20px;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+            animation: logo-pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes logo-pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(255, 215, 0, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 0 40px rgba(255, 215, 0, 0.6); }
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #FFD700, #FFC107, #FF8F00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            animation: title-glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes title-glow {
+            from { filter: brightness(1); }
+            to { filter: brightness(1.2); }
+        }
+        
+        .subtitle {
+            color: #aaa;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+        
+        .store-badge {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #000;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .form-container {
+            text-align: left;
+            margin-bottom: 25px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-label {
+            display: block;
+            color: #FFD700;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: rgba(255, 215, 0, 0.8);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .input-field::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .generate-btn {
+            width: 100%;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #000;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+            margin-bottom: 20px;
+        }
+        
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(255, 215, 0, 0.4);
+        }
+        
+        .generate-btn:active {
+            transform: translateY(0);
+        }
+        
+        .token-display {
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: none;
+            backdrop-filter: blur(10px);
+        }
+        
+        .token-display.show {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .token-title {
+            color: #FFD700;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .token-code {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 8px;
+            padding: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            color: #FFD700;
+            text-align: center;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        
+        .whatsapp-section {
+            margin-top: 15px;
+        }
+        
+        .whatsapp-message {
+            background: rgba(37, 211, 102, 0.1);
+            border: 1px solid rgba(37, 211, 102, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            color: #fff;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .copy-btn, .whatsapp-btn {
+            flex: 1;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .copy-btn {
+            background: rgba(255, 215, 0, 0.2);
+            color: #FFD700;
+            border: 1px solid rgba(255, 215, 0, 0.4);
+        }
+        
+        .copy-btn:hover {
+            background: rgba(255, 215, 0, 0.3);
+            transform: translateY(-1px);
+        }
+        
+        .whatsapp-btn {
+            background: #25D366;
+            color: #fff;
+        }
+        
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            transform: translateY(-1px);
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 25px 15px;
+                margin: 5px;
+                max-width: 100%;
+                border-radius: 20px;
+            }
+            
+            .logo {
+                width: 70px;
+                height: 70px;
+                margin-bottom: 15px;
+            }
+            
+            h1 {
+                font-size: 1.4rem;
+                margin-bottom: 8px;
+            }
+            
+            .subtitle {
+                font-size: 0.85rem;
+                margin-bottom: 25px;
+            }
+            
+            .store-badge {
+                font-size: 0.8rem;
+                padding: 6px 15px;
+                margin-bottom: 20px;
+            }
+            
+            .input-group {
+                margin-bottom: 15px;
+            }
+            
+            .input-label {
+                font-size: 0.85rem;
+                margin-bottom: 6px;
+            }
+            
+            .input-field {
+                padding: 10px 12px;
+                font-size: 0.85rem;
+            }
+            
+            .generate-btn {
+                padding: 12px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .token-display {
+                padding: 15px;
+            }
+            
+            .token-title {
+                font-size: 1rem;
+            }
+            
+            .token-code {
+                font-size: 0.9rem;
+                padding: 8px;
+            }
+            
+            .whatsapp-message {
+                font-size: 0.8rem;
+                padding: 12px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .copy-btn, .whatsapp-btn {
+                font-size: 0.8rem;
+                padding: 8px 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
+            }
+            
+            .container {
+                padding: 20px 12px;
+                margin: 2px;
+                border-radius: 15px;
+            }
+            
+            .logo {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 12px;
+            }
+            
+            h1 {
+                font-size: 1.2rem;
+                margin-bottom: 6px;
+            }
+            
+            .subtitle {
+                font-size: 0.8rem;
+                margin-bottom: 20px;
+            }
+            
+            .store-badge {
+                font-size: 0.75rem;
+                padding: 5px 12px;
+            }
+            
+            .input-field {
+                padding: 8px 10px;
+                font-size: 0.8rem;
+            }
+            
+            .generate-btn {
+                padding: 10px 12px;
+                font-size: 0.85rem;
+            }
+        }
+        
+        /* Developer Credits Footer */
+        .dev-credits {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            z-index: 1000;
+        }
+        
+        .dev-credits p {
+            margin: 0;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .dev-credits a {
+            color: #FFD700;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .dev-credits a:hover {
+            color: #FFA500;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="tsc-logo.jpg" alt="TSC Logo" class="logo">
+        <h1>🎫 Token Generator</h1>
+        <div class="store-badge">📍 TSC Dhupguri Store (DPG)</div>
+        <p class="subtitle">
+            Fill in your details to generate your token for the Tempered Glass ₹19 offer at our Dhupguri store.
+        </p>
+        
+        <div class="form-container">
+            <div class="input-group">
+                <label class="input-label" for="customerName">
+                    <i class="fas fa-user"></i> Customer Name
+                </label>
+                <input type="text" class="input-field" id="customerName" placeholder="Enter your full name" required>
+            </div>
+            
+            <div class="input-group">
+                <label class="input-label" for="mobileNumber">
+                    <i class="fas fa-phone"></i> Mobile Number
+                </label>
+                <input type="tel" class="input-field" id="mobileNumber" placeholder="Enter your mobile number" maxlength="10" required>
+            </div>
+            
+            <div class="input-group">
+                <label class="input-label" for="location">
+                    <i class="fas fa-map-marker-alt"></i> Location
+                </label>
+                <input type="text" class="input-field" id="location" placeholder="Enter your area/locality" required>
+            </div>
+            
+            <div class="input-group">
+                <label class="input-label" for="pinCode">
+                    <i class="fas fa-map-pin"></i> Pin Code
+                </label>
+                <input type="number" class="input-field" id="pinCode" placeholder="Enter your pin code" maxlength="6" required>
+            </div>
+            
+            <div class="input-group">
+                <label class="input-label" for="mobileModel">
+                    <i class="fas fa-mobile-alt"></i> Mobile Model
+                </label>
+                <input type="text" class="input-field" id="mobileModel" placeholder="Enter your phone model (e.g., iPhone 15, Samsung S24)" required>
+            </div>
+        </div>
+        
+        <button class="generate-btn" onclick="generateToken()">
+            <i class="fas fa-ticket-alt"></i> Generate Token
+        </button>
+        
+        <div class="token-display" id="tokenDisplay">
+            <div class="token-title">🎫 Your Token</div>
+            <div class="token-code" id="tokenCode"></div>
+            
+            <div class="whatsapp-section">
+                <div class="whatsapp-message" id="whatsappMessage"></div>
+                <div class="action-buttons">
+                    <button class="copy-btn" onclick="copyToClipboard()">
+                        <i class="fas fa-copy"></i> Copy Message
+                    </button>
+                    <button class="whatsapp-btn" onclick="openWhatsApp()">
+                        <i class="fab fa-whatsapp"></i> Send WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const STORE_CODE = 'DPG';
+        const STORE_NAME = 'Dhupguri';
+        const WHATSAPP_NUMBER = '+917908972637';
+        
+        let generatedToken = '';
+        let whatsappMessage = '';
+        
+        function generateToken() {
+            // Get form values
+            const name = document.getElementById('customerName').value.trim();
+            const mobile = document.getElementById('mobileNumber').value.trim();
+            const location = document.getElementById('location').value.trim();
+            const pinCode = document.getElementById('pinCode').value.trim();
+            const mobileModel = document.getElementById('mobileModel').value.trim();
+            
+            // Validation
+            if (!name || !mobile || !location || !pinCode || !mobileModel) {
+                alert('Please fill in all fields to generate your token.');
+                return;
+            }
+            
+            if (mobile.length !== 10 || !/^\d+$/.test(mobile)) {
+                alert('Please enter a valid 10-digit mobile number.');
+                return;
+            }
+            
+            if (pinCode.length !== 6 || !/^\d+$/.test(pinCode)) {
+                alert('Please enter a valid 6-digit pin code.');
+                return;
+            }
+            
+            // Generate token
+            const timestamp = new Date();
+            const day = String(timestamp.getDate()).padStart(2, '0');
+            const month = String(timestamp.getMonth() + 1).padStart(2, '0');
+            const year = String(timestamp.getFullYear()).slice(-2);
+            const randomNum = Math.floor(Math.random() * 9999) + 1000;
+            
+            generatedToken = `${STORE_CODE}-${day}-TSC-${year}-TG${randomNum}`;
+            
+            // Generate WhatsApp message
+            whatsappMessage = `Hi Team TSC,
+
+I'm at your ${STORE_NAME} store. My name is ${name}, phone model is ${mobileModel}, and I want to claim the Tempered Glass ₹19 offer.
+
+📱 Mobile: ${mobile}
+📍 Location: ${location}
+📮 Pin Code: ${pinCode}
+🎫 Token: ${generatedToken}
+
+Please issue my token.
+
+Thank you!`;
+            
+            // Display token
+            document.getElementById('tokenCode').textContent = generatedToken;
+            document.getElementById('whatsappMessage').textContent = whatsappMessage;
+            document.getElementById('tokenDisplay').classList.add('show');
+            
+            // Scroll to token display
+            document.getElementById('tokenDisplay').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'center' 
+            });
+        }
+        
+        function copyToClipboard() {
+            navigator.clipboard.writeText(whatsappMessage).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                btn.style.background = 'rgba(34, 197, 94, 0.2)';
+                btn.style.color = '#22c55e';
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.background = 'rgba(255, 215, 0, 0.2)';
+                    btn.style.color = '#FFD700';
+                }, 2000);
+            }).catch(() => {
+                alert('Failed to copy. Please copy manually.');
+            });
+        }
+        
+        function openWhatsApp() {
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER.replace('+', '')}?text=${encodedMessage}`;
+            window.open(whatsappUrl, '_blank');
+        }
+        
+        // Auto-focus first input
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('customerName').focus();
+            
+            // Add entrance animation
+            const container = document.querySelector('.container');
+            container.style.opacity = '0';
+            container.style.transform = 'translateY(30px)';
+            
+            setTimeout(() => {
+                container.style.transition = 'all 0.8s ease';
+                container.style.opacity = '1';
+                container.style.transform = 'translateY(0)';
+            }, 100);
+        });
+        
+        // Input validation
+        document.getElementById('mobileNumber').addEventListener('input', function(e) {
+            this.value = this.value.replace(/\D/g, '');
+        });
+        
+        document.getElementById('pinCode').addEventListener('input', function(e) {
+            this.value = this.value.replace(/\D/g, '');
+        });
+        
+        // Enter key submit
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                generateToken();
+            }
+        });
+    </script>
+    
+    <!-- Developer Credits Footer -->
+    <footer class="dev-credits">
+        <p>Crafted by <a href="https://psprosen.me" target="_blank">Ps Prosen</a> | Powered by <a href="https://we-digital-mitra.tech" target="_blank">WDM</a></p>
+    </footer>
+</body>
+</html>
