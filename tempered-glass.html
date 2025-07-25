@@ -1,0 +1,640 @@
+<!--
+🔧 Developed by Jarvis (RTX⚡)
+🤝 Engineered for The Shankar Communications (TSC)
+🧠 AI Assistant: ChatGPT Jarvis, Visual Dev: VS Code Jarvis (Claude Sonnet 4)
+🎨 Theme: Gold Royal Luxe ✨
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📱 TSC Tempered Glass Offer - Just ₹19!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="theme-color" content="#FFD700">
+    <meta name="description" content="Premium tempered glass screen protector for just ₹19 at TSC">
+    <meta property="og:title" content="TSC Tempered Glass Offer">
+    <meta property="og:description" content="High-quality screen protection at an unbeatable price!">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #fff;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* RTX Enhanced Background Effects */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
+            animation: rtx-glow 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes rtx-glow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-10px) rotate(1deg); }
+            66% { transform: translateY(5px) rotate(-1deg); }
+        }
+        
+        .container {
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 30px 20px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 
+                        0 0 0 1px rgba(255, 215, 0, 0.1) inset;
+            transition: all 0.3s ease;
+        }
+        
+        .container:hover {
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7),
+                        0 0 0 1px rgba(255, 215, 0, 0.2) inset;
+            transform: translateY(-2px);
+        }
+        
+        .logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255, 215, 0, 0.6);
+            margin-bottom: 20px;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+            animation: logo-pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes logo-pulse {
+            0%, 100% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.4); }
+            50% { box-shadow: 0 0 50px rgba(255, 215, 0, 0.7); }
+        }
+        
+        h1 {
+            background: linear-gradient(45deg, #FFD700, #FFA500, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            animation: gradient-shift 3s ease-in-out infinite;
+        }
+        
+        @keyframes gradient-shift {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(20deg); }
+        }
+        
+        .offer-badge {
+            background: linear-gradient(45deg, #FF6B6B, #FF4757);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        .price-section {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 25px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .price-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            animation: shine 3s ease-in-out infinite;
+        }
+        
+        @keyframes shine {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+        
+        .original-price {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: line-through;
+            margin-bottom: 5px;
+        }
+        
+        .offer-price {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+        
+        .savings {
+            color: #4CAF50;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        /* Product Features */
+        .features {
+            text-align: left;
+            margin: 25px 0;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .feature-item i {
+            color: #4CAF50;
+            margin-right: 12px;
+            font-size: 1.1rem;
+        }
+        
+        /* Store Selection */
+        .store-selection {
+            margin: 25px 0;
+        }
+        
+        .store-selection h3 {
+            color: #FFD700;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .store-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .store-btn {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            color: #FFD700;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 120px;
+        }
+        
+        .store-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: rgba(255, 215, 0, 0.6);
+            transform: translateY(-2px);
+        }
+        
+        .store-btn.selected {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #000;
+            border-color: #FFD700;
+        }
+        
+        /* Order Now Button */
+        .order-btn {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            box-shadow: 
+                0 8px 20px rgba(76, 175, 80, 0.4),
+                0 0 0 1px rgba(76, 175, 80, 0.3) inset;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: pulse-green 2s ease-in-out infinite;
+        }
+        
+        .order-btn:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 12px 25px rgba(76, 175, 80, 0.6),
+                0 0 0 1px rgba(76, 175, 80, 0.5) inset;
+        }
+        
+        .order-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            animation: none;
+        }
+        
+        @keyframes pulse-green {
+            0%, 100% { box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4), 0 0 0 1px rgba(76, 175, 80, 0.3) inset; }
+            50% { box-shadow: 0 8px 25px rgba(76, 175, 80, 0.6), 0 0 0 1px rgba(76, 175, 80, 0.5) inset; }
+        }
+        
+        /* Product Image */
+        .product-showcase {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .product-image {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #fff;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            animation: floating 4s ease-in-out infinite;
+        }
+        
+        /* Timer */
+        .timer {
+            background: rgba(255, 107, 107, 0.1);
+            border: 2px solid rgba(255, 107, 107, 0.3);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 20px 0;
+            color: #FF6B6B;
+        }
+        
+        .timer-title {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .timer-display {
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'Courier New', monospace;
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 15px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .offer-price {
+                font-size: 2.5rem;
+            }
+            
+            .store-buttons {
+                flex-direction: column;
+            }
+            
+            .store-btn {
+                min-width: auto;
+            }
+            
+            .order-btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+        }
+        
+        /* Success Message */
+        .success-message {
+            background: rgba(76, 175, 80, 0.1);
+            border: 2px solid rgba(76, 175, 80, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            color: #4CAF50;
+            display: none;
+        }
+        
+        .success-message.show {
+            display: block;
+            animation: slideUp 0.5s ease;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Developer Credits Footer */
+        .dev-credits {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            z-index: 1000;
+        }
+        
+        .dev-credits p {
+            margin: 0;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .dev-credits a {
+            color: #FFD700;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .dev-credits a:hover {
+            color: #FFA500;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="tsc-logo.jpg" alt="TSC Logo" class="logo">
+        <h1>📱 Premium Tempered Glass</h1>
+        
+        <div class="offer-badge">
+            🔥 Limited Time Offer
+        </div>
+        
+        <div class="product-showcase">
+            <div class="product-image">
+                📱
+            </div>
+            <h3 style="color: #FFD700; margin-bottom: 10px;">9H Hardness Tempered Glass</h3>
+            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.9rem;">Crystal Clear • Anti-Fingerprint • Bubble-Free</p>
+        </div>
+        
+        <div class="price-section">
+            <div class="original-price">MRP: ₹299</div>
+            <div class="offer-price">₹19</div>
+            <div class="savings">You Save: ₹280 (93% OFF)</div>
+        </div>
+        
+        <div class="timer">
+            <div class="timer-title">⏰ Offer Valid For:</div>
+            <div class="timer-display" id="timer">23:59:45</div>
+        </div>
+        
+        <div class="features">
+            <div class="feature-item">
+                <i class="fas fa-shield-alt"></i>
+                <span>9H Hardness Protection</span>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-eye"></i>
+                <span>99.9% Transparency</span>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-hand-paper"></i>
+                <span>Anti-Fingerprint Coating</span>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-tools"></i>
+                <span>Easy Installation Kit</span>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-medal"></i>
+                <span>Premium Quality Materials</span>
+            </div>
+        </div>
+        
+        <div class="store-selection">
+            <h3>📍 Select Your Nearest Store:</h3>
+            <div class="store-buttons">
+                <button class="store-btn" onclick="selectStore('main')">
+                    <i class="fas fa-store"></i> Main Store
+                </button>
+                <button class="store-btn" onclick="selectStore('mall')">
+                    <i class="fas fa-building"></i> Mall Branch
+                </button>
+                <button class="store-btn" onclick="selectStore('market')">
+                    <i class="fas fa-shopping-cart"></i> Market Store
+                </button>
+            </div>
+        </div>
+        
+        <button class="order-btn" id="orderBtn" onclick="proceedToOrder()" disabled>
+            <i class="fas fa-shopping-bag"></i> Order Now - ₹19
+        </button>
+        
+        <div class="success-message" id="successMessage">
+            <h4>🎉 Order Confirmed!</h4>
+            <p>Your tempered glass will be ready for pickup. You'll receive a WhatsApp confirmation shortly.</p>
+        </div>
+    </div>
+    
+    <script>
+        let selectedStore = '';
+        let orderTimer;
+        
+        // Store selection function
+        function selectStore(store) {
+            selectedStore = store;
+            
+            // Update button states
+            document.querySelectorAll('.store-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            event.target.classList.add('selected');
+            
+            // Enable order button
+            document.getElementById('orderBtn').disabled = false;
+        }
+        
+        // Timer countdown
+        function startTimer() {
+            let hours = 23;
+            let minutes = 59;
+            let seconds = 45;
+            
+            orderTimer = setInterval(() => {
+                seconds--;
+                
+                if (seconds < 0) {
+                    seconds = 59;
+                    minutes--;
+                }
+                
+                if (minutes < 0) {
+                    minutes = 59;
+                    hours--;
+                }
+                
+                if (hours < 0) {
+                    clearInterval(orderTimer);
+                    document.getElementById('timer').textContent = 'EXPIRED';
+                    document.getElementById('orderBtn').disabled = true;
+                    return;
+                }
+                
+                const display = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                document.getElementById('timer').textContent = display;
+                
+            }, 1000);
+        }
+        
+        // Order processing
+        function proceedToOrder() {
+            if (!selectedStore) {
+                alert('Please select a store first!');
+                return;
+            }
+            
+            const orderBtn = document.getElementById('orderBtn');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Disable button and show processing
+            orderBtn.disabled = true;
+            orderBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing Order...';
+            
+            // Store order details
+            const orderData = {
+                product: 'Premium Tempered Glass',
+                price: '₹19',
+                store: selectedStore,
+                timestamp: new Date().toISOString(),
+                orderId: 'TSC-TG-' + Date.now()
+            };
+            
+            localStorage.setItem('tsc_tempered_glass_order', JSON.stringify(orderData));
+            localStorage.setItem('tsc_flow_type', 'tempered-glass');
+            
+            // Simulate order processing
+            setTimeout(() => {
+                successMessage.classList.add('show');
+                orderBtn.innerHTML = '<i class="fas fa-check"></i> Order Confirmed';
+                
+                // Redirect to token generation after 3 seconds
+                setTimeout(() => {
+                    window.location.href = 'generate-token.html';
+                }, 3000);
+                
+            }, 2000);
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Read store code from localStorage
+            const storeCode = localStorage.getItem('tsc_store_code');
+            if (storeCode) {
+                console.log('Operating for store:', storeCode);
+                // Store code will be used for store selection
+                localStorage.setItem('tsc_current_store', storeCode);
+            }
+            
+            startTimer();
+            
+            // Check if user came from tasks
+            const completedTasks = localStorage.getItem('tsc_completed_tasks');
+            if (!completedTasks) {
+                // Redirect to tasks if not completed
+                alert('Please complete the social media tasks first!');
+                window.location.href = 'tasks-new.html';
+                return;
+            }
+            
+            // Add floating animations to feature items
+            document.querySelectorAll('.feature-item').forEach((item, index) => {
+                item.style.animationDelay = `${index * 0.1}s`;
+                item.style.animation = 'floating 4s ease-in-out infinite';
+            });
+        });
+        
+        // Prevent back button
+        history.pushState(null, null, location.href);
+        window.onpopstate = function() {
+            history.go(1);
+        };
+        
+        // Page visibility change handler
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                clearInterval(orderTimer);
+            } else {
+                startTimer();
+            }
+        });
+    </script>
+    
+    <!-- Developer Credits Footer -->
+    <footer class="dev-credits">
+        <p>Crafted by <a href="https://psprosen.me" target="_blank">Ps Prosen</a> | Powered by <a href="https://we-digital-mitra.tech" target="_blank">WDM</a></p>
+    </footer>
+</body>
+</html>

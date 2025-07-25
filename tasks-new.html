@@ -1,0 +1,740 @@
+<!--
+🔧 Developed by Jarvis (RTX⚡)
+🤝 Engineered for The Shankar Communications (TSC)
+🧠 AI Assistant: ChatGPT Jarvis, Visual Dev: VS Code Jarvis (Claude Sonnet 4)
+🎨 Theme: Gold Royal Luxe ✨
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎁 TSC Reward Journey - Complete Tasks</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="theme-color" content="#FFD700">
+    <meta name="description" content="Complete social media tasks to unlock your TSC reward">
+    <meta property="og:title" content="TSC Reward Tasks">
+    <meta property="og:description" content="Follow us on social media and unlock amazing rewards!">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #fff;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* RTX Enhanced Background Effects */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
+            animation: rtx-glow 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes rtx-glow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-10px) rotate(1deg); }
+            66% { transform: translateY(5px) rotate(-1deg); }
+        }
+        
+        .container {
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 30px 20px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 
+                        0 0 0 1px rgba(255, 215, 0, 0.1) inset;
+            transition: all 0.3s ease;
+        }
+        
+        .container:hover {
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7),
+                        0 0 0 1px rgba(255, 215, 0, 0.2) inset;
+            transform: translateY(-2px);
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255, 215, 0, 0.6);
+            margin-bottom: 20px;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
+            animation: logo-pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes logo-pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(255, 215, 0, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 0 60px rgba(255, 215, 0, 0.6); }
+        }
+        
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #FFD700, #FFC107, #FF8F00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            animation: title-glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes title-glow {
+            from { filter: brightness(1); }
+            to { filter: brightness(1.2); }
+        }
+        
+        .subtitle {
+            color: #aaa;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+        
+        .task-card {
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid rgba(0, 255, 0, 0.6);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .task-card:hover {
+            border-color: rgba(0, 255, 0, 0.8);
+            box-shadow: 0 5px 20px rgba(0, 255, 0, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .task-card.completed {
+            border-color: rgba(0, 255, 0, 0.9);
+            background: rgba(0, 255, 0, 0.1);
+        }
+        
+        .task-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+        
+        .task-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+        }
+        
+        .task-icon {
+            font-size: 24px;
+            color: #fff;
+            min-width: 30px;
+        }
+        
+        .task-content {
+            flex: 1;
+        }
+        
+        .task-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        
+        .task-desc {
+            font-size: 13px;
+            color: #aaa;
+            line-height: 1.3;
+        }
+        
+        .task-status {
+            font-size: 24px;
+            min-width: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .task-status.completed {
+            filter: drop-shadow(0 0 8px rgba(0, 255, 0, 0.6));
+            animation: checkmark-glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes checkmark-glow {
+            from { filter: drop-shadow(0 0 8px rgba(0, 255, 0, 0.6)); }
+            to { filter: drop-shadow(0 0 15px rgba(0, 255, 0, 0.9)); }
+        }
+        
+        /* Icon colors for each platform */
+        .fa-whatsapp { color: #25D366; }
+        .fa-bullhorn { color: #00E676; }
+        .fa-google { color: #4285F4; }
+        .fa-facebook { color: #1877F2; }
+        .fa-instagram { color: #E4405F; }
+        .fa-youtube { color: #FF0000; }
+        
+        .progress-container {
+            margin: 30px 0;
+        }
+        
+        .progress-text {
+            color: #FFD700;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .progress-bar {
+            background: rgba(255, 255, 255, 0.1);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #FFD700, #FFC107);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .spin-button {
+            background: linear-gradient(135deg, #FFD700, #FFC107);
+            color: #000;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .spin-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.5);
+        }
+        
+        .spin-button.locked {
+            background: #666;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+        
+        /* Branding Footer */
+        .branding {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            font-size: 12px;
+            color: rgba(255, 215, 0, 0.7);
+        }
+        
+        .branding a {
+            color: #FFD700;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .branding a:hover {
+            color: #FFA500;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.8);
+        }
+        
+        .tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: #FFD700;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 11px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #FFD700;
+            z-index: 1000;
+        }
+        
+        .branding a:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(-5px);
+        }
+        
+        /* Enhanced animations */
+        @keyframes bounce {
+            0%, 20%, 60%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            80% { transform: translateY(-5px); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 255, 0, 0.9);
+            color: #000;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            z-index: 1000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 25px 15px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .task-btn {
+                padding: 12px 15px;
+            }
+            
+            .task-icon {
+                font-size: 20px;
+            }
+            
+            .task-title {
+                font-size: 14px;
+            }
+            
+            .spin-button {
+                padding: 15px 30px;
+                font-size: 16px;
+            }
+        }
+        
+        /* Developer Credits Footer */
+        .dev-credits {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            z-index: 1000;
+        }
+        
+        .dev-credits p {
+            margin: 0;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .dev-credits a {
+            color: #FFD700;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .dev-credits a:hover {
+            color: #FFA500;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="./tsc-logo.jpg" alt="TSC Logo" class="logo">
+        <h1>🎁 TSC Reward Journey</h1>
+        <p class="subtitle">Complete all tasks below to unlock your special reward!</p>
+        
+        <div class="task-card" data-task="whatsapp_done" onclick="openTaskAndMark(this, 'https://wa.me/917908972637')">
+            <div class="task-header">
+                <div class="task-info">
+                    <i class="fab fa-whatsapp task-icon"></i>
+                    <div class="task-content">
+                        <div class="task-title">WhatsApp Join</div>
+                        <div class="task-desc">Connect with TSC for instant support</div>
+                    </div>
+                </div>
+                <div class="task-status" id="whatsapp_done">⭕</div>
+            </div>
+        </div>
+        
+        <div class="task-card" data-task="channel_done" onclick="openTaskAndMark(this, 'https://whatsapp.com/channel/0029VbAoFCtAe5VmITgCtN0E')">
+            <div class="task-header">
+                <div class="task-info">
+                    <i class="fas fa-bullhorn task-icon"></i>
+                    <div class="task-content">
+                        <div class="task-title">WhatsApp Channel</div>
+                        <div class="task-desc">Get latest offers & updates</div>
+                    </div>
+                </div>
+                <div class="task-status" id="channel_done">⭕</div>
+            </div>
+        </div>
+        
+        <div class="task-card" data-task="review_done" onclick="openTaskAndMark(this, 'https://g.page/r/CceRavjI0BzzEAE/review')">
+            <div class="task-header">
+                <div class="task-info">
+                    <i class="fab fa-google task-icon"></i>
+                    <div class="task-content">
+                        <div class="task-title">Google Review</div>
+                        <div class="task-desc">Share your experience with us</div>
+                    </div>
+                </div>
+                <div class="task-status" id="review_done">⭕</div>
+            </div>
+        </div>
+        
+        <div class="task-card" data-task="fb_done" onclick="openTaskAndMark(this, 'https://facebook.com/theshankarcommunications')">
+            <div class="task-header">
+                <div class="task-info">
+                    <i class="fab fa-facebook task-icon"></i>
+                    <div class="task-content">
+                        <div class="task-title">Facebook Follow</div>
+                        <div class="task-desc">Stay connected on Facebook</div>
+                    </div>
+                </div>
+                <div class="task-status" id="fb_done">⭕</div>
+            </div>
+        </div>
+        
+        <div class="task-card" data-task="insta_done" onclick="openTaskAndMark(this, 'https://instagram.com/theshankarcommunications')">
+            <div class="task-header">
+                <div class="task-info">
+                    <i class="fab fa-instagram task-icon"></i>
+                    <div class="task-content">
+                        <div class="task-title">Instagram Follow</div>
+                        <div class="task-desc">Follow for exclusive content</div>
+                    </div>
+                </div>
+                <div class="task-status" id="insta_done">⭕</div>
+            </div>
+        </div>
+        
+        <div class="task-card" data-task="yt_done" onclick="openTaskAndMark(this, 'https://youtube.com/@theshankarcommunications')">
+            <div class="task-header">
+                <div class="task-info">
+                    <i class="fab fa-youtube task-icon"></i>
+                    <div class="task-content">
+                        <div class="task-title">YouTube Subscribe</div>
+                        <div class="task-desc">Subscribe for tech videos</div>
+                    </div>
+                </div>
+                <div class="task-status" id="yt_done">⭕</div>
+            </div>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-text">Progress: <span id="progressText">0/6 tasks completed</span></div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+        
+        <button class="spin-button locked" id="spinButton" onclick="goToSpin()">
+            🔒 Complete All Tasks First
+        </button>
+        
+        <div class="branding">
+            Powered by <a href="https://wedigitalmitra.studio" target="_blank">We Digital Mitra <span class="tooltip">✨ Designed by Ps Prosen | Built by WDM 🚀</span></a> 💛 
+            Crafted by <a href="https://psprosen.me" target="_blank">Ps Prosen <span class="tooltip">✨ Designed by Ps Prosen | Built by WDM 🚀</span></a>
+        </div>
+    </div>
+
+    <script>
+        const tasks = ['whatsapp_done', 'channel_done', 'review_done', 'fb_done', 'insta_done', 'yt_done'];
+        
+        function openTaskAndMark(button, url) {
+            const taskKey = button.getAttribute('data-task');
+            
+            // Enhanced analytics tracking (with error handling)
+            try {
+                // Analytics would go here
+            } catch(e) {
+                console.log('Analytics not available');
+            }
+            
+            // Enhanced button click with animation
+            button.style.transform = 'scale(0.95)';
+            
+            // Open URL
+            try {
+                window.open(url, '_blank');
+            } catch(e) {
+                window.location.href = url;
+            }
+            
+            // Reset button transform and mark as complete
+            setTimeout(() => {
+                button.style.transform = '';
+                markTaskComplete(taskKey);
+            }, 200);
+        }
+        
+        function markTaskComplete(taskKey) {
+            localStorage.setItem(taskKey, 'true');
+            localStorage.setItem(taskKey + '_timestamp', new Date().toISOString());
+            
+            // Enhanced UI feedback with animations
+            const statusIcon = document.getElementById(taskKey);
+            const taskCard = document.querySelector(`[data-task="${taskKey}"]`);
+            
+            if (statusIcon) {
+                statusIcon.textContent = '✅';
+                statusIcon.classList.add('completed');
+                statusIcon.style.animation = 'bounce 0.6s ease-out';
+            }
+            
+            if (taskCard) {
+                taskCard.classList.add('completed');
+                taskCard.style.animation = 'pulse 0.8s ease-out';
+            }
+            
+            // Success sound effect simulation
+            if ('vibrate' in navigator) {
+                navigator.vibrate(200);
+            }
+            
+            updateProgress();
+            showTaskCompleteMessage(taskKey);
+        }
+        
+        function updateProgress() {
+            const completedTasks = tasks.filter(task => localStorage.getItem(task) === 'true');
+            const progress = (completedTasks.length / tasks.length) * 100;
+            
+            document.getElementById('progressText').textContent = `${completedTasks.length}/${tasks.length} tasks completed`;
+            document.getElementById('progressFill').style.width = progress + '%';
+            
+            checkSpinUnlock();
+        }
+        
+        function checkSpinUnlock() {
+            const completedTasks = tasks.filter(task => localStorage.getItem(task) === 'true');
+            const spinButton = document.getElementById('spinButton');
+            
+            if (completedTasks.length === tasks.length) {
+                spinButton.classList.remove('locked');
+                spinButton.textContent = '🎡 SPIN TO WIN YOUR PRIZE!';
+                spinButton.style.animation = 'pulse 1s ease-in-out infinite';
+                spinButton.style.background = 'linear-gradient(135deg, #FFD700, #FFC107)';
+            }
+        }
+        
+        function goToSpin() {
+            const completedTasks = tasks.filter(task => localStorage.getItem(task) === 'true');
+            
+            if (completedTasks.length === tasks.length) {
+                // Check flow type and redirect accordingly
+                const flowType = localStorage.getItem('flow_type');
+                const tokenDigits = localStorage.getItem('token_digits');
+                
+                if (flowType === 'spin') {
+                    window.location.href = 'reward.html';
+                } else if (flowType === 'tg') {
+                    window.location.href = 'tempered-glass.html';
+                } else {
+                    // Default to spin
+                    window.location.href = 'reward.html';
+                }
+            } else {
+                alert('Complete all tasks first to unlock your reward!');
+            }
+        }
+        
+        function loadTaskStates() {
+            tasks.forEach(task => {
+                if (localStorage.getItem(task) === 'true') {
+                    const statusIcon = document.getElementById(task);
+                    const taskCard = document.querySelector(`[data-task="${task}"]`);
+                    
+                    if (statusIcon) {
+                        statusIcon.textContent = '✅';
+                        statusIcon.classList.add('completed');
+                    }
+                    
+                    if (taskCard) {
+                        taskCard.classList.add('completed');
+                    }
+                }
+            });
+            
+            updateProgress();
+        }
+        
+        // Initialize on page load with error handling
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                loadTaskStates();
+                initRTXEffects();
+            } catch(e) {
+                console.log('Initialization error:', e);
+            }
+        });
+        
+        // Enhanced features
+        function showTaskCompleteMessage(taskKey) {
+            const taskNames = {
+                'whatsapp_done': 'WhatsApp',
+                'fb_done': 'Facebook',
+                'insta_done': 'Instagram', 
+                'yt_done': 'YouTube',
+                'review_done': 'Google Review',
+                'channel_done': 'WhatsApp Channel'
+            };
+            
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = `✅ ${taskNames[taskKey]} task completed!`;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+        
+        function initializeAnalytics() {
+            try {
+                // Analytics initialization would go here
+            } catch(e) {
+                console.log('Analytics initialization failed');
+            }
+        }
+        
+        // Enhanced security - prevent task manipulation
+        function validateTaskCompletion() {
+            const completedTasks = tasks.filter(task => {
+                const completed = localStorage.getItem(task) === 'true';
+                const timestamp = localStorage.getItem(task + '_timestamp');
+                return completed && timestamp;
+            });
+            
+            return completedTasks.length === tasks.length;
+        }
+        
+        // RTX Enhanced Effects
+        function initRTXEffects() {
+            setInterval(createParticle, 3000);
+        }
+        
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.cssText = `
+                position: fixed;
+                width: 4px;
+                height: 4px;
+                background: #FFD700;
+                border-radius: 50%;
+                left: ${Math.random() * 100}vw;
+                top: 100vh;
+                opacity: 0.7;
+                animation: float-up 10s linear forwards;
+                z-index: -1;
+                pointer-events: none;
+            `;
+            
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 10000);
+        }
+        
+        // Add CSS for particle animation
+        const particleStyle = document.createElement('style');
+        particleStyle.textContent = `
+            @keyframes float-up {
+                to {
+                    transform: translateY(-100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(particleStyle);
+        
+        // Initialize store code reading on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Read store code from localStorage
+            const storeCode = localStorage.getItem('tsc_store_code');
+            if (storeCode) {
+                console.log('Operating for store:', storeCode);
+                // Store code will be used for navigation logic
+                localStorage.setItem('tsc_current_store', storeCode);
+            }
+        });
+    </script>
+    
+    <!-- Developer Credits Footer -->
+    <footer class="dev-credits">
+        <p>Crafted by <a href="https://psprosen.me" target="_blank">Ps Prosen</a> | Powered by <a href="https://we-digital-mitra.tech" target="_blank">WDM</a></p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,624 @@
+<!--
+🔧 Developed by Jarvis (RTX⚡)
+🤝 Engineered for The Shankar Communications (TSC)
+🧠 AI Assistant: ChatGPT Jarvis, Visual Dev: VS Code Jarvis (Claude Sonnet 4)
+🎨 Theme: Gold Royal Luxe ✨
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎰 TSC Spin & Win - Your Reward Awaits!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="theme-color" content="#FFD700">
+    <meta name="description" content="Spin the wheel and win amazing rewards at TSC">
+    <meta property="og:title" content="TSC Spin & Win Game">
+    <meta property="og:description" content="Try your luck and win amazing prizes!">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #fff;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* RTX Enhanced Background Effects */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
+            animation: rtx-glow 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes rtx-glow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-10px) rotate(1deg); }
+            66% { transform: translateY(5px) rotate(-1deg); }
+        }
+        
+        .container {
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 30px 20px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 
+                        0 0 0 1px rgba(255, 215, 0, 0.1) inset;
+            transition: all 0.3s ease;
+        }
+        
+        .container:hover {
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7),
+                        0 0 0 1px rgba(255, 215, 0, 0.2) inset;
+            transform: translateY(-2px);
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255, 215, 0, 0.6);
+            margin-bottom: 15px;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+            animation: logo-pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes logo-pulse {
+            0%, 100% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.4); }
+            50% { box-shadow: 0 0 50px rgba(255, 215, 0, 0.7); }
+        }
+        
+        h1 {
+            background: linear-gradient(45deg, #FFD700, #FFA500, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            animation: gradient-shift 3s ease-in-out infinite;
+        }
+        
+        @keyframes gradient-shift {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(20deg); }
+        }
+        
+        .subtitle {
+            color: rgba(255, 215, 0, 0.9);
+            font-size: 1rem;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+        
+        /* Spin Wheel Container */
+        .wheel-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Wheel SVG */
+        .wheel {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 215, 0, 0.8);
+            box-shadow: 
+                0 0 0 8px rgba(255, 215, 0, 0.3),
+                0 0 30px rgba(255, 215, 0, 0.6),
+                inset 0 0 20px rgba(0, 0, 0, 0.3);
+            transition: transform 4s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+        }
+        
+        .wheel.spinning {
+            cursor: not-allowed;
+        }
+        
+        /* Wheel Pointer */
+        .wheel-pointer {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 30px solid #FFD700;
+            z-index: 10;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.5));
+        }
+        
+        /* Center Circle */
+        .wheel-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            border-radius: 50%;
+            border: 3px solid #000;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-weight: 700;
+            font-size: 0.8rem;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+        }
+        
+        /* Spin Button */
+        .spin-button {
+            background: linear-gradient(45deg, #FFD700, #FFA500, #FFD700);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #000;
+            cursor: pointer;
+            box-shadow: 
+                0 8px 20px rgba(255, 215, 0, 0.4),
+                0 0 0 1px rgba(255, 215, 0, 0.3) inset;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        .spin-button:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 12px 25px rgba(255, 215, 0, 0.6),
+                0 0 0 1px rgba(255, 215, 0, 0.5) inset;
+        }
+        
+        .spin-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            animation: none;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4), 0 0 0 1px rgba(255, 215, 0, 0.3) inset; }
+            50% { box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6), 0 0 0 1px rgba(255, 215, 0, 0.5) inset; }
+        }
+        
+        /* Result Display */
+        .result {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .result.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .result h3 {
+            color: #FFD700;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .result p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+        
+        /* Prize Values */
+        .prize-value {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        /* Continue Button */
+        .continue-btn {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .continue-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 15px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .wheel-container {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .spin-button {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+        }
+        
+        /* Loading Animation */
+        .loading {
+            display: none;
+            color: #FFD700;
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+        
+        .loading.show {
+            display: block;
+        }
+        
+        @keyframes loading-dots {
+            0%, 20% { opacity: 0; }
+            50% { opacity: 1; }
+            80%, 100% { opacity: 0; }
+        }
+        
+        .loading .dot1 { animation: loading-dots 1.4s infinite; }
+        .loading .dot2 { animation: loading-dots 1.4s infinite 0.2s; }
+        .loading .dot3 { animation: loading-dots 1.4s infinite 0.4s; }
+        
+        /* Developer Credits Footer */
+        .dev-credits {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            z-index: 1000;
+        }
+        
+        .dev-credits p {
+            margin: 0;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .dev-credits a {
+            color: #FFD700;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .dev-credits a:hover {
+            color: #FFA500;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="tsc-logo.jpg" alt="TSC Logo" class="logo">
+        <h1>🎰 Spin & Win!</h1>
+        <p class="subtitle">Your reward is just one spin away!</p>
+        
+        <div class="wheel-container">
+            <div class="wheel-pointer"></div>
+            <svg class="wheel" id="wheelSvg" viewBox="0 0 300 300">
+                <!-- Wheel segments will be drawn here -->
+            </svg>
+            <div class="wheel-center">SPIN</div>
+        </div>
+        
+        <button class="spin-button" id="spinBtn" onclick="spinWheel()">
+            <i class="fas fa-star"></i> SPIN NOW
+        </button>
+        
+        <div class="loading" id="loading">
+            Processing your reward<span class="dot1">.</span><span class="dot2">.</span><span class="dot3">.</span>
+        </div>
+        
+        <div class="result" id="result">
+            <h3 id="resultTitle">🎉 Congratulations!</h3>
+            <p id="resultText">You won: <span class="prize-value" id="prizeText"></span></p>
+            <a href="generate-token.html" class="continue-btn" id="continueBtn" style="display: none;">
+                <i class="fas fa-arrow-right"></i> Claim Your Reward
+            </a>
+        </div>
+    </div>
+    
+    <script>
+        // Prevent duplicate spins
+        let hasSpun = localStorage.getItem('tsc_has_spun') === 'true';
+        
+        // Prize segments with different weights
+        const prizes = [
+            { text: 'Botel', color: '#FF6B6B', weight: 20 },
+            { text: 'Earbuds', color: '#4ECDC4', weight: 25 },
+            { text: 'Neckband', color: '#45B7D1', weight: 30 },
+            { text: 'Mobile Stand', color: '#96CEB4', weight: 25 }
+        ];
+        
+        // Draw the wheel
+        function drawWheel() {
+            const svg = document.getElementById('wheelSvg');
+            const centerX = 150;
+            const centerY = 150;
+            const radius = 140;
+            const anglePerSegment = 360 / prizes.length;
+            
+            svg.innerHTML = ''; // Clear existing content
+            
+            prizes.forEach((prize, index) => {
+                const startAngle = index * anglePerSegment;
+                const endAngle = (index + 1) * anglePerSegment;
+                
+                // Convert to radians
+                const startRad = (startAngle - 90) * (Math.PI / 180);
+                const endRad = (endAngle - 90) * (Math.PI / 180);
+                
+                // Calculate path points
+                const x1 = centerX + radius * Math.cos(startRad);
+                const y1 = centerY + radius * Math.sin(startRad);
+                const x2 = centerX + radius * Math.cos(endRad);
+                const y2 = centerY + radius * Math.sin(endRad);
+                
+                const largeArcFlag = anglePerSegment > 180 ? 1 : 0;
+                
+                const pathData = [
+                    `M ${centerX} ${centerY}`,
+                    `L ${x1} ${y1}`,
+                    `A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2}`,
+                    'Z'
+                ].join(' ');
+                
+                // Create segment path
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                path.setAttribute('d', pathData);
+                path.setAttribute('fill', prize.color);
+                path.setAttribute('stroke', '#000');
+                path.setAttribute('stroke-width', '2');
+                svg.appendChild(path);
+                
+                // Add text
+                const textAngle = startAngle + anglePerSegment / 2;
+                const textRad = (textAngle - 90) * (Math.PI / 180);
+                const textRadius = radius * 0.7;
+                const textX = centerX + textRadius * Math.cos(textRad);
+                const textY = centerY + textRadius * Math.sin(textRad);
+                
+                const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                text.setAttribute('x', textX);
+                text.setAttribute('y', textY);
+                text.setAttribute('text-anchor', 'middle');
+                text.setAttribute('dominant-baseline', 'middle');
+                text.setAttribute('fill', '#000');
+                text.setAttribute('font-family', 'Poppins');
+                text.setAttribute('font-size', '11');
+                text.setAttribute('font-weight', '600');
+                text.setAttribute('transform', `rotate(${textAngle}, ${textX}, ${textY})`);
+                text.textContent = prize.text;
+                svg.appendChild(text);
+            });
+        }
+        
+        // Weighted random selection
+        function getRandomPrize() {
+            const totalWeight = prizes.reduce((sum, prize) => sum + prize.weight, 0);
+            let random = Math.random() * totalWeight;
+            
+            for (let i = 0; i < prizes.length; i++) {
+                if (random < prizes[i].weight) {
+                    return { prize: prizes[i], index: i };
+                }
+                random -= prizes[i].weight;
+            }
+            
+            return { prize: prizes[0], index: 0 }; // fallback
+        }
+        
+        // Spin wheel function
+        function spinWheel() {
+            if (hasSpun) {
+                alert('🎯 You have already spun the wheel! Each user gets only one chance.');
+                return;
+            }
+            
+            const wheel = document.getElementById('wheelSvg');
+            const spinBtn = document.getElementById('spinBtn');
+            const loading = document.getElementById('loading');
+            const result = document.getElementById('result');
+            
+            // Disable button and show loading
+            spinBtn.disabled = true;
+            spinBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> SPINNING...';
+            loading.classList.add('show');
+            wheel.classList.add('spinning');
+            
+            // Get random prize
+            const { prize, index } = getRandomPrize();
+            
+            // Calculate rotation
+            const segmentAngle = 360 / prizes.length;
+            const targetAngle = (index * segmentAngle) + (segmentAngle / 2);
+            const randomSpins = Math.floor(Math.random() * 5) + 5; // 5-10 full rotations
+            const finalRotation = (randomSpins * 360) + (360 - targetAngle);
+            
+            // Apply rotation
+            wheel.style.transform = `rotate(${finalRotation}deg)`;
+            
+            // Show result after animation
+            setTimeout(() => {
+                loading.classList.remove('show');
+                wheel.classList.remove('spinning');
+                
+                // Store the result
+                localStorage.setItem('tsc_spin_result', prize.text);
+                localStorage.setItem('tsc_has_spun', 'true');
+                hasSpun = true;
+                
+                // Display result
+                document.getElementById('prizeText').textContent = prize.text;
+                document.getElementById('continueBtn').style.display = 'inline-block';
+                result.classList.add('show');
+                
+                // Update button
+                spinBtn.innerHTML = '<i class="fas fa-check"></i> COMPLETED';
+                
+                // Confetti effect
+                createConfetti();
+                
+            }, 4500);
+        }
+        
+        // Confetti effect
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.style.position = 'fixed';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = '-10px';
+                    confetti.style.width = '10px';
+                    confetti.style.height = '10px';
+                    confetti.style.backgroundColor = ['#FFD700', '#FF6B6B', '#4ECDC4', '#45B7D1'][Math.floor(Math.random() * 4)];
+                    confetti.style.zIndex = '1000';
+                    confetti.style.borderRadius = '50%';
+                    confetti.style.pointerEvents = 'none';
+                    confetti.style.animation = 'confetti-fall 3s linear forwards';
+                    
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 3000);
+                }, i * 50);
+            }
+        }
+        
+        // Add confetti animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes confetti-fall {
+                to {
+                    transform: translateY(100vh) rotate(720deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Initialize wheel on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Read store code from localStorage
+            const storeCode = localStorage.getItem('tsc_store_code');
+            if (storeCode) {
+                console.log('Operating for store:', storeCode);
+                // Store code will be used in token generation
+                localStorage.setItem('tsc_current_store', storeCode);
+            }
+            
+            drawWheel();
+            
+            // Check if already spun
+            if (hasSpun) {
+                const spinBtn = document.getElementById('spinBtn');
+                const result = document.getElementById('result');
+                const savedResult = localStorage.getItem('tsc_spin_result');
+                
+                spinBtn.disabled = true;
+                spinBtn.innerHTML = '<i class="fas fa-check"></i> ALREADY SPUN';
+                
+                if (savedResult) {
+                    document.getElementById('prizeText').textContent = savedResult;
+                    document.getElementById('continueBtn').style.display = 'inline-block';
+                    result.classList.add('show');
+                }
+            }
+        });
+        
+        // Prevent back button after spinning
+        if (hasSpun) {
+            history.pushState(null, null, location.href);
+            window.onpopstate = function() {
+                history.go(1);
+            };
+        }
+    </script>
+    
+    <!-- Developer Credits Footer -->
+    <footer class="dev-credits">
+        <p>Crafted by <a href="https://psprosen.me" target="_blank">Ps Prosen</a> | Powered by <a href="https://we-digital-mitra.tech" target="_blank">WDM</a></p>
+    </footer>
+</body>
+</html>

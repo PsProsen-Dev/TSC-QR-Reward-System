@@ -1,0 +1,718 @@
+<!--
+🔧 Developed by Jarvis (RTX⚡)
+🤝 Engineered for The Shankar Communications (TSC)
+🧠 AI Assistant: ChatGPT Jarvis, Visual Dev: VS Code Jarvis (Claude Sonnet 4)
+🎨 Theme: Gold Royal Luxe ✨
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎉 TSC Reward Success - Thank You!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="theme-color" content="#FFD700">
+    <meta name="description" content="Thank you for participating in TSC Reward System">
+    <meta property="og:title" content="TSC Reward Success">
+    <meta property="og:description" content="Your reward has been confirmed successfully!">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #fff;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* RTX Enhanced Background Effects */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
+            animation: rtx-glow 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes rtx-glow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-10px) rotate(1deg); }
+            66% { transform: translateY(5px) rotate(-1deg); }
+        }
+        
+        .container {
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 40px 30px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 
+                        0 0 0 1px rgba(255, 215, 0, 0.1) inset;
+            transition: all 0.3s ease;
+            animation: slideUp 1s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .container:hover {
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7),
+                        0 0 0 1px rgba(255, 215, 0, 0.2) inset;
+            transform: translateY(-2px);
+        }
+        
+        /* Success Animation */
+        .success-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            animation: successPulse 2s ease-in-out infinite;
+            position: relative;
+        }
+        
+        .success-icon::before {
+            content: '';
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            border: 3px solid rgba(76, 175, 80, 0.3);
+            border-radius: 50%;
+            animation: ripple 2s ease-out infinite;
+        }
+        
+        .success-icon i {
+            font-size: 3rem;
+            color: #fff;
+            animation: checkmark 1s ease-in-out 0.5s both;
+        }
+        
+        @keyframes successPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(76, 175, 80, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 0 50px rgba(76, 175, 80, 0.7); }
+        }
+        
+        @keyframes ripple {
+            0% { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(1.2); opacity: 0; }
+        }
+        
+        @keyframes checkmark {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255, 215, 0, 0.6);
+            margin-bottom: 20px;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+            animation: logo-pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes logo-pulse {
+            0%, 100% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.4); }
+            50% { box-shadow: 0 0 50px rgba(255, 215, 0, 0.7); }
+        }
+        
+        h1 {
+            background: linear-gradient(45deg, #FFD700, #FFA500, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            animation: gradient-shift 3s ease-in-out infinite;
+        }
+        
+        @keyframes gradient-shift {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(20deg); }
+        }
+        
+        .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        /* Reward Summary Card */
+        .reward-card {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 25px 0;
+            animation: glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.2); }
+            50% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.4); }
+        }
+        
+        .reward-card h3 {
+            color: #FFD700;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        .reward-details {
+            display: grid;
+            gap: 12px;
+            text-align: left;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+        }
+        
+        .detail-value {
+            color: #FFD700;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        /* Instructions */
+        .instructions {
+            background: rgba(76, 175, 80, 0.1);
+            border: 2px solid rgba(76, 175, 80, 0.3);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: left;
+        }
+        
+        .instructions h4 {
+            color: #4CAF50;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .instruction-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .instruction-step:last-child {
+            margin-bottom: 0;
+        }
+        
+        .step-icon {
+            background: #4CAF50;
+            color: #fff;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-text {
+            line-height: 1.5;
+        }
+        
+        /* Contact Information */
+        .contact-info {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .contact-info h4 {
+            color: #FFD700;
+            margin-bottom: 15px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .contact-item i {
+            color: #FFD700;
+            margin-right: 12px;
+            width: 20px;
+        }
+        
+        .contact-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .action-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-width: 130px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #000;
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-primary:hover {
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+        }
+        
+        /* Social Share */
+        .social-share {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .social-share h4 {
+            color: #FFD700;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+        
+        .social-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        .facebook { background: #3b5998; }
+        .twitter { background: #1da1f2; }
+        .whatsapp { background: #25d366; }
+        .instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .success-icon {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .success-icon i {
+                font-size: 2.5rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .action-btn {
+                min-width: auto;
+            }
+        }
+        
+        /* Confetti Animation */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            z-index: 1000;
+            pointer-events: none;
+        }
+        
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Developer Credits Footer */
+        .dev-credits {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            z-index: 1000;
+        }
+        
+        .dev-credits p {
+            margin: 0;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .dev-credits a {
+            color: #FFD700;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .dev-credits a:hover {
+            color: #FFA500;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="tsc-logo.jpg" alt="TSC Logo" class="logo">
+        
+        <div class="success-icon">
+            <i class="fas fa-check"></i>
+        </div>
+        
+        <h1>🎉 Success!</h1>
+        <p class="subtitle">Your reward has been confirmed successfully. Thank you for choosing TSC!</p>
+        
+        <div class="reward-card">
+            <h3>✨ Your Reward Details</h3>
+            <div class="reward-details">
+                <div class="detail-row">
+                    <span class="detail-label">Reward Type:</span>
+                    <span class="detail-value" id="rewardType">Loading...</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Token:</span>
+                    <span class="detail-value" id="tokenCode">Loading...</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Status:</span>
+                    <span class="detail-value" style="color: #4CAF50;">✅ Confirmed</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Valid Until:</span>
+                    <span class="detail-value" id="validUntil">Loading...</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h4>📋 Next Steps</h4>
+            <div class="instruction-step">
+                <div class="step-icon">1</div>
+                <div class="step-text">Visit any TSC store with your token and valid ID</div>
+            </div>
+            <div class="instruction-step">
+                <div class="step-icon">2</div>
+                <div class="step-text">Show this confirmation to our staff</div>
+            </div>
+            <div class="instruction-step">
+                <div class="step-icon">3</div>
+                <div class="step-text">Collect your reward and enjoy!</div>
+            </div>
+            <div class="instruction-step">
+                <div class="step-icon">4</div>
+                <div class="step-text">Follow us on social media for more offers</div>
+            </div>
+        </div>
+        
+        <div class="contact-info">
+            <h4>📞 Store Contact Information</h4>
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <span>+91 79089 72637</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>info@tscommunications.com</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Main Store: 123 Tech Street, Digital City</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-clock"></i>
+                <span>Mon-Sat: 10:00 AM - 8:00 PM</span>
+            </div>
+        </div>
+        
+        <div class="action-buttons">
+            <a href="welcome-complete.html" class="action-btn btn-secondary">
+                <i class="fas fa-home"></i> Home
+            </a>
+            <button class="action-btn btn-primary" onclick="shareReward()">
+                <i class="fas fa-share"></i> Share
+            </button>
+        </div>
+        
+        <div class="social-share">
+            <h4>🌟 Follow Us For More Offers</h4>
+            <div class="social-buttons">
+                <a href="#" class="social-btn facebook" title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-btn twitter" title="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="social-btn whatsapp" title="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="#" class="social-btn instagram" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Load reward data and display
+        function loadRewardData() {
+            const flowType = localStorage.getItem('tsc_flow_type');
+            const storeCode = localStorage.getItem('tsc_store_code');
+            const tokenData = JSON.parse(localStorage.getItem('tsc_whatsapp_token') || '{}');
+            
+            // Set reward type with store info
+            const rewardType = document.getElementById('rewardType');
+            let rewardText = '';
+            if (flowType === 'spin-win') {
+                const spinResult = localStorage.getItem('tsc_spin_result');
+                rewardText = spinResult || 'Spin & Win Prize';
+            } else if (flowType === 'tempered-glass') {
+                rewardText = 'Premium Tempered Glass - ₹19';
+            } else {
+                rewardText = 'TSC Special Reward';
+            }
+            
+            // Add store info to reward text
+            if (storeCode) {
+                if (storeCode === 'MNG') rewardText += ' (Maynaguri)';
+                else if (storeCode === 'DPG') rewardText += ' (Dhupguri)';
+                else if (storeCode === 'JMD') rewardText += ' (Jamaldaha)';
+            }
+            rewardType.textContent = rewardText;
+            
+            // Set token
+            document.getElementById('tokenCode').textContent = tokenData.token || 'TSC-XXXX-XXXX';
+            
+            // Set expiry date (30 days from now)
+            const expiryDate = new Date();
+            expiryDate.setDate(expiryDate.getDate() + 30);
+            document.getElementById('validUntil').textContent = expiryDate.toLocaleDateString('en-IN');
+        }
+        
+        // Share reward function
+        function shareReward() {
+            const flowType = localStorage.getItem('tsc_flow_type');
+            let shareText = "🎉 I just won an amazing reward from TSC! ";
+            
+            if (flowType === 'spin-win') {
+                const spinResult = localStorage.getItem('tsc_spin_result');
+                shareText += `Won: ${spinResult} through their Spin & Win game! `;
+            } else if (flowType === 'tempered-glass') {
+                shareText += "Got a premium tempered glass for just ₹19! ";
+            }
+            
+            shareText += "Check out TSC for amazing deals! #TSCRewards #TechDeals";
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'TSC Reward Success',
+                    text: shareText,
+                    url: window.location.origin
+                });
+            } else {
+                // Fallback - copy to clipboard
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('Share text copied to clipboard!');
+                });
+            }
+        }
+        
+        // Create confetti effect
+        function createConfetti() {
+            const colors = ['#FFD700', '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7'];
+            
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animation = `confetti-fall ${Math.random() * 2 + 3}s linear forwards`;
+                    
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 5000);
+                }, i * 50);
+            }
+        }
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadRewardData();
+            
+            // Create confetti effect
+            setTimeout(createConfetti, 500);
+            
+            // Mark journey as complete
+            localStorage.setItem('tsc_journey_complete', 'true');
+            localStorage.setItem('tsc_completion_time', new Date().toISOString());
+            
+            // Clear sensitive data after 5 minutes for security
+            setTimeout(() => {
+                localStorage.removeItem('tsc_whatsapp_token');
+            }, 300000);
+        });
+        
+        // Prevent back navigation
+        history.pushState(null, null, location.href);
+        window.onpopstate = function() {
+            history.go(1);
+        };
+        
+        // Add page unload handler to save session
+        window.addEventListener('beforeunload', function() {
+            const sessionData = {
+                completed: true,
+                timestamp: new Date().toISOString(),
+                flowType: localStorage.getItem('tsc_flow_type')
+            };
+            localStorage.setItem('tsc_session_end', JSON.stringify(sessionData));
+        });
+        
+        // Auto-scroll to top on load
+        window.scrollTo(0, 0);
+        
+        // Add celebration sound effect (optional)
+        function playCelebration() {
+            // You can add audio here if needed
+            // const audio = new Audio('celebration.mp3');
+            // audio.play().catch(() => {}); // Ignore if audio fails
+        }
+        
+        // Call celebration after page load
+        setTimeout(playCelebration, 1000);
+    </script>
+    
+    <!-- Developer Credits Footer -->
+    <footer class="dev-credits">
+        <p>Crafted by <a href="https://psprosen.me" target="_blank">Ps Prosen</a> | Powered by <a href="https://we-digital-mitra.tech" target="_blank">WDM</a></p>
+    </footer>
+</body>
+</html>
