@@ -301,11 +301,17 @@
             }
             
             .dev-credits {
-                padding: 8px 15px;
+                padding: 6px 15px;
+            }
+            
+            .dev-credits::before {
+                font-size: 0.6rem;
+                content: '🏪 MNG • 🏪 DPG • 🏪 JMD';
             }
             
             .dev-credits p {
                 font-size: 0.7rem;
+                padding: 2px 6px;
             }
         }
         
@@ -385,18 +391,39 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(10px);
-            padding: 10px 20px;
+            padding: 8px 20px;
             text-align: center;
-            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
             z-index: 1000;
+            overflow: hidden;
+        }
+        
+        .dev-credits::before {
+            content: '🏪 Maynaguri (MNG) • 🏪 Dhupguri (DPG) • 🏪 Jamaldaha (JMD)';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.7rem;
+            color: rgba(255, 215, 0, 0.15);
+            font-weight: 600;
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: -1;
         }
         
         .dev-credits p {
             margin: 0;
             font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.8);
+            position: relative;
+            z-index: 1;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 2px 8px;
+            border-radius: 8px;
+            display: inline-block;
         }
         
         .dev-credits a {
