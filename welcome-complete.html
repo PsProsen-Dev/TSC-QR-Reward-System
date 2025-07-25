@@ -405,30 +405,155 @@
             transform: translateX(-50%) translateY(-5px);
         }
         
-        @media (max-width: 480px) {
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
             .container {
-                padding: 30px 20px;
-                margin: 10px;
+                padding: 25px 15px;
+                margin: 5px;
+                max-width: 100%;
+                border-radius: 20px;
+            }
+            
+            .header-logo {
+                width: 70px;
+                height: 70px;
+                margin-bottom: 15px;
             }
             
             h1 {
-                font-size: 24px;
+                font-size: 22px;
+                margin-bottom: 10px;
+            }
+            
+            .subtitle {
+                font-size: 13px;
+                margin-bottom: 20px;
+            }
+            
+            .store-info {
+                font-size: 12px;
+                padding: 8px 15px;
+                margin-bottom: 25px;
             }
             
             .option-card {
                 padding: 20px 15px;
+                border-radius: 15px;
+                gap: 15px;
             }
             
             .option-icon {
-                font-size: 40px;
+                font-size: 36px;
+                margin-bottom: 12px;
             }
             
             .option-title {
-                font-size: 20px;
+                font-size: 18px;
+                margin-bottom: 8px;
+            }
+            
+            .option-description {
+                font-size: 12px;
+                margin-bottom: 12px;
+            }
+            
+            .option-price {
+                font-size: 16px;
+                margin-bottom: 12px;
+            }
+            
+            .option-button {
+                padding: 10px 25px;
+                font-size: 12px;
             }
             
             .modal-content {
-                padding: 25px 20px;
+                padding: 20px 15px;
+                max-width: 90%;
+                border-radius: 15px;
+            }
+            
+            .modal h3 {
+                font-size: 16px;
+                margin-bottom: 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
+            }
+            
+            .container {
+                padding: 20px 12px;
+                margin: 2px;
+                border-radius: 15px;
+            }
+            
+            .header-logo {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 12px;
+            }
+            
+            h1 {
+                font-size: 20px;
+                margin-bottom: 8px;
+            }
+            
+            .subtitle {
+                font-size: 12px;
+                margin-bottom: 18px;
+            }
+            
+            .store-info {
+                font-size: 11px;
+                padding: 6px 12px;
+                margin-bottom: 20px;
+            }
+            
+            .option-card {
+                padding: 18px 12px;
+                gap: 12px;
+            }
+            
+            .option-icon {
+                font-size: 32px;
+                margin-bottom: 10px;
+            }
+            
+            .option-title {
+                font-size: 16px;
+                margin-bottom: 6px;
+            }
+            
+            .option-description {
+                font-size: 11px;
+                margin-bottom: 10px;
+            }
+            
+            .option-price {
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+            
+            .option-button {
+                padding: 8px 20px;
+                font-size: 11px;
+                border-radius: 20px;
+            }
+            
+            .modal-content {
+                padding: 18px 12px;
+                max-width: 95%;
+            }
+            
+            .modal h3 {
+                font-size: 14px;
+                margin-bottom: 10px;
             }
         }
         
