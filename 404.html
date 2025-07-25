@@ -250,8 +250,8 @@
                 <a href="./welcome-complete.html?store=DPG" class="store-btn">
                     🏪 Dhupguri (DPG)
                 </a>
-                <a href="./welcome-complete.html?store=JMD" class="store-btn">
-                    🏪 Jamaldaha (JMD)
+                <a href="./welcome-complete.html?store=JPG" class="store-btn">
+                    🏪 Jalpaiguri (JPG)
                 </a>
             </div>
         </div>
@@ -266,7 +266,7 @@
         const urlParams = new URLSearchParams(window.location.search);
         const store = urlParams.get('store');
         
-        if (store && ['MNG', 'DPG', 'JMD'].includes(store.toUpperCase())) {
+        if (store && ['MNG', 'DPG', 'JPG'].includes(store.toUpperCase())) {
             // If valid store parameter exists, redirect to welcome page
             window.location.href = `./welcome-complete.html?store=${store.toUpperCase()}`;
         }
