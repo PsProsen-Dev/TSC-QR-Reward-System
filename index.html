@@ -227,12 +227,6 @@
             line-height: 1.4;
         }
         
-        @keyframes floating {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            33% { transform: translateY(-10px) rotate(1deg); }
-            66% { transform: translateY(5px) rotate(-1deg); }
-        }
-        
         @media (max-width: 768px) {
             body {
                 padding: 10px;
@@ -499,12 +493,6 @@
                 container.style.opacity = '1';
                 container.style.transform = 'translateY(0)';
             }, 100);
-            
-            // Add floating animations to store buttons
-            document.querySelectorAll('.store-btn').forEach((btn, index) => {
-                btn.style.animationDelay = `${index * 0.2}s`;
-                btn.style.animation = 'floating 4s ease-in-out infinite';
-            });
         });
     </script>
     
