@@ -559,7 +559,7 @@
             const storeNames = {
                 'MNG': 'Maynaguri Store',
                 'DPG': 'Dhupguri Store', 
-                'JPG': 'Jalpaiguri Store'
+                'JMD': 'Jamaldaha Store'
             };
             
             document.getElementById('storeInfo').textContent = `Store: ${storeNames[store] || 'Unknown Store'}`;
@@ -730,8 +730,8 @@
             const storeCode = urlParams.get('store');
             
             if (storeCode) {
-                // Validate store code (MNG, DPG, JPG)
-                const validStores = ['MNG', 'DPG', 'JPG'];
+                // Validate store code (MNG, DPG, JMD)
+                const validStores = ['MNG', 'DPG', 'JMD'];
                 if (validStores.includes(storeCode.toUpperCase())) {
                     localStorage.setItem('tsc_store_code', storeCode.toUpperCase());
                     console.log('Store code saved:', storeCode.toUpperCase());
