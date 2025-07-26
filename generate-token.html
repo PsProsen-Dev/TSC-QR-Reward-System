@@ -643,6 +643,52 @@
             color: #FFA500;
             text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
         }
+        
+        /* Custom Tooltip Styling */
+        .tooltip-container {
+            position: relative;
+            display: inline;
+        }
+        
+        .tooltip-container .tooltip-text {
+            visibility: hidden;
+            background: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 8px 12px;
+            position: absolute;
+            z-index: 1001;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .tooltip-container .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: rgba(0, 0, 0, 0.9) transparent transparent transparent;
+        }
+        
+        .tooltip-container:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        .tooltip-highlight {
+            color: #fff !important;
+        }
     </style>
 </head>
 <body>
@@ -921,7 +967,7 @@
     
     <!-- Developer Credits Footer -->
     <footer class="dev-credits">
-        <p><span style="color: #fff;">Powered by</span> <a href="https://we-digital-mitra.tech" target="_blank">We Digital Mitra</a> | <span style="color: #fff;">Developed by</span> <a href="https://psprosen.me" target="_blank">Prosenjit Paul (aka Ps Prosen)</a></p>
+        <p><span style="color: #fff;">Powered by</span> <span class="tooltip-container"><a href="https://we-digital-mitra.tech" target="_blank">We Digital Mitra</a><span class="tooltip-text">✨ <span class="tooltip-highlight">Designed by</span> Ps Prosen | <span class="tooltip-highlight">Built by</span> WDM 🚀</span></span> | <span style="color: #fff;">Developed by</span> <a href="https://psprosen.me" target="_blank">Prosenjit Paul (aka Ps Prosen)</a></p>
     </footer>
 </body>
 </html>
