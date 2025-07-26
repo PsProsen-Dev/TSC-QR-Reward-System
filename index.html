@@ -496,15 +496,15 @@
         <div class="store-selection">
             <h2>🏪 Select Your Store</h2>
             <div class="store-buttons">
-                <a href="welcome.html?store=MNG" class="store-btn">
+                <a href="welcome-complete.html?store=MNG" class="store-btn">
                     <div class="store-icon">🏪</div>
                     <div class="store-title">Maynaguri Store</div>
                 </a>
-                <a href="welcome.html?store=DPG" class="store-btn">
+                <a href="welcome-complete.html?store=DPG" class="store-btn">
                     <div class="store-icon">🏪</div>
                     <div class="store-title">Dhupguri Store</div>
                 </a>
-                <a href="welcome.html?store=JMD" class="store-btn">
+                <a href="welcome-complete.html?store=JMD" class="store-btn">
                     <div class="store-icon">🏪</div>
                     <div class="store-title">Jamaldaha Store</div>
                 </a>
@@ -534,7 +534,7 @@
         
         if (store && ['MNG', 'DPG', 'JMD'].includes(store.toUpperCase())) {
             // Redirect to welcome page with store parameter
-            window.location.href = `welcome.html?store=${store.toUpperCase()}`;
+            window.location.href = `welcome-complete.html?store=${store.toUpperCase()}`;
         }
         
         // Add click tracking for store buttons
