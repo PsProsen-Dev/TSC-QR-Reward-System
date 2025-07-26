@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎰 TSC QR Reward System - Choose Your Store</title>
+    <title>� Welcome to TSC Store - Your Loyalty Partner!</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <meta name="theme-color" content="#FFD700">
-    <meta name="description" content="Welcome to TSC QR Reward System - Choose your store and start winning rewards!">
-    <meta property="og:title" content="TSC QR Reward System">
-    <meta property="og:description" content="Choose your store location and start winning amazing prizes!">
+    <meta name="description" content="Join TSC Loyalty Program - Exclusive offers, rewards, and personalized deals await you!">
+    <meta property="og:title" content="TSC Store - Your Loyalty Partner">
+    <meta property="og:description" content="Daily offers, festival specials, birthday rewards & loyalty benefits at The Shankar Communications!">
     <style>
         * {
             margin: 0;
@@ -55,7 +55,7 @@
         }
         
         .container {
-            max-width: 500px;
+            max-width: 600px;
             width: 100%;
             text-align: center;
             position: relative;
@@ -68,6 +68,18 @@
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6),
                         0 0 0 1px rgba(255, 215, 0, 0.1) inset;
             transition: all 0.3s ease;
+            animation: container-entrance 1s ease-out;
+        }
+        
+        @keyframes container-entrance {
+            from { 
+                opacity: 0; 
+                transform: translateY(50px) scale(0.9); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            }
         }
         
         .container:hover {
@@ -76,16 +88,16 @@
         }
         
         .header {
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
         
         .logo {
-            width: 90px;
-            height: 90px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid rgba(255, 215, 0, 0.6);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             box-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
             animation: logo-pulse 3s ease-in-out infinite;
         }
@@ -96,8 +108,8 @@
         }
         
         h1 {
-            font-size: 28px;
-            margin-bottom: 15px;
+            font-size: 26px;
+            margin-bottom: 10px;
             background: linear-gradient(45deg, #FFD700, #FFC107, #FF8F00);
             -webkit-background-clip: text;
             background-clip: text;
@@ -113,137 +125,259 @@
         
         .subtitle {
             color: #aaa;
-            font-size: 16px;
+            font-size: 14px;
             line-height: 1.5;
-            margin-bottom: 30px;
-        }
-        
-        .store-selection {
-            margin-bottom: 30px;
-        }
-        
-        .store-selection h2 {
-            color: #FFD700;
             margin-bottom: 25px;
+        }
+        
+        /* Loyalty Program Styles */
+        .loyalty-hero {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 193, 7, 0.1) 100%);
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .loyalty-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 215, 0, 0.2);
+            border: 1px solid rgba(255, 215, 0, 0.5);
+            border-radius: 25px;
+            padding: 8px 16px;
+            margin-bottom: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #FFD700;
+        }
+        
+        .loyalty-hero h2 {
             font-size: 20px;
+            color: #FFD700;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .loyalty-hero p {
+            color: #ccc;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        /* Offers Grid */
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .offer-card {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(15px);
+            padding: 18px 12px;
+            border-radius: 18px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .offer-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s;
+        }
+        
+        .offer-card:hover::before {
+            left: 100%;
+        }
+        
+        .offer-card:hover {
+            border-color: rgba(255, 215, 0, 0.6);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.2);
+        }
+        
+        .offer-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .offer-title {
+            color: #FFD700;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .offer-desc {
+            color: #ccc;
+            font-size: 11px;
+            line-height: 1.3;
+        }
+        
+        /* Social Connect Section */
+        .social-connect {
+            background: rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .social-connect h3 {
+            color: #FFD700;
+            font-size: 16px;
+            margin-bottom: 8px;
             font-weight: 600;
         }
         
-        .store-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            max-width: 400px;
-            margin: 0 auto;
+        .social-connect p {
+            color: #ccc;
+            font-size: 12px;
+            margin-bottom: 15px;
         }
         
-        .store-btn {
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
+        .social-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 12px;
+            padding: 10px 12px;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .social-link:hover {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: rgba(255, 215, 0, 0.5);
+            transform: scale(1.05);
+        }
+        
+        .social-link i {
+            font-size: 16px;
+        }
+        
+        .instagram { color: #E4405F; }
+        .youtube { color: #FF0000; }
+        .whatsapp { color: #25D366; }
+        .facebook { color: #1877F2; }
+        
+        /* Benefits Section */
+        .benefits-section {
+            margin-bottom: 25px;
+        }
+        
+        .benefits-section h3 {
+            color: #FFD700;
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .benefits-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .benefit {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            padding: 12px 15px;
+            font-size: 12px;
+            color: #ccc;
+            transition: all 0.3s ease;
+        }
+        
+        .benefit:hover {
+            background: rgba(255, 215, 0, 0.1);
+            border-color: rgba(255, 215, 0, 0.5);
+            transform: translateX(5px);
+        }
+        
+        .benefit i {
+            color: #FFD700;
+            font-size: 14px;
+            min-width: 14px;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            margin-top: 30px;
+        }
+        
+        .cta-btn {
+            background: linear-gradient(135deg, #FFD700 0%, #FFC107 50%, #FF8F00 100%);
+            border: none;
             border-radius: 20px;
-            padding: 25px 20px;
-            border: 2px solid rgba(255, 215, 0, 0.4);
+            padding: 18px 30px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
             position: relative;
             overflow: hidden;
-            text-decoration: none;
-            color: #fff;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s;
+        }
+        
+        .cta-btn:hover::before {
+            left: 100%;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
+        }
+        
+        .btn-text {
             display: block;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 193, 7, 0.05) 100%);
-        }
-        
-        .store-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.6s;
-        }
-        
-        .store-btn:hover::before {
-            left: 100%;
-        }
-        
-        .store-btn:hover {
-            border-color: rgba(255, 215, 0, 0.8);
-            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.3);
-            transform: translateY(-5px) scale(1.02);
-        }
-        
-        .store-icon {
-            font-size: 48px;
-            margin-bottom: 15px;
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-        }
-        
-        .store-title {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-        
-        .store-code {
-            font-size: 14px;
-            color: #FFD700;
-            font-weight: 600;
-        }
-        
-        .features {
-            margin-top: 30px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 15px;
-        }
-        
-        .feature {
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(15px);
-            padding: 20px 15px;
-            border-radius: 20px;
-            border: 2px solid rgba(255, 215, 0, 0.4);
-            transition: all 0.3s ease;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 193, 7, 0.05) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .feature::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.6s;
-        }
-        
-        .feature:hover::before {
-            left: 100%;
-        }
-        
-        .feature:hover {
-            border-color: rgba(255, 215, 0, 0.8);
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.3);
-        }
-        
-        .feature h3 {
-            color: #FFD700;
-            margin-bottom: 10px;
             font-size: 16px;
-            font-weight: 600;
+            color: #000;
+            margin-bottom: 2px;
         }
         
-        .feature p {
-            font-size: 12px;
-            color: #ccc;
-            line-height: 1.4;
+        .btn-subtext {
+            display: block;
+            font-size: 11px;
+            color: rgba(0, 0, 0, 0.7);
+            font-weight: 500;
         }
         
         @media (max-width: 768px) {
@@ -261,72 +395,117 @@
             .logo {
                 width: 70px;
                 height: 70px;
-                margin-bottom: 15px;
+                margin-bottom: 12px;
             }
             
             h1 {
                 font-size: 22px;
-                margin-bottom: 10px;
-            }
-            
-            .subtitle {
-                font-size: 13px;
-                margin-bottom: 25px;
-                line-height: 1.4;
-            }
-            
-            .store-selection h2 {
-                font-size: 18px;
-                margin-bottom: 20px;
-            }
-            
-            .store-btn {
-                padding: 18px 15px;
-                border-radius: 15px;
-                gap: 15px;
-            }
-            
-            .store-icon {
-                font-size: 32px;
-                margin-bottom: 10px;
-            }
-            
-            .store-title {
-                font-size: 18px;
-                margin-bottom: 5px;
-            }
-            
-            .store-code {
-                font-size: 12px;
-            }
-            
-            .features {
-                grid-template-columns: 1fr;
-                gap: 12px;
-                margin-top: 25px;
-            }
-            
-            .feature {
-                padding: 15px 12px;
-                border-radius: 15px;
-            }
-            
-            .feature h3 {
-                font-size: 14px;
                 margin-bottom: 8px;
             }
             
-            .feature p {
+            .subtitle {
+                font-size: 12px;
+                margin-bottom: 20px;
+            }
+            
+            .loyalty-hero {
+                padding: 20px 15px;
+                margin-bottom: 20px;
+                border-radius: 15px;
+            }
+            
+            .loyalty-hero h2 {
+                font-size: 18px;
+                margin-bottom: 8px;
+            }
+            
+            .loyalty-hero p {
+                font-size: 12px;
+            }
+            
+            .offers-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                margin-bottom: 20px;
+            }
+            
+            .offer-card {
+                padding: 15px 10px;
+                border-radius: 15px;
+            }
+            
+            .offer-icon {
+                font-size: 20px;
+                margin-bottom: 6px;
+            }
+            
+            .offer-title {
+                font-size: 12px;
+                margin-bottom: 4px;
+            }
+            
+            .offer-desc {
+                font-size: 10px;
+            }
+            
+            .social-connect {
+                padding: 15px;
+                margin-bottom: 20px;
+                border-radius: 15px;
+            }
+            
+            .social-connect h3 {
+                font-size: 14px;
+                margin-bottom: 6px;
+            }
+            
+            .social-connect p {
+                font-size: 11px;
+                margin-bottom: 12px;
+            }
+            
+            .social-links {
+                gap: 8px;
+            }
+            
+            .social-link {
+                padding: 8px 10px;
+                border-radius: 10px;
                 font-size: 11px;
             }
             
-            .dev-credits {
-                padding: 8px 15px;
-                border-radius: 15px 15px 0 0;
+            .social-link i {
+                font-size: 14px;
             }
             
-            .dev-credits p {
-                font-size: 0.7rem;
+            .benefits-section h3 {
+                font-size: 14px;
+                margin-bottom: 12px;
+            }
+            
+            .benefit {
+                padding: 10px 12px;
+                border-radius: 12px;
+                font-size: 11px;
+                gap: 10px;
+            }
+            
+            .benefit i {
+                font-size: 12px;
+            }
+            
+            .cta-btn {
+                padding: 15px 25px;
+                border-radius: 15px;
+                max-width: 280px;
+            }
+            
+            .btn-text {
+                font-size: 14px;
+            }
+            
+            .btn-subtext {
+                font-size: 10px;
             }
         }
         
@@ -344,60 +523,131 @@
             .logo {
                 width: 60px;
                 height: 60px;
-                margin-bottom: 12px;
+                margin-bottom: 10px;
             }
             
             h1 {
                 font-size: 20px;
-                margin-bottom: 8px;
-            }
-            
-            .subtitle {
-                font-size: 12px;
-                margin-bottom: 20px;
-            }
-            
-            .store-selection h2 {
-                font-size: 16px;
-                margin-bottom: 15px;
-            }
-            
-            .store-btn {
-                padding: 15px 12px;
-                gap: 12px;
-            }
-            
-            .store-icon {
-                font-size: 28px;
-                margin-bottom: 8px;
-            }
-            
-            .store-title {
-                font-size: 16px;
-                margin-bottom: 4px;
-            }
-            
-            .store-code {
-                font-size: 11px;
-            }
-            
-            .features {
-                margin-top: 20px;
-                gap: 10px;
-            }
-            
-            .feature {
-                padding: 12px 10px;
-                border-radius: 12px;
-            }
-            
-            .feature h3 {
-                font-size: 13px;
                 margin-bottom: 6px;
             }
             
-            .feature p {
+            .subtitle {
+                font-size: 11px;
+                margin-bottom: 18px;
+            }
+            
+            .loyalty-hero {
+                padding: 15px 12px;
+                margin-bottom: 18px;
+                border-radius: 12px;
+            }
+            
+            .loyalty-badge {
+                padding: 6px 12px;
                 font-size: 10px;
+                margin-bottom: 12px;
+            }
+            
+            .loyalty-hero h2 {
+                font-size: 16px;
+                margin-bottom: 6px;
+            }
+            
+            .loyalty-hero p {
+                font-size: 11px;
+            }
+            
+            .offers-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                margin-bottom: 18px;
+            }
+            
+            .offer-card {
+                padding: 12px 8px;
+                border-radius: 12px;
+            }
+            
+            .offer-icon {
+                font-size: 18px;
+                margin-bottom: 5px;
+            }
+            
+            .offer-title {
+                font-size: 11px;
+                margin-bottom: 3px;
+            }
+            
+            .offer-desc {
+                font-size: 9px;
+            }
+            
+            .social-connect {
+                padding: 12px;
+                margin-bottom: 18px;
+                border-radius: 12px;
+            }
+            
+            .social-connect h3 {
+                font-size: 13px;
+                margin-bottom: 5px;
+            }
+            
+            .social-connect p {
+                font-size: 10px;
+                margin-bottom: 10px;
+            }
+            
+            .social-links {
+                gap: 6px;
+            }
+            
+            .social-link {
+                padding: 6px 8px;
+                border-radius: 8px;
+                font-size: 10px;
+            }
+            
+            .social-link i {
+                font-size: 12px;
+            }
+            
+            .benefits-section {
+                margin-bottom: 20px;
+            }
+            
+            .benefits-section h3 {
+                font-size: 13px;
+                margin-bottom: 10px;
+            }
+            
+            .benefits-list {
+                gap: 8px;
+            }
+            
+            .benefit {
+                padding: 8px 10px;
+                border-radius: 10px;
+                font-size: 10px;
+                gap: 8px;
+            }
+            
+            .benefit i {
+                font-size: 11px;
+            }
+            
+            .cta-btn {
+                padding: 12px 20px;
+                border-radius: 12px;
+                max-width: 260px;
+            }
+            
+            .btn-text {
+                font-size: 13px;
+            }
+            
+            .btn-subtext {
+                font-size: 9px;
             }
         }
         
@@ -486,80 +736,252 @@
     <div class="container">
         <div class="header">
             <img src="tsc-logo.jpg" alt="TSC Logo" class="logo">
-            <h1>🎰 TSC QR Reward System</h1>
-            <p class="subtitle">
-                Welcome to The Shankar Communications reward system!<br>
-                Choose your store location to start winning amazing prizes.
+            <h1 id="storeTitle">� Welcome to TSC Store!</h1>
+            <p class="subtitle" id="storeLocation">
+                Your trusted technology partner awaits you!
             </p>
         </div>
         
-        <div class="store-selection">
-            <h2>🏪 Select Your Store</h2>
-            <div class="store-buttons">
-                <a href="welcome.html?store=MNG" class="store-btn">
-                    <div class="store-icon">🏪</div>
-                    <div class="store-title">Maynaguri Store</div>
-                </a>
-                <a href="welcome.html?store=DPG" class="store-btn">
-                    <div class="store-icon">🏪</div>
-                    <div class="store-title">Dhupguri Store</div>
-                </a>
-                <a href="welcome.html?store=JMD" class="store-btn">
-                    <div class="store-icon">🏪</div>
-                    <div class="store-title">Jamaldaha Store</div>
-                </a>
+        <!-- Loyalty Program Hero Section -->
+        <div class="loyalty-hero">
+            <div class="loyalty-badge">
+                <i class="fas fa-crown"></i>
+                <span>LOYALTY MEMBER</span>
+            </div>
+            <h2>🎉 Join Our Exclusive Loyalty Program</h2>
+            <p>Unlock amazing benefits, personalized offers, and lifetime rewards!</p>
+        </div>
+        
+        <!-- Offers Showcase -->
+        <div class="offers-grid">
+            <div class="offer-card hourly">
+                <div class="offer-icon">⏰</div>
+                <div class="offer-title">Hourly Flash Sales</div>
+                <div class="offer-desc">Limited time deals every hour!</div>
+            </div>
+            
+            <div class="offer-card daily">
+                <div class="offer-icon">📅</div>
+                <div class="offer-title">Daily Specials</div>
+                <div class="offer-desc">New offers every single day</div>
+            </div>
+            
+            <div class="offer-card weekly">
+                <div class="offer-icon">📊</div>
+                <div class="offer-title">Weekly Bonanza</div>
+                <div class="offer-desc">Mega discounts weekly</div>
+            </div>
+            
+            <div class="offer-card festival">
+                <div class="offer-icon">�</div>
+                <div class="offer-title">Festival Specials</div>
+                <div class="offer-desc">Celebrate with exclusive deals</div>
+            </div>
+            
+            <div class="offer-card birthday">
+                <div class="offer-icon">🎂</div>
+                <div class="offer-title">Birthday Rewards</div>
+                <div class="offer-desc">Special treats on your day</div>
+            </div>
+            
+            <div class="offer-card anniversary">
+                <div class="offer-icon">💎</div>
+                <div class="offer-title">Anniversary Gifts</div>
+                <div class="offer-desc">Celebrate milestones with us</div>
             </div>
         </div>
         
-        <div class="features">
-            <div class="feature">
-                <h3>🎡 Spin & Win</h3>
-                <p>Complete social tasks and spin the wheel for exciting prizes!</p>
+        <!-- Social Media Connection -->
+        <div class="social-connect">
+            <h3>🔗 Stay Connected for Exclusive Updates</h3>
+            <p>Follow us on social media to never miss an offer!</p>
+            <div class="social-links">
+                <div class="social-link instagram">
+                    <i class="fab fa-instagram"></i>
+                    <span>Instagram</span>
+                </div>
+                <div class="social-link youtube">
+                    <i class="fab fa-youtube"></i>
+                    <span>YouTube</span>
+                </div>
+                <div class="social-link whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>WhatsApp</span>
+                </div>
+                <div class="social-link facebook">
+                    <i class="fab fa-facebook"></i>
+                    <span>Facebook</span>
+                </div>
             </div>
-            <div class="feature">
-                <h3>🛡️ Special Offers</h3>
-                <p>Get exclusive deals like ₹19 tempered glass offers.</p>
+        </div>
+        
+        <!-- Benefits List -->
+        <div class="benefits-section">
+            <h3>🎁 Why Join Our Loyalty Program?</h3>
+            <div class="benefits-list">
+                <div class="benefit">
+                    <i class="fas fa-gift"></i>
+                    <span>Personalized offers based on your preferences</span>
+                </div>
+                <div class="benefit">
+                    <i class="fas fa-star"></i>
+                    <span>Exclusive member-only discounts and deals</span>
+                </div>
+                <div class="benefit">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Special birthday and anniversary rewards</span>
+                </div>
+                <div class="benefit">
+                    <i class="fas fa-bolt"></i>
+                    <span>Early access to new products and sales</span>
+                </div>
+                <div class="benefit">
+                    <i class="fas fa-heart"></i>
+                    <span>Lifetime customer support and service</span>
+                </div>
             </div>
-            <div class="feature">
-                <h3>📱 Easy Process</h3>
-                <p>Simple QR code scanning and instant rewards.</p>
-            </div>
+        </div>
+        
+        <!-- CTA Button -->
+        <div class="cta-section">
+            <button class="cta-btn" id="joinLoyaltyBtn">
+                <span class="btn-text">🚀 Get Started - Join Now!</span>
+                <span class="btn-subtext">Start earning rewards instantly</span>
+            </button>
         </div>
     </div>
     
     <script>
-        // Check if store parameter is provided in URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const store = urlParams.get('store');
+        // Store configuration
+        const storeConfig = {
+            'MNG': {
+                name: 'TSC Maynaguri Store',
+                fullName: 'The Shankar Communications - Maynaguri',
+                location: 'Maynaguri, Jalpaiguri District, West Bengal',
+                code: 'MNG'
+            },
+            'DPG': {
+                name: 'TSC Dhupguri Store',
+                fullName: 'The Shankar Communications - Dhupguri',
+                location: 'Dhupguri, Jalpaiguri District, West Bengal',
+                code: 'DPG'
+            },
+            'JMD': {
+                name: 'TSC Jamaldaha Store',
+                fullName: 'The Shankar Communications - Jamaldaha',
+                location: 'Jamaldaha, Jalpaiguri District, West Bengal',
+                code: 'JMD'
+            }
+        };
         
-        if (store && ['MNG', 'DPG', 'JMD'].includes(store.toUpperCase())) {
-            // Redirect to welcome page with store parameter
-            window.location.href = `welcome.html?store=${store.toUpperCase()}`;
+        // Get store parameter from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const storeCode = urlParams.get('store');
+        
+        // Initialize page based on store
+        function initializePage() {
+            if (storeCode && storeConfig[storeCode.toUpperCase()]) {
+                const store = storeConfig[storeCode.toUpperCase()];
+                
+                // Update page content
+                document.getElementById('storeTitle').textContent = `🏪 Welcome to ${store.name}!`;
+                document.getElementById('storeLocation').textContent = `Your trusted technology partner in ${store.location.split(',')[0]}`;
+                
+                // Update page title
+                document.title = `🏪 Welcome to ${store.name} - Your Loyalty Partner!`;
+                
+                // Store the selection in localStorage
+                localStorage.setItem('selectedStore', store.code);
+                localStorage.setItem('tsc_store_code', store.code);
+                localStorage.setItem('store_name', store.name);
+                localStorage.setItem('store_location', store.location);
+                
+                console.log(`Initialized store: ${store.name} (${store.code})`);
+            } else {
+                // Default content for direct access without store parameter
+                document.getElementById('storeTitle').textContent = '🏪 Welcome to TSC Store!';
+                document.getElementById('storeLocation').textContent = 'Your trusted technology partner awaits you!';
+            }
         }
         
-        // Add click tracking for store buttons
-        document.querySelectorAll('.store-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                const store = this.href.split('store=')[1];
-                console.log(`Redirecting to store: ${store}`);
+        // Handle CTA button click
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctaBtn = document.getElementById('joinLoyaltyBtn');
+            
+            ctaBtn.addEventListener('click', function() {
+                // Add click animation
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
                 
-                // Store the selection in localStorage for consistency
-                localStorage.setItem('selectedStore', store);
-                localStorage.setItem('tsc_store_code', store);
+                // Determine redirect URL based on store
+                let redirectUrl = 'welcome.html';
+                if (storeCode && storeConfig[storeCode.toUpperCase()]) {
+                    redirectUrl = `welcome.html?store=${storeCode.toUpperCase()}`;
+                }
+                
+                // Add a small delay for better UX
+                setTimeout(() => {
+                    window.location.href = redirectUrl;
+                }, 300);
+                
+                console.log(`CTA clicked - Redirecting to: ${redirectUrl}`);
+            });
+            
+            // Initialize store-specific content
+            initializePage();
+            
+            // Add entrance animations
+            const animatedElements = document.querySelectorAll('.offer-card, .social-link, .benefit');
+            animatedElements.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'all 0.6s ease';
+                
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 200 + (index * 50));
             });
         });
         
-        // Add entrance animation
+        // Add social link interactions
         document.addEventListener('DOMContentLoaded', function() {
-            const container = document.querySelector('.container');
-            container.style.opacity = '0';
-            container.style.transform = 'translateY(30px)';
-            container.style.transition = 'all 0.8s ease';
+            const socialLinks = document.querySelectorAll('.social-link');
             
-            setTimeout(() => {
-                container.style.opacity = '1';
-                container.style.transform = 'translateY(0)';
-            }, 100);
+            socialLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    // Add click feedback
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                    
+                    // Log social interaction
+                    const platform = this.querySelector('span').textContent;
+                    console.log(`Social link clicked: ${platform} for store: ${storeCode || 'Unknown'}`);
+                });
+            });
+        });
+        
+        // Add offer card interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            const offerCards = document.querySelectorAll('.offer-card');
+            
+            offerCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Add click feedback
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                    
+                    // Log offer interest
+                    const offerType = this.querySelector('.offer-title').textContent;
+                    console.log(`Offer clicked: ${offerType} for store: ${storeCode || 'Unknown'}`);
+                });
+            });
         });
     </script>
     
