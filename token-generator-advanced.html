@@ -411,7 +411,7 @@
                 </div>
                 
                 <div class="blacklist-info">
-                    ⚠️ <strong>Blacklisted Serials:</strong> 01-09, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100
+                    ✅ <strong>All Serial Numbers Valid:</strong> Enhanced encoding supports all numbers 1-999 with unique X-encoding and checksums
                 </div>
                 
                 <button type="submit" class="generate-btn">
@@ -462,10 +462,11 @@
             'JMD': { code: 'JMD', branch: 3 }
         };
         
-        // Blacklisted serials
+        // Enhanced token generation - No blacklisted serials needed
+        // All numbers 1-999 are now valid with unique encoding
         const blacklistedSerials = [
-            1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-            20, 30, 40, 50, 60, 70, 80, 90, 100
+            // No serials are blacklisted - all numbers 1-999 are valid
+            // Enhanced logic ensures uniqueness through X-encoding and checksums
         ];
         
         let currentTokenData = {};
@@ -491,11 +492,8 @@
                     return;
                 }
                 
-                // Check blacklisted serials
-                if (blacklistedSerials.includes(serialNumber)) {
-                    showError(`Serial number ${serialNumber} is blacklisted. Please use a different number.`);
-                    return;
-                }
+                // No blacklisted serials check needed - all numbers are valid now
+                // The enhanced encoding ensures uniqueness and security
                 
                 // Generate internal token
                 const internalToken = generateInternalToken(store, date, serialNumber);
@@ -557,16 +555,36 @@
             // Line 2: MONTH-TSC-YEAR
             const line2 = `${month}-TSC-${year}`;
             
-            // Line 3: TG-PRICE+SERIAL (assuming price is 19)
+            // Line 3: Enhanced TG-ENCODED_SERIAL format
             const price = 19;
-            const line3 = `TG-${price}${String(serialNumber).padStart(2, '0')}`;
+            const encodedSerial = encodeSerialWithChecksum(serialNumber);
+            const line3 = `TG-${price}${encodedSerial}`;
             
             return {
                 line1,
                 line2,
                 line3,
-                raw: `${line1}\n${line2}\n${line3}`
+                raw: `${line1}\n${line2}\n${line3}`,
+                encodedSerial
             };
+        }
+        
+        function encodeSerialWithChecksum(serialNumber) {
+            // Step 1: Convert to 3-digit format
+            const paddedSerial = String(serialNumber).padStart(3, '0');
+            
+            // Step 2: Replace all '0' with 'X'
+            const xEncoded = paddedSerial.replace(/0/g, 'X');
+            
+            // Step 3: Calculate checksum (digit sum of original serial)
+            const digitSum = String(serialNumber)
+                .split('')
+                .reduce((sum, digit) => sum + parseInt(digit), 0);
+            
+            // Step 4: Add checksum as 4th character
+            const finalEncoded = xEncoded + digitSum;
+            
+            return finalEncoded;
         }
         
         function generateExternalToken(internalToken) {
@@ -580,16 +598,12 @@
             const block2Sum = line2Digits ? line2Digits.reduce((sum, digit) => sum + parseInt(digit), 0) : 0;
             const block2 = `TSC${digitSum(block2Sum)}`;
             
-            // Block 3: From line3, process TG-PPPSS format
-            const line3Match = internalToken.line3.match(/TG-(\d{2})(\d{2})/);
+            // Block 3: Enhanced TG + encoded serial format
+            // Extract the encoded serial from line3 (after "TG-19")
+            const line3Match = internalToken.line3.match(/TG-19(.+)/);
             if (line3Match) {
-                const priceDigits = line3Match[1]; // First two digits (price)
-                const serialDigits = line3Match[2]; // Last two digits (serial)
-                
-                const priceSum = digitSum(parseInt(priceDigits[0]) + parseInt(priceDigits[1]));
-                const serialSum = digitSum(parseInt(serialDigits[0]) + parseInt(serialDigits[1]));
-                
-                const block3 = `TG${priceSum}${serialSum}`;
+                const encodedSerial = line3Match[1]; // The X-encoded serial with checksum
+                const block3 = `TG${encodedSerial}`;
                 
                 return `${block1}-${block2}-${block3}`;
             }
@@ -676,21 +690,27 @@
             e.target.value = value;
         });
         
-        // Serial number validation
+        // Serial number validation - enhanced to show encoding preview
         document.getElementById('serialNumber').addEventListener('input', function(e) {
             const value = parseInt(e.target.value);
             const warning = document.querySelector('.blacklist-info');
             
-            if (blacklistedSerials.includes(value)) {
-                warning.style.background = 'rgba(220, 53, 69, 0.1)';
-                warning.style.borderColor = 'rgba(220, 53, 69, 0.4)';
-                warning.style.color = '#ff6b6b';
-                warning.innerHTML = `⚠️ <strong>Warning:</strong> Serial ${value} is blacklisted!`;
+            if (value && value >= 1 && value <= 999) {
+                const encoded = encodeSerialWithChecksum(value);
+                warning.style.background = 'rgba(40, 167, 69, 0.1)';
+                warning.style.borderColor = 'rgba(40, 167, 69, 0.4)';
+                warning.style.color = '#28a745';
+                warning.innerHTML = `✅ <strong>Serial ${value} → ${encoded}</strong> (X-encoded with checksum)`;
+            } else if (value) {
+                warning.style.background = 'rgba(255, 193, 7, 0.1)';
+                warning.style.borderColor = 'rgba(255, 193, 7, 0.4)';
+                warning.style.color = '#FFC107';
+                warning.innerHTML = '⚠️ <strong>Please enter a number between 1-999</strong>';
             } else {
                 warning.style.background = 'rgba(255, 193, 7, 0.1)';
                 warning.style.borderColor = 'rgba(255, 193, 7, 0.4)';
                 warning.style.color = '#FFC107';
-                warning.innerHTML = '⚠️ <strong>Blacklisted Serials:</strong> 01-09, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100';
+                warning.innerHTML = '✅ <strong>All Serial Numbers Valid:</strong> Enhanced encoding supports all numbers 1-999 with unique X-encoding and checksums';
             }
         });
         
@@ -712,7 +732,7 @@
     
     <!-- Developer Credits Footer -->
     <footer class="dev-credits">
-        <p>Crafted by <a href="https://psprosen.me" target="_blank">Prosenjit Paul (aka Ps Prosen)</a> | Powered by <a href="https://we-digital-mitra.tech" target="_blank">WDM</a></p>
+        <p>Developed by <a href="https://psprosen.me" target="_blank">Prosenjit Paul (aka Ps Prosen)</a> | <span style="color: #fff;">Powered by</span> <a href="https://we-digital-mitra.tech" target="_blank">WDM</a></p>
     </footer>
 </body>
 </html>

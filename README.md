@@ -4,46 +4,50 @@
 
 A mobile-first web application that provides interactive rewards and offers for customers visiting TSC's physical stores through QR code scanning.
 
-## 🚀 Live Demo
-
-**Main Entry Point:** https://psprosen-dev.github.io/TSC-QR-Reward-System/
-
-**Store-specific URLs:**
-- 🏪 **Maynaguri:** https://psprosen-dev.github.io/TSC-QR-Reward-System/?store=MNG
-- 🏪 **Dhupguri:** https://psprosen-dev.github.io/TSC-QR-Reward-System/?store=DPG  
-- 🏪 **Jamaldaha:** https://psprosen-dev.github.io/TSC-QR-Reward-System/?store=JMD
-
 ## 🌟 Features
 
-- 🎰 **Spin & Win System** - Interactive spinning wheel with physical prizes
-- 🏪 **Multi-Store Support** - Separate experiences for each TSC location
-- 📱 **Mobile-First Design** - Optimized for smartphone usage
-- 🎨 **Premium UI** - Modern glassmorphism design with smooth animations
-- 💾 **Progress Tracking** - localStorage-based session management
-- 📞 **WhatsApp Integration** - Direct token generation and verification
+### 🎡 Spin & Win System
+- Interactive spinning wheel with 8 different prizes
+- Task-based unlock system (Instagram follow, YouTube subscribe, Google reviews, WhatsApp group)
+- Progress tracking with localStorage
+- One-time spin per session
 
-## 🎁 Current Prizes
+### 🛡️ Tempered Glass ₹19 Offer
+- Special discounted offer system
+- Token-based verification
+- WhatsApp integration for token generation
+- Cross-store token validation
+- External token support
 
-- **Botel** (20% chance)
-- **Earbuds** (25% chance)
-- **Neckband** (30% chance)
-- **Mobile Stand** (25% chance)
+### 🏪 Multi-Store Support
+- **Maynaguri (MNG)** - `?store=MNG`
+- **Dhupguri (DPG)** - `?store=DPG` 
+- **Jamaldaha (JMD)** - `?store=JMD`
 
-## 🔧 Technical Stack
+## 🚀 Live Demo
 
-- **Frontend:** Vanilla HTML5, CSS3, JavaScript (ES6+)
-- **Styling:** CSS Grid/Flexbox, Mobile-first responsive design
-- **Storage:** localStorage for progress tracking
-- **Hosting:** GitHub Pages
-- **Integration:** WhatsApp Web API for messaging
+```
+Base URL: https://your-username.github.io/TSC-QR-Reward-System/
 
-## 👨‍💻 Developer
+Store-specific URLs:
+🏪 Maynaguri: https://your-username.github.io/TSC-QR-Reward-System/?store=MNG
+🏪 Dhupguri: https://your-username.github.io/TSC-QR-Reward-System/?store=DPG
+🏪 Jamaldaha: https://your-username.github.io/TSC-QR-Reward-System/?store=JMD
+```
 
-**Crafted by [Ps Prosen](https://psprosen.me) | Powered by [WDM](https://we-digital-mitra.tech)**
+## 📁 Project Structure
 
----
-
-*Made with ❤️ for TSC Technology Service Centers*
+```
+TSC-QR-Reward-System/
+├── index.html              # Main entry page with 2 options
+├── tasks.html              # Task completion page (social media tasks)
+├── reward.html             # Spin wheel rewards page
+├── tempered-glass.html     # Tempered glass offer page
+├── generate-token.html     # WhatsApp token generation
+├── thank-you.html          # Success/completion page
+├── tsc-logo.jpg           # TSC branding logo
+└── README.md              # Project documentation
+```
 
 ## 🔧 Technical Stack
 
