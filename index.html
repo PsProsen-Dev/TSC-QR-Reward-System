@@ -226,62 +226,6 @@
             line-height: 1.3;
         }
         
-        /* Social Connect Section */
-        .social-connect {
-            background: rgba(0, 0, 0, 0.2);
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 25px;
-        }
-        
-        .social-connect h3 {
-            color: #FFD700;
-            font-size: 16px;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        
-        .social-connect p {
-            color: #ccc;
-            font-size: 12px;
-            margin-bottom: 15px;
-        }
-        
-        .social-links {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-        }
-        
-        .social-link {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 215, 0, 0.1);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 12px;
-            padding: 10px 12px;
-            font-size: 12px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .social-link:hover {
-            background: rgba(255, 215, 0, 0.2);
-            border-color: rgba(255, 215, 0, 0.5);
-            transform: scale(1.05);
-        }
-        
-        .social-link i {
-            font-size: 16px;
-        }
-        
-        .instagram { color: #E4405F; }
-        .youtube { color: #FF0000; }
-        .whatsapp { color: #25D366; }
-        .facebook { color: #1877F2; }
-        
         /* Benefits Section */
         .benefits-section {
             margin-bottom: 25px;
@@ -448,36 +392,6 @@
                 font-size: 10px;
             }
             
-            .social-connect {
-                padding: 15px;
-                margin-bottom: 20px;
-                border-radius: 15px;
-            }
-            
-            .social-connect h3 {
-                font-size: 14px;
-                margin-bottom: 6px;
-            }
-            
-            .social-connect p {
-                font-size: 11px;
-                margin-bottom: 12px;
-            }
-            
-            .social-links {
-                gap: 8px;
-            }
-            
-            .social-link {
-                padding: 8px 10px;
-                border-radius: 10px;
-                font-size: 11px;
-            }
-            
-            .social-link i {
-                font-size: 14px;
-            }
-            
             .benefits-section h3 {
                 font-size: 14px;
                 margin-bottom: 12px;
@@ -580,36 +494,6 @@
             
             .offer-desc {
                 font-size: 9px;
-            }
-            
-            .social-connect {
-                padding: 12px;
-                margin-bottom: 18px;
-                border-radius: 12px;
-            }
-            
-            .social-connect h3 {
-                font-size: 13px;
-                margin-bottom: 5px;
-            }
-            
-            .social-connect p {
-                font-size: 10px;
-                margin-bottom: 10px;
-            }
-            
-            .social-links {
-                gap: 6px;
-            }
-            
-            .social-link {
-                padding: 6px 8px;
-                border-radius: 8px;
-                font-size: 10px;
-            }
-            
-            .social-link i {
-                font-size: 12px;
             }
             
             .benefits-section {
@@ -791,30 +675,6 @@
             </div>
         </div>
         
-        <!-- Social Media Connection -->
-        <div class="social-connect">
-            <h3>🔗 Stay Connected for Exclusive Updates</h3>
-            <p>Follow us on social media to never miss an offer!</p>
-            <div class="social-links">
-                <div class="social-link instagram">
-                    <i class="fab fa-instagram"></i>
-                    <span>Instagram</span>
-                </div>
-                <div class="social-link youtube">
-                    <i class="fab fa-youtube"></i>
-                    <span>YouTube</span>
-                </div>
-                <div class="social-link whatsapp">
-                    <i class="fab fa-whatsapp"></i>
-                    <span>WhatsApp</span>
-                </div>
-                <div class="social-link facebook">
-                    <i class="fab fa-facebook"></i>
-                    <span>Facebook</span>
-                </div>
-            </div>
-        </div>
-        
         <!-- Benefits List -->
         <div class="benefits-section">
             <h3>🎁 Why Join Our Loyalty Program?</h3>
@@ -933,7 +793,7 @@
             initializePage();
             
             // Add entrance animations
-            const animatedElements = document.querySelectorAll('.offer-card, .social-link, .benefit');
+            const animatedElements = document.querySelectorAll('.offer-card, .benefit');
             animatedElements.forEach((el, index) => {
                 el.style.opacity = '0';
                 el.style.transform = 'translateY(20px)';
@@ -943,25 +803,6 @@
                     el.style.opacity = '1';
                     el.style.transform = 'translateY(0)';
                 }, 200 + (index * 50));
-            });
-        });
-        
-        // Add social link interactions
-        document.addEventListener('DOMContentLoaded', function() {
-            const socialLinks = document.querySelectorAll('.social-link');
-            
-            socialLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    // Add click feedback
-                    this.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                        this.style.transform = 'scale(1)';
-                    }, 150);
-                    
-                    // Log social interaction
-                    const platform = this.querySelector('span').textContent;
-                    console.log(`Social link clicked: ${platform} for store: ${storeCode || 'Unknown'}`);
-                });
             });
         });
         
