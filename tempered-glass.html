@@ -286,6 +286,90 @@
             50% { box-shadow: 0 8px 25px rgba(76, 175, 80, 0.6), 0 0 0 1px rgba(76, 175, 80, 0.5) inset; }
         }
         
+        /* Weekend-only offer styles */
+        .weekday-dimmed {
+            opacity: 0.5;
+            pointer-events: none;
+            filter: grayscale(70%);
+            transition: all 0.5s ease;
+        }
+        
+        .weekday-notice {
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 152, 0, 0.1) 100%);
+            border: 2px solid rgba(255, 193, 7, 0.4);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            animation: pulse-warning 2s ease-in-out infinite;
+        }
+        
+        .weekday-notice h4 {
+            color: #FFC107;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .weekday-notice p {
+            color: #fff;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .weekend-countdown {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            text-align: center;
+        }
+        
+        .weekend-countdown .countdown-timer {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #FFD700;
+            margin-bottom: 5px;
+        }
+        
+        .weekend-countdown .countdown-label {
+            font-size: 0.8rem;
+            color: #ccc;
+        }
+        
+        @keyframes pulse-warning {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(255, 193, 7, 0.3); 
+                border-color: rgba(255, 193, 7, 0.4); 
+            }
+            50% { 
+                box-shadow: 0 0 30px rgba(255, 193, 7, 0.5); 
+                border-color: rgba(255, 193, 7, 0.6); 
+            }
+        }
+        
+        .weekend-active {
+            border: 3px solid rgba(40, 167, 69, 0.6);
+            box-shadow: 0 0 30px rgba(40, 167, 69, 0.3);
+            animation: weekend-glow 2s ease-in-out infinite;
+        }
+        
+        @keyframes weekend-glow {
+            0%, 100% { 
+                box-shadow: 0 0 30px rgba(40, 167, 69, 0.3);
+                border-color: rgba(40, 167, 69, 0.6); 
+            }
+            50% { 
+                box-shadow: 0 0 40px rgba(40, 167, 69, 0.5);
+                border-color: rgba(40, 167, 69, 0.8); 
+            }
+        }
+        
         /* Product Image */
         .product-showcase {
             background: rgba(255, 255, 255, 0.05);
@@ -662,13 +746,7 @@
         <h1>📱 The Shankar Communications<br>(TSC)<br>Premium Tempered Glass</h1>
         
         <div class="offer-badge">
-            🔥 Weekend Special Offer
-        </div>
-        
-        <div class="weekend-notice" style="background: rgba(0, 255, 127, 0.15); border: 1px solid rgba(0, 255, 127, 0.4); border-radius: 15px; padding: 15px; margin: 20px 0; text-align: center;">
-            <i class="fas fa-calendar-week" style="color: #00ff7f; margin-right: 8px;"></i>
-            <strong style="color: #00ff7f;">Available Every Weekend:</strong><br>
-            <span style="color: #fff; font-size: 0.9rem;">Saturday & Sunday Only • Weekly Recurring Offer</span>
+            🔥 Limited Time Offer
         </div>
         
         <div class="product-showcase">
@@ -728,6 +806,20 @@
             </div>
         </div>
         
+        <!-- Weekend-only notice (shown on weekdays) -->
+        <div class="weekday-notice" id="weekdayNotice" style="display: none;">
+            <h4>
+                <i class="fas fa-calendar-times"></i>
+                Weekend Special Offer
+            </h4>
+            <p>This exclusive ₹19 Tempered Glass offer is only available on <strong>Saturdays & Sundays</strong>!</p>
+            <p>Visit us this weekend to grab this amazing deal.</p>
+            <div class="weekend-countdown">
+                <div class="countdown-timer" id="weekendCountdown">00:00:00</div>
+                <div class="countdown-label">Time until next weekend</div>
+            </div>
+        </div>
+        
         <button class="order-btn" id="orderBtn" onclick="proceedToOrder()" disabled>
             <i class="fas fa-shopping-bag"></i> Order Now - ₹19
         </button>
@@ -741,6 +833,121 @@
     <script>
         let selectedStore = '';
         let orderTimer;
+        let weekendChecker;
+        
+        // Weekend detection and management
+        function isWeekend() {
+            const now = new Date();
+            const day = now.getDay();
+            return day === 0 || day === 6; // Sunday = 0, Saturday = 6
+        }
+        
+        function getDaysUntilWeekend() {
+            const now = new Date();
+            const day = now.getDay();
+            
+            if (day === 0 || day === 6) return 0; // Already weekend
+            
+            // Calculate days until Saturday
+            const daysUntilSaturday = 6 - day;
+            return daysUntilSaturday;
+        }
+        
+        function getTimeUntilWeekend() {
+            const now = new Date();
+            const day = now.getDay();
+            
+            if (day === 0 || day === 6) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+            
+            // Calculate time until next Saturday 12:00 AM
+            const nextSaturday = new Date(now);
+            nextSaturday.setDate(now.getDate() + (6 - day));
+            nextSaturday.setHours(0, 0, 0, 0);
+            
+            const timeDiff = nextSaturday.getTime() - now.getTime();
+            
+            const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+            
+            return { days, hours, minutes, seconds };
+        }
+        
+        function updateWeekendCountdown() {
+            const timeLeft = getTimeUntilWeekend();
+            const countdownElement = document.getElementById('weekendCountdown');
+            
+            if (timeLeft.days === 0 && timeLeft.hours === 0 && timeLeft.minutes === 0 && timeLeft.seconds === 0) {
+                countdownElement.textContent = 'Weekend is here!';
+                checkWeekendStatus(); // Refresh status
+                return;
+            }
+            
+            let countdownText = '';
+            if (timeLeft.days > 0) {
+                countdownText = `${timeLeft.days}d ${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s`;
+            } else {
+                countdownText = `${timeLeft.hours.toString().padStart(2, '0')}:${timeLeft.minutes.toString().padStart(2, '0')}:${timeLeft.seconds.toString().padStart(2, '0')}`;
+            }
+            
+            countdownElement.textContent = countdownText;
+        }
+        
+        function checkWeekendStatus() {
+            const container = document.querySelector('.container');
+            const weekdayNotice = document.getElementById('weekdayNotice');
+            const orderBtn = document.getElementById('orderBtn');
+            const storeSelection = document.querySelector('.store-selection');
+            
+            if (isWeekend()) {
+                // Weekend: Show full functionality
+                container.classList.remove('weekday-dimmed');
+                container.classList.add('weekend-active');
+                weekdayNotice.style.display = 'none';
+                
+                // Enable order functionality
+                orderBtn.innerHTML = '<i class="fas fa-shopping-bag"></i> Order Now - ₹19';
+                
+                // Remove dimming from interactive elements
+                storeSelection.style.opacity = '1';
+                storeSelection.style.pointerEvents = 'auto';
+                
+                console.log('Weekend mode: Offer is ACTIVE');
+                
+                // Clear weekend countdown interval
+                if (weekendChecker) {
+                    clearInterval(weekendChecker);
+                }
+                
+            } else {
+                // Weekday: Dim the offer and show notice
+                container.classList.add('weekday-dimmed');
+                container.classList.remove('weekend-active');
+                weekdayNotice.style.display = 'block';
+                
+                // Disable order functionality
+                orderBtn.innerHTML = '<i class="fas fa-clock"></i> Available on Weekends Only';
+                orderBtn.disabled = true;
+                
+                // Dim interactive elements
+                storeSelection.style.opacity = '0.5';
+                storeSelection.style.pointerEvents = 'none';
+                
+                console.log('Weekday mode: Offer is DIMMED');
+                
+                // Start weekend countdown
+                updateWeekendCountdown();
+                weekendChecker = setInterval(updateWeekendCountdown, 1000);
+                
+                // Check every minute if it's become weekend
+                setInterval(() => {
+                    if (isWeekend()) {
+                        checkWeekendStatus();
+                    }
+                }, 60000);
+            }
+        }
         
         // Store selection function
         function selectStore(store) {
@@ -790,6 +997,12 @@
         
         // Order processing
         function proceedToOrder() {
+            // Check if it's weekend
+            if (!isWeekend()) {
+                alert('🗓️ This offer is only available on weekends (Saturday & Sunday)!\nPlease visit us during weekend hours.');
+                return;
+            }
+            
             if (!selectedStore) {
                 alert('Please select a store first!');
                 return;
@@ -829,6 +1042,9 @@
         
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize weekend status checking first
+            checkWeekendStatus();
+            
             // Read store code from localStorage
             const storeCode = localStorage.getItem('tsc_store_code');
             if (storeCode) {
@@ -837,15 +1053,20 @@
                 localStorage.setItem('tsc_current_store', storeCode);
             }
             
-            startTimer();
+            // Only start timer if it's weekend
+            if (isWeekend()) {
+                startTimer();
+            }
             
-            // Check if user came from tasks
-            const completedTasks = localStorage.getItem('tsc_completed_tasks');
-            if (!completedTasks) {
-                // Redirect to tasks if not completed
-                alert('Please complete the social media tasks first!');
-                window.location.href = 'tasks-new.html';
-                return;
+            // Check if user came from tasks (only enforce on weekends)
+            if (isWeekend()) {
+                const completedTasks = localStorage.getItem('tsc_completed_tasks');
+                if (!completedTasks) {
+                    // Redirect to tasks if not completed
+                    alert('Please complete the social media tasks first!');
+                    window.location.href = 'tasks-new.html';
+                    return;
+                }
             }
             
             // Add floating animations to feature items
@@ -853,6 +1074,9 @@
                 item.style.animationDelay = `${index * 0.1}s`;
                 item.style.animation = 'floating 4s ease-in-out infinite';
             });
+            
+            // Check weekend status every hour
+            setInterval(checkWeekendStatus, 3600000); // 1 hour = 3600000ms
         });
         
         // Prevent back button
