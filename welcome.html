@@ -183,6 +183,80 @@
             transform: translateY(-5px) scale(1.02);
         }
         
+        /* Weekend-only functionality for Tempered Glass */
+        .tg-option.weekday-dimmed {
+            opacity: 0.5;
+            pointer-events: none;
+            filter: grayscale(70%);
+            transform: none !important;
+            transition: all 0.5s ease;
+            position: relative;
+        }
+        
+        .tg-option.weekday-dimmed::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .weekday-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 193, 7, 0.95);
+            color: #000;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+            z-index: 2;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            animation: pulse-weekend-notice 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-weekend-notice {
+            0%, 100% { 
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% { 
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+                transform: translate(-50%, -50%) scale(1.05);
+            }
+        }
+        
+        .weekend-countdown-small {
+            font-size: 10px;
+            margin-top: 5px;
+            color: #333;
+        }
+        
+        .tg-option.weekend-active {
+            border-color: rgba(0, 255, 127, 0.6);
+            box-shadow: 0 0 30px rgba(0, 255, 127, 0.4);
+            animation: weekend-glow 2s ease-in-out infinite;
+        }
+        
+        @keyframes weekend-glow {
+            0%, 100% { 
+                box-shadow: 0 0 30px rgba(0, 255, 127, 0.4);
+                border-color: rgba(0, 255, 127, 0.6);
+            }
+            50% { 
+                box-shadow: 0 0 40px rgba(0, 255, 127, 0.6);
+                border-color: rgba(0, 255, 127, 0.8);
+            }
+        }
+        
         .option-icon {
             font-size: 48px;
             margin-bottom: 15px;
@@ -603,17 +677,24 @@
             <div class="option-card spin-option" onclick="selectSpinOption()">
                 <div class="option-icon">🎡</div>
                 <div class="option-title">Spin & Win Game</div>
-                <div class="option-description">Complete social tasks and spin for exciting prizes! <br><strong>⚠️ Valid only with in-store purchase</strong></div>
-                <div class="option-price">🛒 PURCHASE REQUIRED</div>
+                <div class="option-description">Complete tasks and spin the wheel for exciting prizes!</div>
+                <div class="option-price">FREE TO PLAY</div>
                 <button class="option-button">Start Game</button>
             </div>
             
-            <div class="option-card tg-option" onclick="selectTGOption()">
+            <div class="option-card tg-option" onclick="selectTGOption()" id="tgOptionCard">
                 <div class="option-icon">🛡️</div>
-                <div class="option-title">Weekend Tempered Glass</div>
-                <div class="option-description">Premium quality tempered glass at special price! <br><strong>🗓️ Saturday & Sunday Only</strong> - Limited hourly slots available!</div>
-                <div class="option-price">🕐 WEEKEND SPECIAL | ₹19</div>
+                <div class="option-title">Tempered Glass</div>
+                <div class="option-description">Premium quality tempered glass at an unbeatable price!</div>
+                <div class="option-price">Only ₹19</div>
                 <button class="option-button">Claim Offer</button>
+                
+                <!-- Weekend-only notice (shown on weekdays) -->
+                <div class="weekday-overlay" id="weekdayOverlay" style="display: none;">
+                    <div>🗓️ Weekend Special!</div>
+                    <div style="font-size: 10px; margin-top: 3px;">Available Sat & Sun only</div>
+                    <div class="weekend-countdown-small" id="weekendCountdownSmall">00:00:00</div>
+                </div>
             </div>
         </div>
         
@@ -666,10 +747,106 @@
     </div>
 
     <script>
+        // Weekend detection and management
+        let weekendChecker;
+        
+        function isWeekend() {
+            const now = new Date();
+            const day = now.getDay();
+            return day === 0 || day === 6; // Sunday = 0, Saturday = 6
+        }
+        
+        function getTimeUntilWeekend() {
+            const now = new Date();
+            const day = now.getDay();
+            
+            if (day === 0 || day === 6) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+            
+            // Calculate time until next Saturday 12:00 AM
+            const nextSaturday = new Date(now);
+            nextSaturday.setDate(now.getDate() + (6 - day));
+            nextSaturday.setHours(0, 0, 0, 0);
+            
+            const timeDiff = nextSaturday.getTime() - now.getTime();
+            
+            const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+            
+            return { days, hours, minutes, seconds };
+        }
+        
+        function updateWeekendCountdown() {
+            const timeLeft = getTimeUntilWeekend();
+            const countdownElement = document.getElementById('weekendCountdownSmall');
+            
+            if (!countdownElement) return;
+            
+            if (timeLeft.days === 0 && timeLeft.hours === 0 && timeLeft.minutes === 0 && timeLeft.seconds === 0) {
+                countdownElement.textContent = 'Available Now!';
+                checkWeekendStatus(); // Refresh status
+                return;
+            }
+            
+            let countdownText = '';
+            if (timeLeft.days > 0) {
+                countdownText = `${timeLeft.days}d ${timeLeft.hours}h ${timeLeft.minutes}m`;
+            } else {
+                countdownText = `${timeLeft.hours.toString().padStart(2, '0')}:${timeLeft.minutes.toString().padStart(2, '0')}:${timeLeft.seconds.toString().padStart(2, '0')}`;
+            }
+            
+            countdownElement.textContent = countdownText;
+        }
+        
+        function checkWeekendStatus() {
+            const tgCard = document.getElementById('tgOptionCard');
+            const weekdayOverlay = document.getElementById('weekdayOverlay');
+            
+            if (!tgCard || !weekdayOverlay) return;
+            
+            if (isWeekend()) {
+                // Weekend: Show full functionality
+                tgCard.classList.remove('weekday-dimmed');
+                tgCard.classList.add('weekend-active');
+                weekdayOverlay.style.display = 'none';
+                
+                console.log('Weekend mode: Tempered Glass offer is ACTIVE');
+                
+                // Clear weekend countdown interval
+                if (weekendChecker) {
+                    clearInterval(weekendChecker);
+                }
+                
+            } else {
+                // Weekday: Dim the offer and show notice
+                tgCard.classList.add('weekday-dimmed');
+                tgCard.classList.remove('weekend-active');
+                weekdayOverlay.style.display = 'block';
+                
+                console.log('Weekday mode: Tempered Glass offer is DIMMED');
+                
+                // Start weekend countdown
+                updateWeekendCountdown();
+                weekendChecker = setInterval(updateWeekendCountdown, 1000);
+                
+                // Check every minute if it's become weekend
+                setInterval(() => {
+                    if (isWeekend()) {
+                        checkWeekendStatus();
+                    }
+                }, 60000);
+            }
+        }
+        
         // Initialize page
         document.addEventListener('DOMContentLoaded', function() {
             initializePage();
             initRTXEffects();
+            checkWeekendStatus(); // Initialize weekend status
+            
+            // Check weekend status every hour
+            setInterval(checkWeekendStatus, 3600000); // 1 hour = 3600000ms
         });
 
         function initializePage() {
@@ -704,16 +881,10 @@
 
         function selectTGOption() {
             // Check if it's weekend
-            const today = new Date();
-            const dayOfWeek = today.getDay(); // 0 = Sunday, 6 = Saturday
-            const isWeekend = (dayOfWeek === 0 || dayOfWeek === 6);
-            
-            if (!isWeekend) {
-                // Show weekend-only message
-                alert('🗓️ Tempered Glass offer is available only on Saturday & Sunday!\n\n⏰ Please visit us during weekends to claim this special offer.');
+            if (!isWeekend()) {
+                alert('🗓️ Weekend Special Offer!\n\nThe Tempered Glass offer (₹19) is only available on weekends (Saturday & Sunday).\n\nPlease visit us during weekend hours to claim this exclusive deal!');
                 return;
             }
-            
             showModal('tgOptionModal');
         }
 
@@ -879,39 +1050,7 @@
                 card.style.animationDelay = `${index * 0.2}s`;
                 card.style.animation = 'floating 4s ease-in-out infinite';
             });
-            
-            // Check weekend availability for Tempered Glass offer
-            checkWeekendAvailability();
         });
-        
-        function checkWeekendAvailability() {
-            const today = new Date();
-            const dayOfWeek = today.getDay(); // 0 = Sunday, 6 = Saturday
-            const isWeekend = (dayOfWeek === 0 || dayOfWeek === 6); // Saturday or Sunday
-            
-            const tgOption = document.querySelector('.tg-option');
-            const tgPrice = tgOption.querySelector('.option-price');
-            const tgButton = tgOption.querySelector('.option-button');
-            
-            if (isWeekend) {
-                // Weekend - Offer Available
-                tgPrice.innerHTML = '🟢 AVAILABLE NOW | ₹19';
-                tgPrice.style.color = '#00ff7f';
-                tgButton.style.opacity = '1';
-                tgButton.style.pointerEvents = 'auto';
-                tgOption.style.borderColor = 'rgba(0, 255, 127, 0.6)';
-            } else {
-                // Weekday - Offer Not Available
-                tgPrice.innerHTML = '🔴 AVAILABLE SAT-SUN | ₹19';
-                tgPrice.style.color = '#ff6b6b';
-                tgButton.style.opacity = '0.6';
-                tgButton.style.pointerEvents = 'none';
-                tgOption.style.borderColor = 'rgba(255, 107, 107, 0.4)';
-                
-                // Update button text
-                tgButton.textContent = 'Available Weekend';
-            }
-        }
     </script>
     
     <!-- Developer Credits Footer -->
