@@ -240,37 +240,6 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
-        /* Weekend Timer Styles */
-        .weekend-timer {
-            background: rgba(0, 255, 127, 0.1);
-            border: 1px solid rgba(0, 255, 127, 0.3);
-            border-radius: 10px;
-            padding: 8px 12px;
-            margin: 10px 0;
-            font-size: 12px;
-            font-weight: 600;
-            color: #00ff7f;
-            text-align: center;
-            font-family: 'Courier New', monospace;
-        }
-
-        .timer-active {
-            background: rgba(0, 255, 127, 0.2);
-            border-color: rgba(0, 255, 127, 0.5);
-            animation: timer-pulse 1s ease-in-out infinite;
-        }
-
-        .timer-inactive {
-            background: rgba(255, 193, 7, 0.1);
-            border-color: rgba(255, 193, 7, 0.3);
-            color: #FFD700;
-        }
-
-        @keyframes timer-pulse {
-            0%, 100% { box-shadow: 0 0 5px rgba(0, 255, 127, 0.3); }
-            50% { box-shadow: 0 0 15px rgba(0, 255, 127, 0.6); }
-        }
-
         /* Weekend-only Tempered Glass offer styles */
         .tg-dim {
             opacity: 0.5;
@@ -301,6 +270,48 @@
         @keyframes pulse-warning {
             0%, 100% { box-shadow: 0 0 10px #00ff7f33; }
             50% { box-shadow: 0 0 20px #00ff7f66; }
+        }
+        
+        .tg-timer {
+            font-family: 'Courier New', monospace;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #FFD700;
+            margin: 10px 0;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        .tg-timer-label {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-bottom: 5px;
+        }
+        
+        .tg-timer-digits {
+            display: inline-flex;
+            gap: 5px;
+        }
+        
+        .tg-timer-unit {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 4px;
+        }
+        
+        .tg-timer-value {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 6px;
+            padding: 5px 10px;
+            min-width: 50px;
+            text-align: center;
+        }
+        
+        .tg-timer-unit-label {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 2px;
         }
         
         .hidden {
@@ -666,9 +677,9 @@
             <div class="option-card spin-option" onclick="selectSpinOption()">
                 <div class="option-icon">🎡</div>
                 <div class="option-title">Spin & Win Game</div>
-                <div class="option-description">Exclusive for in-store purchase customers only!</div>
-                <div class="option-price">🏪 IN-STORE ONLY</div>
-                <button class="option-button">Verify Purchase</button>
+                <div class="option-description">Complete tasks and spin the wheel for exciting prizes!</div>
+                <div class="option-price">FREE TO PLAY</div>
+                <button class="option-button">Start Game</button>
             </div>
             
             <div class="option-card tg-option" id="tgOptionCard" onclick="selectTGOption()">
@@ -676,16 +687,35 @@
                 <div class="option-title">Tempered Glass</div>
                 <div class="option-description">Premium quality tempered glass at an unbeatable price!</div>
                 <div class="option-price">Only ₹19</div>
-                <div class="weekend-timer" id="weekendTimer">
-                    ⏰ <span id="timerText">Loading...</span>
-                </div>
                 <button class="option-button" id="tgOptionBtn">Claim Offer</button>
             </div>
         </div>
-        <!-- Notice for weekdays -->
+        <!-- Notice for weekdays with timer -->
         <div class="tg-weekday-notice" id="tgWeekdayNotice" style="display:none;">
-            <b>🗓️ Offer starts in: <span id="countdownText" style="color:#00ff7f;"></span></b><br>
-            <span style="font-size:0.95em;">Next weekend special: Saturday & Sunday ₹19 Tempered Glass!</span>
+            <b>🗓️ This offer is only available on <span style="color:#00ff7f;">Saturday & Sunday</span>!</b><br>
+            <span style="font-size:0.95em;" id="tgTimerLabel">Offer starts in:</span>
+            
+            <!-- Timer component -->
+            <div class="tg-timer" id="tgTimer">
+                <div class="tg-timer-digits">
+                    <div class="tg-timer-unit">
+                        <div class="tg-timer-value" id="tgDays">00</div>
+                        <div class="tg-timer-unit-label">days</div>
+                    </div>
+                    <div class="tg-timer-unit">
+                        <div class="tg-timer-value" id="tgHours">00</div>
+                        <div class="tg-timer-unit-label">hours</div>
+                    </div>
+                    <div class="tg-timer-unit">
+                        <div class="tg-timer-value" id="tgMinutes">00</div>
+                        <div class="tg-timer-unit-label">mins</div>
+                    </div>
+                    <div class="tg-timer-unit">
+                        <div class="tg-timer-value" id="tgSeconds">00</div>
+                        <div class="tg-timer-unit-label">secs</div>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <div class="branding">
@@ -705,21 +735,6 @@
             <div class="modal-buttons">
                 <button class="btn-primary" onclick="validateSpinToken()">Start Game</button>
                 <button class="btn-secondary" onclick="closeModal('spinTokenModal')">Cancel</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Purchase Verification Modal -->
-    <div class="modal" id="purchaseVerificationModal">
-        <div class="modal-content">
-            <h3>🧾 Enter Invoice Number</h3>
-            <p>Please enter your invoice number to verify your purchase and access Spin & Win!</p>
-            <div class="input-group">
-                <input type="number" id="invoiceNumberInput" placeholder="Enter invoice number (1100-1200)" min="1100" max="1200">
-            </div>
-            <div class="modal-buttons">
-                <button class="btn-primary" onclick="verifyInvoice()">Verify Invoice</button>
-                <button class="btn-secondary" onclick="closeModal('purchaseVerificationModal')">Cancel</button>
             </div>
         </div>
     </div>
@@ -757,7 +772,11 @@
             initializePage();
             initRTXEffects();
             updateTGWeekendState();
-            setInterval(updateTGWeekendState, 1000); // Update every second for real-time timer
+            setInterval(updateTGWeekendState, 60000); // Check every minute for midnight switch
+            
+            // Start timer update interval
+            updateTGTimer();
+            setInterval(updateTGTimer, 1000); // Update timer every second
         });
 
         // Weekend logic for Tempered Glass offer
@@ -770,108 +789,106 @@
             return false;
         }
 
-        function getNextWeekendStart() {
+        function getNextWeekendTime() {
             const now = new Date();
             const day = now.getDay();
-            let daysUntilSaturday;
+            const hour = now.getHours();
+            const minute = now.getMinutes();
+            const second = now.getSeconds();
             
-            if (day === 6 || day === 0) {
-                // Already weekend, get next Saturday
-                daysUntilSaturday = day === 6 ? 7 : 6;
-            } else {
-                // Weekday, get this Saturday
-                daysUntilSaturday = 6 - day;
-            }
+            // Calculate days until next Saturday (day 6)
+            let daysUntilWeekend = 6 - day;
+            if (daysUntilWeekend < 0) daysUntilWeekend += 7; // If today is Sunday, we count to next Saturday
             
-            const nextSaturday = new Date(now);
-            nextSaturday.setDate(now.getDate() + daysUntilSaturday);
-            nextSaturday.setHours(0, 0, 0, 0);
+            // Create the next weekend date at 00:00:00
+            const nextWeekend = new Date(now);
+            nextWeekend.setDate(now.getDate() + daysUntilWeekend);
+            nextWeekend.setHours(0, 0, 0, 0);
             
-            return nextSaturday;
+            return nextWeekend;
         }
-
-        function getWeekendEnd() {
+        
+        function getWeekendEndTime() {
             const now = new Date();
             const day = now.getDay();
             
-            if (day === 6) {
-                // Saturday, end is Monday 00:00
-                const monday = new Date(now);
-                monday.setDate(now.getDate() + 2);
-                monday.setHours(0, 0, 0, 0);
-                return monday;
-            } else if (day === 0) {
-                // Sunday, end is Monday 00:00
-                const monday = new Date(now);
-                monday.setDate(now.getDate() + 1);
-                monday.setHours(0, 0, 0, 0);
-                return monday;
-            }
+            // End of Sunday (day 0)
+            const weekendEnd = new Date(now);
             
-            return null;
-        }
-
-        function formatTimeRemaining(ms) {
-            const days = Math.floor(ms / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((ms % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((ms % (1000 * 60)) / 1000);
-            
-            if (days > 0) {
-                return `${days}d ${hours}h ${minutes}m`;
-            } else if (hours > 0) {
-                return `${hours}h ${minutes}m ${seconds}s`;
+            // If it's already Sunday, set to 11:59:59 PM of today
+            if (day === 0) {
+                weekendEnd.setHours(23, 59, 59, 999);
             } else {
-                return `${minutes}m ${seconds}s`;
+                // If it's Saturday, set to 11:59:59 PM of next day (Sunday)
+                weekendEnd.setDate(now.getDate() + (0 - day + 7) % 7);
+                weekendEnd.setHours(23, 59, 59, 999);
             }
+            
+            return weekendEnd;
+        }
+        
+        function updateTGTimer() {
+            const isWeekend = isTGWeekend();
+            const now = new Date();
+            const timerLabel = document.getElementById('tgTimerLabel');
+            
+            let timeRemaining, targetDate;
+            
+            // Weekend active timer vs. countdown to weekend
+            if (isWeekend) {
+                // Weekend active timer (countdown to end of Sunday)
+                targetDate = getWeekendEndTime();
+                timeRemaining = targetDate - now;
+                timerLabel.innerHTML = 'Offer ends in:';
+            } else {
+                // Countdown to next Saturday
+                targetDate = getNextWeekendTime();
+                timeRemaining = targetDate - now;
+                timerLabel.innerHTML = 'Offer starts in:';
+            }
+            
+            // Calculate days, hours, minutes, seconds
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+            
+            // Update timer display
+            document.getElementById('tgDays').textContent = days.toString().padStart(2, '0');
+            document.getElementById('tgHours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('tgMinutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('tgSeconds').textContent = seconds.toString().padStart(2, '0');
+            
+            // Timer animation effect for seconds
+            const secondsElement = document.getElementById('tgSeconds');
+            secondsElement.style.transition = 'all 0.2s ease';
+            secondsElement.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                secondsElement.style.transform = 'scale(1)';
+            }, 200);
         }
 
         function updateTGWeekendState() {
             const card = document.getElementById('tgOptionCard');
             const btn = document.getElementById('tgOptionBtn');
             const notice = document.getElementById('tgWeekdayNotice');
-            const timer = document.getElementById('weekendTimer');
-            const timerText = document.getElementById('timerText');
-            const countdownText = document.getElementById('countdownText');
-            
-            if (!card || !btn || !notice || !timer || !timerText) return;
+            if (!card || !btn || !notice) return;
 
-            const now = new Date();
-            const isWeekend = isTGWeekend();
-
-            if (isWeekend) {
-                // Weekend active - show time remaining
-                const weekendEnd = getWeekendEnd();
-                const timeRemaining = weekendEnd - now;
-                
+            if (isTGWeekend()) {
                 card.classList.remove('tg-dim');
                 card.classList.add('tg-weekend-active');
                 btn.disabled = false;
                 card.style.pointerEvents = '';
                 notice.style.display = 'none';
-                
-                timer.classList.add('timer-active');
-                timer.classList.remove('timer-inactive');
-                timerText.textContent = `⏰ Offer ends in: ${formatTimeRemaining(timeRemaining)}`;
-                
             } else {
-                // Weekday - show countdown to next weekend
-                const nextWeekend = getNextWeekendStart();
-                const timeUntilWeekend = nextWeekend - now;
-                
                 card.classList.add('tg-dim');
                 card.classList.remove('tg-weekend-active');
                 btn.disabled = true;
                 card.style.pointerEvents = 'none';
                 notice.style.display = 'block';
                 
-                timer.classList.add('timer-inactive');
-                timer.classList.remove('timer-active');
-                timerText.textContent = `⏳ Next offer in: ${formatTimeRemaining(timeUntilWeekend)}`;
-                
-                if (countdownText) {
-                    countdownText.textContent = formatTimeRemaining(timeUntilWeekend);
-                }
+                // Update the timer immediately when showing notice
+                updateTGTimer();
             }
         }
 
@@ -892,16 +909,20 @@
         }
 
         function selectSpinOption() {
-            // Show purchase verification modal for in-store only
-            showModal('purchaseVerificationModal');
+            // Check if user has token or needs to get one
+            const hasToken = localStorage.getItem('spin_token');
+            
+            if (hasToken) {
+                // Direct to tasks
+                localStorage.setItem('flow_type', 'spin');
+                window.location.href = 'tasks-new.html';
+            } else {
+                // Show token input modal
+                showModal('spinTokenModal');
+            }
         }
 
         function selectTGOption() {
-            // Only allow during weekend
-            if (!isTGWeekend()) {
-                alert('🗓️ This offer is only available on weekends! Please check the timer for next availability.');
-                return;
-            }
             showModal('tgOptionModal');
         }
 
@@ -950,33 +971,6 @@
             window.location.href = 'tasks-new.html';
         }
 
-        function verifyInvoice() {
-            const invoiceNo = document.getElementById('invoiceNumberInput').value.trim();
-            
-            if (!invoiceNo) {
-                alert('🧾 Please enter your invoice number!');
-                return;
-            }
-            
-            const invoice = parseInt(invoiceNo);
-            if (invoice < 1100 || invoice > 1200) {
-                alert('❌ Invalid invoice number! Please enter a number between 1100-1200.');
-                return;
-            }
-            
-            // Save invoice verification data
-            localStorage.setItem('invoice_verified', 'true');
-            localStorage.setItem('invoice_number', invoiceNo);
-            localStorage.setItem('verification_time', new Date().toISOString());
-            
-            // Close modal and show token input
-            closeModal('purchaseVerificationModal');
-            
-            // Show success message and redirect to token input
-            alert(`✅ Invoice ${invoiceNo} verified successfully! Now enter your Spin token.`);
-            showModal('spinTokenModal');
-        }
-
         function showModal(modalId) {
             const modal = document.getElementById(modalId);
             modal.classList.add('show');
@@ -1015,21 +1009,6 @@
             e.target.value = e.target.value.replace(/[^0-9]/g, '');
         });
 
-        // Purchase amount input validation
-        document.addEventListener('DOMContentLoaded', function() {
-            const invoiceNumberInput = document.getElementById('invoiceNumberInput');
-            if (invoiceNumberInput) {
-                invoiceNumberInput.addEventListener('input', function(e) {
-                    e.target.value = e.target.value.replace(/[^0-9]/g, '');
-                    
-                    // Limit to 4 digits max
-                    if (e.target.value.length > 4) {
-                        e.target.value = e.target.value.slice(0, 4);
-                    }
-                });
-            }
-        });
-
         // Enter key support
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Enter') {
@@ -1037,8 +1016,6 @@
                     validateSpinToken();
                 } else if (document.getElementById('tgTokenModal').classList.contains('show')) {
                     validateTGToken();
-                } else if (document.getElementById('purchaseVerificationModal').classList.contains('show')) {
-                    verifyInvoice();
                 }
             }
             
