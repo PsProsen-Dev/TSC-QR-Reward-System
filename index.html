@@ -760,7 +760,11 @@
         document.addEventListener('DOMContentLoaded', function() {
             const ctaBtn = document.getElementById('joinLoyaltyBtn');
             
+            console.log('Index.html loaded, store parameter:', storeCode);
+            
             ctaBtn.addEventListener('click', function() {
+                console.log('CTA button clicked!');
+                
                 // Add click animation
                 this.style.transform = 'scale(0.95)';
                 setTimeout(() => {
@@ -771,14 +775,17 @@
                 let redirectUrl = 'welcome.html';
                 if (storeCode && storeConfig[storeCode.toUpperCase()]) {
                     redirectUrl = `welcome.html?store=${storeCode.toUpperCase()}`;
+                    console.log('Store detected, redirecting with store parameter:', storeCode.toUpperCase());
+                } else {
+                    console.log('No store parameter, redirecting to default welcome.html');
                 }
+                
+                console.log('Final redirect URL:', redirectUrl);
                 
                 // Add a small delay for better UX
                 setTimeout(() => {
                     window.location.href = redirectUrl;
                 }, 300);
-                
-                console.log(`CTA clicked - Redirecting to: ${redirectUrl}`);
             });
             
             // Initialize store-specific content
