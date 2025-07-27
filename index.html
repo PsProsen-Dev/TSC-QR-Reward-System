@@ -728,12 +728,14 @@
         
         // Get store parameter from URL
         const urlParams = new URLSearchParams(window.location.search);
-        const storeCode = urlParams.get('store');
+        const storeCode = urlParams.get('store') || 'MNG'; // Default to MNG if no store specified
         
         // Initialize page based on store
         function initializePage() {
-            if (storeCode && storeConfig[storeCode.toUpperCase()]) {
-                const store = storeConfig[storeCode.toUpperCase()];
+            const currentStoreCode = storeCode.toUpperCase();
+            
+            if (storeConfig[currentStoreCode]) {
+                const store = storeConfig[currentStoreCode];
                 
                 // Update page content
                 document.getElementById('storeTitle').textContent = `🏪 Welcome to ${store.name}!`;
@@ -750,9 +752,16 @@
                 
                 console.log(`Initialized store: ${store.name} (${store.code})`);
             } else {
-                // Default content for direct access without store parameter
-                document.getElementById('storeTitle').textContent = '🏪 Welcome to The Shankar Communications\n(TSC)\nStore!';
-                document.getElementById('storeLocation').textContent = 'Your trusted technology partner awaits you!';
+                // Fallback to MNG store
+                const defaultStore = storeConfig['MNG'];
+                document.getElementById('storeTitle').textContent = `🏪 Welcome to ${defaultStore.name}!`;
+                document.getElementById('storeLocation').textContent = `Your trusted technology partner in ${defaultStore.location.split(',')[0]}`;
+                
+                // Store default selection
+                localStorage.setItem('selectedStore', 'MNG');
+                localStorage.setItem('tsc_store_code', 'MNG');
+                
+                console.log('Using default store: MNG');
             }
         }
         
@@ -760,32 +769,25 @@
         document.addEventListener('DOMContentLoaded', function() {
             const ctaBtn = document.getElementById('joinLoyaltyBtn');
             
-            console.log('Index.html loaded, store parameter:', storeCode);
-            
             ctaBtn.addEventListener('click', function() {
-                console.log('CTA button clicked!');
-                
                 // Add click animation
                 this.style.transform = 'scale(0.95)';
                 setTimeout(() => {
                     this.style.transform = 'scale(1)';
                 }, 150);
                 
-                // Determine redirect URL based on store
-                let redirectUrl = 'welcome.html';
-                if (storeCode && storeConfig[storeCode.toUpperCase()]) {
-                    redirectUrl = `welcome.html?store=${storeCode.toUpperCase()}`;
-                    console.log('Store detected, redirecting with store parameter:', storeCode.toUpperCase());
-                } else {
-                    console.log('No store parameter, redirecting to default welcome.html');
-                }
+                // Get current store code from URL or localStorage
+                const currentStore = storeCode || localStorage.getItem('selectedStore') || localStorage.getItem('tsc_store_code') || 'MNG';
                 
-                console.log('Final redirect URL:', redirectUrl);
+                // Construct redirect URL with store parameter
+                const redirectUrl = `welcome.html?store=${currentStore.toUpperCase()}`;
                 
                 // Add a small delay for better UX
                 setTimeout(() => {
                     window.location.href = redirectUrl;
                 }, 300);
+                
+                console.log(`CTA clicked - Redirecting to: ${redirectUrl} (Store: ${currentStore})`);
             });
             
             // Initialize store-specific content
