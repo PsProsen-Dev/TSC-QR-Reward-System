@@ -1,105 +1,77 @@
-# TSC QR Reward System
+# The Shankar Communications (TSC) QR Reward System
 
-🏪 **Unified QR Code Reward System for TSC (Technology Service Center)**
+🏪 **Unified QR Code Reward System for The Shankar Communications**
 
-A mobile-first web application that provides interactive rewards and offers for customers visiting TSC's physical stores through QR code scanning.
+A mobile-first web application providing interactive rewards and offers for customers visiting The Shankar Communications (TSC) stores via QR code scanning. All branding follows the format:
+
+```
+The Shankar Communications
+(TSC)
+[Section/Context]
+```
 
 ## 🌟 Features
 
 ### 🎡 Spin & Win System
-- Interactive spinning wheel with 8 different prizes
-- Task-based unlock system (Instagram follow, YouTube subscribe, Google reviews, WhatsApp group)
+- Interactive spinning wheel with 8+ prizes
+- Task-based unlock (Instagram, YouTube, Google reviews, WhatsApp group)
 - Progress tracking with localStorage
 - One-time spin per session
 
 ### 🛡️ Tempered Glass ₹19 Offer
 - Special discounted offer system
-- Token-based verification
+- Token-based verification (local/external)
 - WhatsApp integration for token generation
 - Cross-store token validation
-- External token support
 
 ### 🏪 Multi-Store Support
 - **Maynaguri (MNG)** - `?store=MNG`
-- **Dhupguri (DPG)** - `?store=DPG` 
+- **Dhupguri (DPG)** - `?store=DPG`
 - **Jamaldaha (JMD)** - `?store=JMD`
-
-## 🚀 Live Demo
-
-```
-Base URL: https://your-username.github.io/TSC-QR-Reward-System/
-
-Store-specific URLs:
-🏪 Maynaguri: https://your-username.github.io/TSC-QR-Reward-System/?store=MNG
-🏪 Dhupguri: https://your-username.github.io/TSC-QR-Reward-System/?store=DPG
-🏪 Jamaldaha: https://your-username.github.io/TSC-QR-Reward-System/?store=JMD
-```
 
 ## 📁 Project Structure
 
 ```
 TSC-QR-Reward-System/
-├── index.html              # Main entry page with 2 options
-├── tasks.html              # Task completion page (social media tasks)
-├── reward.html             # Spin wheel rewards page
-├── tempered-glass.html     # Tempered glass offer page
-├── generate-token.html     # WhatsApp token generation
-├── thank-you.html          # Success/completion page
-├── tsc-logo.jpg           # TSC branding logo
-└── README.md              # Project documentation
+├── index.html                  # Loyalty landing page (store-specific)
+├── welcome.html                # Unified reward center (choose Spin & Win or Tempered Glass)
+├── tasks-new.html              # Task completion page (social media tasks)
+├── reward.html                 # Spin wheel rewards page
+├── tempered-glass.html         # Tempered glass offer page (token entry)
+├── generate-token.html         # WhatsApp token generation (generic)
+├── generate-token-mng.html     # WhatsApp token (Maynaguri)
+├── generate-token-dpg.html     # WhatsApp token (Dhupguri)
+├── generate-token-jmd.html     # WhatsApp token (Jamaldaha)
+├── thank-you.html              # Success/completion page
+├── decode-token.html           # Token decoder (internal/external)
+├── token-generator-advanced.html # Advanced token generator (admin)
+├── tsc-logo.jpg                # TSC branding logo
+└── README.md                   # Project documentation
 ```
+
+## 🚦 Main Flows
+
+### 🎡 Spin & Win Flow
+1. **Entry** → `welcome.html?store=MNG`
+2. **Choose Spin & Win**
+3. **Tasks** → `tasks-new.html` (Complete 4 social tasks)
+4. **Reward** → `reward.html` (Spin the wheel)
+5. **Success** → `thank-you.html` (Show prize details)
+
+### 🛡️ Tempered Glass Flow
+1. **Entry** → `welcome.html?store=MNG`
+2. **Choose Tempered Glass**
+3. **Offer** → `tempered-glass.html` (Token entry or generation)
+4. **Generate** → `generate-token.html` or store-specific token page
+5. **Success** → `thank-you.html` (Token verified)
 
 ## 🔧 Technical Stack
 
-- **Frontend**: Vanilla HTML5, CSS3, JavaScript (ES6+)
-- **Styling**: CSS Grid/Flexbox, Mobile-first responsive design
+- **Frontend**: HTML5, CSS3, JavaScript (all inline)
+- **Styling**: Glassmorphism, gradients, mobile-first responsive
 - **Storage**: localStorage for progress tracking
 - **Hosting**: GitHub Pages
 - **Integration**: WhatsApp Web API for messaging
-
-## 🎯 User Journey
-
-### 🎡 Spin & Win Flow
-1. **Entry** → `index.html?store=MNG`
-2. **Tasks** → `tasks.html` (Complete 4 social tasks)
-3. **Reward** → `reward.html` (Spin the wheel)
-4. **Success** → `thank-you.html` (Show prize details)
-
-### 🛡️ Tempered Glass Flow
-1. **Entry** → `index.html?store=MNG`
-2. **Offer** → `tempered-glass.html` (Token entry or generation)
-3. **Generate** → `generate-token.html` (WhatsApp verification)
-4. **Success** → `thank-you.html` (Token verified)
-
-## 🔐 Token System
-
-### Local Store Tokens
-```javascript
-MNG: ['MNG-1-24', 'MNG-2-24', 'MNG-3-24']
-DPG: ['DPG-1-24', 'DPG-2-24', 'DPG-3-24'] 
-JMD: ['JMD-1-24', 'JMD-2-24', 'JMD-3-24']
-```
-
-### External/Cross-Store Tokens
-```javascript
-['MNG3-TSC5-TG3', '07-TSC-25', 'TG-1911']
-```
-
-## 📱 WhatsApp Integration
-
-### Message Template
-```
-Hi TSC, I'm at your [STORE_NAME] branch to claim the ₹19 Tempered Glass offer. Please verify me.
-```
-
-### Store Phone Numbers (Update these)
-```javascript
-const storePhoneNumbers = {
-    'MNG': '919876543210', // Maynaguri
-    'DPG': '919876543211', // Dhupguri  
-    'JMD': '919876543212'  // Jamaldaha
-};
-```
 
 ## 🎨 Design Features
 
@@ -109,6 +81,8 @@ const storePhoneNumbers = {
 - **Responsive**: Works on all screen sizes
 - **Accessibility**: High contrast, readable fonts
 - **Animations**: Smooth transitions and micro-interactions
+- **Branding**: All customer-facing places use:
+  - The Shankar Communications<br>(TSC)<br>[Section/Context]
 
 ## 🛠️ Setup & Deployment
 
@@ -122,7 +96,6 @@ cd TSC-QR-Reward-System
 ```bash
 # Serve locally (Python)
 python -m http.server 8000
-
 # Or use Live Server in VS Code
 # Visit: http://localhost:8000/?store=MNG
 ```
@@ -163,7 +136,7 @@ const prizes = [
 ```
 
 ### Update Social Links
-Edit task links in `tasks.html`:
+Edit task links in `tasks-new.html`:
 ```javascript
 // Instagram, YouTube, Google Reviews, WhatsApp Group URLs
 ```
@@ -222,6 +195,6 @@ For technical support or customization requests:
 
 ---
 
-**Made with ❤️ for TSC Technology Service Centers**
+**Made with ❤️ for The Shankar Communications (TSC)**
 
 *Empowering customer engagement through innovative QR reward systems* 🎯🚀
