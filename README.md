@@ -47,14 +47,6 @@ TSC-QR-Reward-System/
 
 ## 🚦 Main Flows
 
-### 🎡 Complete Customer Journey
-1. **QR Scan** → `index.html?store=MNG` (Store-specific landing page)
-2. **Get Started** → Click button to go to `welcome.html?store=MNG` 
-3. **Choose Reward** → Select "Spin & Win" or "Tempered Glass"
-4. **Complete Tasks** → `tasks-new.html` (6 social tasks) OR Token entry
-5. **Claim Reward** → `reward.html` (Spin wheel) OR `tempered-glass.html`
-6. **Success** → `thank-you.html` (Show prize/confirmation)
-
 ### 🎡 Spin & Win Flow
 1. **Entry** → `welcome.html?store=MNG`
 2. **Choose Spin & Win**
@@ -113,12 +105,7 @@ TSC-QR-Reward-System/
 2. **Serve Locally**: `python -m http.server 8000` or use VS Code Live Server
 3. **Deploy**: GitHub Pages (Settings → Pages → Deploy from branch)
 4. **QR Codes**: Generate for each store URL:
-   - **Maynaguri**: `https://your-domain.github.io/TSC-QR-Reward-System/?store=MNG`
-   - **Dhupguri**: `https://your-domain.github.io/TSC-QR-Reward-System/?store=DPG`
-   - **Jamaldaha**: `https://your-domain.github.io/TSC-QR-Reward-System/?store=JMD`
-
-### 📱 QR Code Flow
-Customers scan QR → `index.html?store=MNG` → Click "Get Started" → `welcome.html?store=MNG` → Choose reward → Complete tasks/tokens → Success!
+   - `/?store=MNG`, `/?store=DPG`, `/?store=JMD`
 
 ---
 
