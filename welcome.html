@@ -950,31 +950,30 @@
             window.location.href = 'tasks-new.html';
         }
 
-        function verifyPurchase() {
-            const receiptNo = document.getElementById('purchaseReceiptInput').value.trim();
-            const amount = document.getElementById('purchaseAmountInput').value.trim();
+        function verifyInvoice() {
+            const invoiceNo = document.getElementById('invoiceNumberInput').value.trim();
             
-            if (!receiptNo || receiptNo.length < 3) {
-                alert('🧾 Please enter a valid receipt/bill number!');
+            if (!invoiceNo) {
+                alert('🧾 Please enter your invoice number!');
                 return;
             }
             
-            if (!amount || parseInt(amount) < 50) {
-                alert('💰 Minimum purchase amount should be ₹50 for Spin & Win!');
+            const invoice = parseInt(invoiceNo);
+            if (invoice < 1100 || invoice > 1200) {
+                alert('❌ Invalid invoice number! Please enter a number between 1100-1200.');
                 return;
             }
             
-            // Save purchase verification data
-            localStorage.setItem('purchase_verified', 'true');
-            localStorage.setItem('receipt_no', receiptNo);
-            localStorage.setItem('purchase_amount', amount);
+            // Save invoice verification data
+            localStorage.setItem('invoice_verified', 'true');
+            localStorage.setItem('invoice_number', invoiceNo);
             localStorage.setItem('verification_time', new Date().toISOString());
             
             // Close modal and show token input
             closeModal('purchaseVerificationModal');
             
             // Show success message and redirect to token input
-            alert('✅ Purchase verified successfully! Now enter your Spin token.');
+            alert(`✅ Invoice ${invoiceNo} verified successfully! Now enter your Spin token.`);
             showModal('spinTokenModal');
         }
 
@@ -1018,10 +1017,15 @@
 
         // Purchase amount input validation
         document.addEventListener('DOMContentLoaded', function() {
-            const purchaseAmountInput = document.getElementById('purchaseAmountInput');
-            if (purchaseAmountInput) {
-                purchaseAmountInput.addEventListener('input', function(e) {
+            const invoiceNumberInput = document.getElementById('invoiceNumberInput');
+            if (invoiceNumberInput) {
+                invoiceNumberInput.addEventListener('input', function(e) {
                     e.target.value = e.target.value.replace(/[^0-9]/g, '');
+                    
+                    // Limit to 4 digits max
+                    if (e.target.value.length > 4) {
+                        e.target.value = e.target.value.slice(0, 4);
+                    }
                 });
             }
         });
@@ -1033,6 +1037,8 @@
                     validateSpinToken();
                 } else if (document.getElementById('tgTokenModal').classList.contains('show')) {
                     validateTGToken();
+                } else if (document.getElementById('purchaseVerificationModal').classList.contains('show')) {
+                    verifyInvoice();
                 }
             }
             
