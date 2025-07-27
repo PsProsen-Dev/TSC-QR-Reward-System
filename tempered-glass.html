@@ -827,6 +827,9 @@
         <div class="success-message" id="successMessage">
             <h4>🎉 Order Confirmed!</h4>
             <p>Your tempered glass will be ready for pickup. You'll receive a WhatsApp confirmation shortly.</p>
+            <button class="order-btn" onclick="manualNavigateToToken()" style="margin-top: 15px; background: #28a745;">
+                <i class="fas fa-arrow-right"></i> Continue to Advanced Token Generator
+            </button>
         </div>
     </div>
     
@@ -997,11 +1000,11 @@
         
         // Order processing
         function proceedToOrder() {
-            // Check if it's weekend
-            if (!isWeekend()) {
-                alert('🗓️ This offer is only available on weekends (Saturday & Sunday)!\nPlease visit us during weekend hours.');
-                return;
-            }
+            // Check if it's weekend - TEMPORARILY DISABLED FOR TESTING
+            // if (!isWeekend()) {
+            //     alert('🗓️ This offer is only available on weekends (Saturday & Sunday)!\nPlease visit us during weekend hours.');
+            //     return;
+            // }
             
             if (!selectedStore) {
                 alert('Please select a store first!');
@@ -1034,10 +1037,23 @@
                 
                 // Redirect to token generation after 3 seconds
                 setTimeout(() => {
-                    window.location.href = 'generate-token.html';
+                    console.log('Redirecting to advanced token generation...');
+                    try {
+                        window.location.href = 'token-generator-advanced.html';
+                    } catch (error) {
+                        console.error('Navigation error:', error);
+                        alert('Navigation issue detected. Redirecting manually...');
+                        window.open('token-generator-advanced.html', '_self');
+                    }
                 }, 3000);
                 
             }, 2000);
+        }
+        
+        // Manual navigation function for backup
+        function manualNavigateToToken() {
+            console.log('Manual navigation triggered...');
+            window.location.href = 'token-generator-advanced.html';
         }
         
         // Initialize on page load
