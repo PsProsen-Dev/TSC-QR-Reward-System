@@ -949,6 +949,8 @@
         }
 
         function selectTGOption() {
+            // Debug log
+            console.log('TG Option selected, showing modal...');
             showModal('tgOptionModal');
         }
 
@@ -958,9 +960,28 @@
         }
 
         function generateTGToken() {
-            localStorage.setItem('flow_type', 'tg_generate');
-            closeModal('tgOptionModal');
-            window.location.href = 'generate-token.html';
+            try {
+                // Save flow type for token generation
+                localStorage.setItem('flow_type', 'tg_generate');
+                console.log('Flow type saved:', localStorage.getItem('flow_type'));
+                
+                // Close modal first
+                closeModal('tgOptionModal');
+                console.log('Modal closed');
+                
+                // Debug log to check if function is called
+                console.log('Redirecting to token generation page...');
+                
+                // Add a small delay before redirect to ensure modal closes
+                setTimeout(() => {
+                    // Redirect to token generation page
+                    window.location.href = './generate-token.html';
+                }, 100);
+                
+            } catch (error) {
+                console.error('Error in generateTGToken:', error);
+                alert('Error occurred. Please try again.');
+            }
         }
 
         function validateSpinToken() {
