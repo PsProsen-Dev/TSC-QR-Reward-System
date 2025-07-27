@@ -690,9 +690,9 @@
                 <button class="option-button" id="tgOptionBtn">Claim Offer</button>
             </div>
         </div>
-        <!-- Notice for weekdays with timer -->
+        <!-- Notice with timer (for both weekdays and weekends) -->
         <div class="tg-weekday-notice" id="tgWeekdayNotice" style="display:none;">
-            <b>🗓️ This offer is only available on <span style="color:#00ff7f;">Saturday & Sunday</span>!</b><br>
+            <b>🗓️ <span id="tgStatusText">This offer is only available on <span style="color:#00ff7f;">Saturday & Sunday</span>!</span></b><br>
             <span style="font-size:0.95em;" id="tgTimerLabel">Offer starts in:</span>
             
             <!-- Timer component -->
@@ -771,12 +771,16 @@
         document.addEventListener('DOMContentLoaded', function() {
             initializePage();
             initRTXEffects();
-            updateTGWeekendState();
-            setInterval(updateTGWeekendState, 60000); // Check every minute for midnight switch
             
-            // Start timer update interval
-            updateTGTimer();
+            // Initialize weekend state and timer
+            updateTGWeekendState();
+            updateTGTimer(); // Initial update
+            
+            // Set up recurring updates
+            setInterval(updateTGWeekendState, 60000); // Check every minute for midnight switch
             setInterval(updateTGTimer, 1000); // Update timer every second
+            
+            console.log('TG Timer initialized and running');
         });
 
         // Weekend logic for Tempered Glass offer
@@ -831,6 +835,19 @@
             const isWeekend = isTGWeekend();
             const now = new Date();
             const timerLabel = document.getElementById('tgTimerLabel');
+            const statusText = document.getElementById('tgStatusText');
+            
+            // Check if timer elements exist
+            const daysElement = document.getElementById('tgDays');
+            const hoursElement = document.getElementById('tgHours');
+            const minutesElement = document.getElementById('tgMinutes');
+            const secondsElement = document.getElementById('tgSeconds');
+            
+            // Exit if timer elements don't exist
+            if (!timerLabel || !daysElement || !hoursElement || !minutesElement || !secondsElement) {
+                console.error('Timer elements not found');
+                return;
+            }
             
             let timeRemaining, targetDate;
             
@@ -839,12 +856,20 @@
                 // Weekend active timer (countdown to end of Sunday)
                 targetDate = getWeekendEndTime();
                 timeRemaining = targetDate - now;
-                timerLabel.innerHTML = 'Offer ends in:';
+                timerLabel.innerHTML = '<span style="color:#00ff7f">Weekend Offer</span> ends in:';
+                
+                if (statusText) {
+                    statusText.innerHTML = '<span style="color:#00ff7f;">Weekend Offer ACTIVE!</span> Limited time offer';
+                }
             } else {
                 // Countdown to next Saturday
                 targetDate = getNextWeekendTime();
                 timeRemaining = targetDate - now;
                 timerLabel.innerHTML = 'Offer starts in:';
+                
+                if (statusText) {
+                    statusText.innerHTML = 'This offer is only available on <span style="color:#00ff7f;">Saturday & Sunday</span>!';
+                }
             }
             
             // Calculate days, hours, minutes, seconds
@@ -854,42 +879,52 @@
             const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
             
             // Update timer display
-            document.getElementById('tgDays').textContent = days.toString().padStart(2, '0');
-            document.getElementById('tgHours').textContent = hours.toString().padStart(2, '0');
-            document.getElementById('tgMinutes').textContent = minutes.toString().padStart(2, '0');
-            document.getElementById('tgSeconds').textContent = seconds.toString().padStart(2, '0');
+            daysElement.textContent = days.toString().padStart(2, '0');
+            hoursElement.textContent = hours.toString().padStart(2, '0');
+            minutesElement.textContent = minutes.toString().padStart(2, '0');
+            secondsElement.textContent = seconds.toString().padStart(2, '0');
             
             // Timer animation effect for seconds
-            const secondsElement = document.getElementById('tgSeconds');
             secondsElement.style.transition = 'all 0.2s ease';
             secondsElement.style.transform = 'scale(1.1)';
             setTimeout(() => {
                 secondsElement.style.transform = 'scale(1)';
             }, 200);
+            
+            // Debug log
+            console.log('Timer updated:', { isWeekend, days, hours, minutes, seconds });
         }
 
         function updateTGWeekendState() {
             const card = document.getElementById('tgOptionCard');
             const btn = document.getElementById('tgOptionBtn');
             const notice = document.getElementById('tgWeekdayNotice');
-            if (!card || !btn || !notice) return;
+            if (!card || !btn || !notice) {
+                console.error('TG card elements not found');
+                return;
+            }
 
-            if (isTGWeekend()) {
+            const isWeekend = isTGWeekend();
+            console.log('Updating TG weekend state:', isWeekend ? 'Weekend Active' : 'Weekday');
+
+            if (isWeekend) {
+                // Weekend is active - enable the card and show active styling
                 card.classList.remove('tg-dim');
                 card.classList.add('tg-weekend-active');
                 btn.disabled = false;
                 card.style.pointerEvents = '';
-                notice.style.display = 'none';
+                notice.style.display = 'block'; // Show timer for weekend countdown
             } else {
+                // Weekday - disable the card and show countdown
                 card.classList.add('tg-dim');
                 card.classList.remove('tg-weekend-active');
                 btn.disabled = true;
                 card.style.pointerEvents = 'none';
-                notice.style.display = 'block';
-                
-                // Update the timer immediately when showing notice
-                updateTGTimer();
+                notice.style.display = 'block'; // Show timer for countdown to weekend
             }
+            
+            // Force an immediate timer update
+            updateTGTimer();
         }
 
         function initializePage() {
