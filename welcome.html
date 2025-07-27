@@ -603,7 +603,7 @@
             <div class="option-card spin-option" onclick="selectSpinOption()">
                 <div class="option-icon">🎡</div>
                 <div class="option-title">Spin & Win Game</div>
-                <div class="option-description">Complete social tasks and spin for prizes! <strong>Valid only with in-store purchase.</strong></div>
+                <div class="option-description">Complete social tasks and spin for prizes! <br><strong>📦 Valid only with in-store purchase</strong></div>
                 <div class="option-price">FREE TO PLAY</div>
                 <button class="option-button">Start Game</button>
             </div>
@@ -611,7 +611,7 @@
             <div class="option-card tg-option" onclick="selectTGOption()">
                 <div class="option-icon">🛡️</div>
                 <div class="option-title">Tempered Glass</div>
-                <div class="option-description">Weekend Special! Premium tempered glass every <strong>Saturday & Sunday</strong> only.</div>
+                <div class="option-description">Premium quality tempered glass at unbeatable price! <br><strong>📅 Weekend Special: Saturday & Sunday Only</strong></div>
                 <div class="option-price">Only ₹19</div>
                 <button class="option-button">Claim Offer</button>
             </div>
@@ -686,9 +686,45 @@
             };
             
             document.getElementById('storeInfo').textContent = `Store: ${storeNames[store] || 'Unknown Store'}`;
+            
+            // Check if it's weekend for Tempered Glass offer
+            checkWeekendOffer();
+        }
+        
+        function checkWeekendOffer() {
+            const today = new Date();
+            const dayOfWeek = today.getDay(); // 0 = Sunday, 6 = Saturday
+            const isWeekend = dayOfWeek === 0 || dayOfWeek === 6; // Saturday or Sunday
+            
+            const tgCard = document.querySelector('.tg-option');
+            const tgButton = tgCard.querySelector('.option-button');
+            const tgDescription = tgCard.querySelector('.option-description');
+            
+            if (!isWeekend) {
+                // Disable offer on weekdays
+                tgCard.style.opacity = '0.6';
+                tgCard.style.pointerEvents = 'none';
+                tgButton.textContent = 'Weekend Only';
+                tgButton.style.background = 'rgba(128, 128, 128, 0.5)';
+                tgDescription.innerHTML = 'Premium tempered glass offer available only on weekends! <br><strong>⏰ Come back on Saturday or Sunday</strong>';
+            } else {
+                // Enable offer on weekends
+                tgCard.style.opacity = '1';
+                tgCard.style.pointerEvents = 'auto';
+                tgButton.textContent = 'Claim Offer';
+                tgButton.style.background = 'linear-gradient(135deg, #00ff7f 0%, #00cc66 100%)';
+                tgDescription.innerHTML = 'Premium quality tempered glass at unbeatable price! <br><strong>🎉 Weekend Special: Available Now!</strong>';
+            }
         }
 
         function selectSpinOption() {
+            // Show in-store purchase requirement notice
+            const confirmPurchase = confirm('🛒 Spin & Win Game requires an in-store purchase. Have you made a purchase today?\n\nClick OK to continue or Cancel to browse our products first.');
+            
+            if (!confirmPurchase) {
+                return; // User hasn't made purchase, don't proceed
+            }
+            
             // Check if user has token or needs to get one
             const hasToken = localStorage.getItem('spin_token');
             
@@ -703,6 +739,16 @@
         }
 
         function selectTGOption() {
+            // Check if it's weekend
+            const today = new Date();
+            const dayOfWeek = today.getDay();
+            const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+            
+            if (!isWeekend) {
+                alert('🚫 Tempered Glass offer is available only on weekends (Saturday & Sunday). Please visit us on weekends!');
+                return;
+            }
+            
             showModal('tgOptionModal');
         }
 
