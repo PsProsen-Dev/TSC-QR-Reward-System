@@ -206,15 +206,43 @@
         .option-price {
             font-size: 20px;
             font-weight: 800;
+            margin-bottom: 10px;
+        }
+        
+        .offer-condition {
+            font-size: 12px;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 15px;
             margin-bottom: 15px;
+            border: 1px solid;
+            text-align: center;
         }
         
         .spin-option .option-price {
             color: #FFD700;
         }
         
+        .spin-option .offer-condition {
+            background: rgba(255, 215, 0, 0.1);
+            border-color: rgba(255, 215, 0, 0.3);
+            color: #FFD700;
+        }
+        
         .tg-option .option-price {
             color: #00ff7f;
+        }
+        
+        .tg-option .offer-condition {
+            background: rgba(0, 255, 127, 0.1);
+            border-color: rgba(0, 255, 127, 0.3);
+            color: #00ff7f;
+        }
+        
+        .tg-option .offer-condition.inactive {
+            background: rgba(255, 69, 58, 0.1);
+            border-color: rgba(255, 69, 58, 0.3);
+            color: #ff453a;
         }
         
         .option-button {
@@ -603,17 +631,19 @@
             <div class="option-card spin-option" onclick="selectSpinOption()">
                 <div class="option-icon">🎡</div>
                 <div class="option-title">Spin & Win Game</div>
-                <div class="option-description">Complete tasks and spin the wheel for exciting prizes!</div>
+                <div class="option-description">Complete tasks and spin the wheel for exciting prizes! <strong>Valid only with in-store purchase.</strong></div>
                 <div class="option-price">FREE TO PLAY</div>
+                <div class="offer-condition">🏪 In-Store Purchase Required</div>
                 <button class="option-button">Start Game</button>
             </div>
             
             <div class="option-card tg-option" onclick="selectTGOption()">
                 <div class="option-icon">🛡️</div>
                 <div class="option-title">Tempered Glass</div>
-                <div class="option-description">Premium quality tempered glass at an unbeatable price!</div>
+                <div class="option-description">Premium quality tempered glass at an unbeatable price! <strong>Weekend special offer every Saturday & Sunday.</strong></div>
                 <div class="option-price">Only ₹19</div>
-                <button class="option-button">Claim Offer</button>
+                <div class="offer-condition" id="weekendStatus">🗓️ Weekend Offer (Sat-Sun)</div>
+                <button class="option-button" id="tgButton">Claim Offer</button>
             </div>
         </div>
         
@@ -666,10 +696,36 @@
     </div>
 
     <script>
+        // Check weekend status for Tempered Glass offer
+        function checkWeekendOffer() {
+            const today = new Date();
+            const dayOfWeek = today.getDay(); // 0 = Sunday, 6 = Saturday
+            const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+            
+            const weekendStatus = document.getElementById('weekendStatus');
+            const tgButton = document.getElementById('tgButton');
+            const tgCard = document.querySelector('.tg-option');
+            
+            if (isWeekend) {
+                weekendStatus.innerHTML = '🟢 Weekend Offer Active!';
+                weekendStatus.classList.remove('inactive');
+                tgButton.innerHTML = 'Claim Offer';
+                tgCard.style.opacity = '1';
+            } else {
+                weekendStatus.innerHTML = '🔴 Available on Weekends Only';
+                weekendStatus.classList.add('inactive');
+                tgButton.innerHTML = 'Available on Weekends';
+                tgCard.style.opacity = '0.7';
+            }
+            
+            return isWeekend;
+        }
+        
         // Initialize page
         document.addEventListener('DOMContentLoaded', function() {
             initializePage();
             initRTXEffects();
+            checkWeekendOffer(); // Check if weekend offer is active
         });
 
         function initializePage() {
@@ -689,20 +745,54 @@
         }
 
         function selectSpinOption() {
-            // Check if user has token or needs to get one
-            const hasToken = localStorage.getItem('spin_token');
-            
-            if (hasToken) {
-                // Direct to tasks
-                localStorage.setItem('flow_type', 'spin');
-                window.location.href = 'tasks-new.html';
-            } else {
-                // Show token input modal
-                showModal('spinTokenModal');
-            }
+            // Show purchase requirement modal
+            const modal = document.getElementById('spinTokenModal');
+            const modalContent = modal.querySelector('.modal-content');
+            modalContent.innerHTML = `
+                <h3>🎡 Spin & Win Game</h3>
+                <p><strong>🏪 In-Store Purchase Required</strong></p>
+                <p>This game is available only with purchase at our store. Please make a purchase and ask our staff for your spin token!</p>
+                <div class="input-group">
+                    <input type="text" id="spinTokenInput" placeholder="Enter 4-digit token from purchase" maxlength="4" pattern="[0-9]{4}">
+                </div>
+                <div class="modal-buttons">
+                    <button class="btn-primary" onclick="validateSpinToken()">Start Game</button>
+                    <button class="btn-secondary" onclick="closeModal('spinTokenModal')">Cancel</button>
+                </div>
+            `;
+            showModal('spinTokenModal');
         }
 
         function selectTGOption() {
+            const isWeekend = checkWeekendOffer();
+            
+            if (!isWeekend) {
+                // Show weekend-only message
+                const modal = document.getElementById('tgOptionModal');
+                const modalContent = modal.querySelector('.modal-content');
+                modalContent.innerHTML = `
+                    <h3>🛡️ Weekend Offer Only</h3>
+                    <p>Tempered Glass ₹19 offer is available only on <strong>Saturdays and Sundays</strong>.</p>
+                    <p>Please visit us during weekends to claim this amazing offer!</p>
+                    <div class="modal-buttons">
+                        <button class="btn-secondary" onclick="closeModal('tgOptionModal')" style="width: 100%;">Got It</button>
+                    </div>
+                `;
+                showModal('tgOptionModal');
+                return;
+            }
+            
+            // Show normal TG option modal if it's weekend
+            const modal = document.getElementById('tgOptionModal');
+            const modalContent = modal.querySelector('.modal-content');
+            modalContent.innerHTML = `
+                <h3>🛡️ Tempered Glass Offer</h3>
+                <p>Choose how you want to proceed with your ₹19 tempered glass offer:</p>
+                <div class="modal-buttons" style="flex-direction: column; gap: 15px;">
+                    <button class="btn-primary" onclick="startTGWithToken()" style="width: 100%;">I Have a Token</button>
+                    <button class="btn-secondary" onclick="generateTGToken()" style="width: 100%;">Generate New Token</button>
+                </div>
+            `;
             showModal('tgOptionModal');
         }
 
