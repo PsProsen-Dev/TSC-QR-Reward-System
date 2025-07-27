@@ -724,13 +724,13 @@
         </div>
     </div>
 
-    <!-- Spin Token Modal -->
+    <!-- Spin Invoice Modal -->
     <div class="modal" id="spinTokenModal">
         <div class="modal-content">
-            <h3>🎡 Spin & Win Game</h3>
-            <p>Enter your invoice number to start the spin game!</p>
+            <h3>🎡 Enter Your Invoice Number</h3>
+            <p>Enter your invoice number to start your spin game!</p>
             <div class="input-group">
-                <input type="text" id="spinTokenInput" placeholder="Enter invoice number" maxlength="4" pattern="[0-9]{4}">
+                <input type="text" id="spinTokenInput" placeholder="Enter your invoice number" maxlength="4" pattern="[0-9]{4}">
             </div>
             <div class="modal-buttons">
                 <button class="btn-primary" onclick="validateSpinToken()">Start Game</button>
@@ -944,17 +944,8 @@
         }
 
         function selectSpinOption() {
-            // Check if user has token or needs to get one
-            const hasToken = localStorage.getItem('spin_token');
-            
-            if (hasToken) {
-                // Direct to tasks
-                localStorage.setItem('flow_type', 'spin');
-                window.location.href = 'tasks-new.html';
-            } else {
-                // Show token input modal
-                showModal('spinTokenModal');
-            }
+            // Always show invoice input modal for spin game
+            showModal('spinTokenModal');
         }
 
         function selectTGOption() {
@@ -975,17 +966,23 @@
         function validateSpinToken() {
             const invoiceNumber = document.getElementById('spinTokenInput').value;
             
-            // Check if it's a valid invoice number between 1100-1200
+            // Check if it's a valid 4-digit number
+            if (invoiceNumber.length !== 4 || !/^\d{4}$/.test(invoiceNumber)) {
+                alert('Please enter a valid invoice number!');
+                return;
+            }
+            
+            // Check if invoice number is in valid range (1100-1200)
             const invoiceNum = parseInt(invoiceNumber);
-            if (isNaN(invoiceNum) || invoiceNum < 1100 || invoiceNum > 1200) {
+            if (invoiceNum < 1100 || invoiceNum > 1200) {
                 alert('Please enter a valid invoice number!');
                 return;
             }
             
             // Save invoice number and flow type
-            localStorage.setItem('spin_token', invoiceNumber);
+            localStorage.setItem('spin_invoice', invoiceNumber);
             localStorage.setItem('flow_type', 'spin');
-            localStorage.setItem('token_digits', invoiceNumber);
+            localStorage.setItem('invoice_number', invoiceNumber);
             
             // Redirect to tasks
             window.location.href = 'tasks-new.html';
@@ -1039,11 +1036,8 @@
 
         // Enhanced input validation
         document.getElementById('spinTokenInput').addEventListener('input', function(e) {
-            e.target.value = e.target.value.replace(/[^0-9]/g, '');
-            // Limit to 4 digits (for invoice numbers)
-            if (e.target.value.length > 4) {
-                e.target.value = e.target.value.slice(0, 4);
-            }
+            // Allow only numbers and limit to 4 digits
+            e.target.value = e.target.value.replace(/[^0-9]/g, '').substring(0, 4);
         });
 
         document.getElementById('tgTokenInput').addEventListener('input', function(e) {
