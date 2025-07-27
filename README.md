@@ -1,200 +1,377 @@
-# The Shankar Communications (TSC) QR Reward System
+# 🏪 The Shankar Communications (TSC) QR Reward System
 
-🏪 **Unified QR Code Reward System for The Shankar Communications**
+**Unified QR Code-Based Customer Engagement Platform**
 
-A mobile-first web application providing interactive rewards and offers for customers visiting The Shankar Communications (TSC) stores via QR code scanning. All branding follows the format:
+A comprehensive mobile-first web application providing interactive rewards, loyalty programs, and promotional offers for customers visiting The Shankar Communications (TSC) stores through QR code scanning. Features sophisticated branding consistency, multi-store support, and seamless social media integration.
 
+## 🎯 **System Overview**
+
+The TSC QR Reward System is a customer engagement platform that provides two primary reward pathways:
+- **🎡 Spin & Win Game**: Task-based rewards with social media engagement
+- **🛡️ Tempered Glass Offer**: Special ₹19 promotional offer with token verification
+
+All customer-facing content maintains consistent branding format:
 ```
 The Shankar Communications
 (TSC)
-[Section/Context]
+[Context/Section]
 ```
 
-## 🌟 Features
+## 🌟 **Core Features**
 
-### 🎡 Spin & Win System
-- Interactive spinning wheel with 8+ prizes
-- Task-based unlock (Instagram, YouTube, Google reviews, WhatsApp group)
-- Progress tracking with localStorage
-- One-time spin per session
+### 🎮 **Interactive Reward System**
+- **Spin & Win Wheel**: 8-segment wheel with physical prizes (Botel, Earbuds, Neckband, Mobile Stand)
+- **Social Media Integration**: 6 engagement tasks across platforms
+- **Progress Tracking**: Real-time task completion monitoring
+- **One-Time Rewards**: Session-based limitations to prevent abuse
 
-### 🛡️ Tempered Glass ₹19 Offer
-- Special discounted offer system
-- Token-based verification (local/external)
-- WhatsApp integration for token generation
-- Cross-store token validation
+### 🛡️ **Tempered Glass Promotion**
+- **₹19 Special Offer**: Premium screen protector at promotional price
+- **Token-Based Verification**: Secure validation system
+- **WhatsApp Integration**: Automated token generation and delivery
+- **Multi-Store Support**: Store-specific token generation
 
-### 🏪 Multi-Store Support
-- **Maynaguri (MNG)** - `?store=MNG`
-- **Dhupguri (DPG)** - `?store=DPG`
-- **Jamaldaha (JMD)** - `?store=JMD`
+### 🏪 **Multi-Store Architecture**
+- **Maynaguri Store (MNG)**: `?store=MNG`
+- **Dhupguri Store (DPG)**: `?store=DPG` 
+- **Jamaldaha Store (JMD)**: `?store=JMD`
 
-## 📁 Project Structure
+### 🎨 **Modern UI/UX Design**
+- **RTX-Inspired Theme**: Premium golden color scheme (#FFD700)
+- **Glassmorphism Effects**: Modern frosted glass UI components
+- **Mobile-First Design**: Optimized for smartphone usage
+- **Responsive Layout**: Adaptive across all screen sizes
+- **Smooth Animations**: Enhanced user experience with micro-interactions
+
+## 📁 **Project Architecture**
 
 ```
 TSC-QR-Reward-System/
-├── index.html                  # Loyalty landing page (store-specific)
-├── welcome.html                # Unified reward center (choose Spin & Win or Tempered Glass)
-├── tasks-new.html              # Task completion page (social media tasks)
-├── reward.html                 # Spin wheel rewards page
-├── tempered-glass.html         # Tempered glass offer page (token entry)
-├── generate-token.html         # WhatsApp token generation (generic)
-├── generate-token-mng.html     # WhatsApp token (Maynaguri)
-├── generate-token-dpg.html     # WhatsApp token (Dhupguri)
-├── generate-token-jmd.html     # WhatsApp token (Jamaldaha)
-├── thank-you.html              # Success/completion page
-├── decode-token.html           # Token decoder (internal/external)
-├── token-generator-advanced.html # Advanced token generator (admin)
-├── tsc-logo.jpg                # TSC branding logo
-└── README.md                   # Project documentation
+│
+├── 🏠 MAIN PAGES
+│   ├── index.html                    # Loyalty landing page (store-specific entry)
+│   ├── welcome.html                  # Unified reward center (choose path)
+│   └── thank-you.html                # Success/completion confirmation
+│
+├── 🎡 SPIN & WIN SYSTEM
+│   ├── tasks-new.html                # Social media task completion
+│   └── reward.html                   # Interactive spinning wheel
+│
+├── 🛡️ TEMPERED GLASS SYSTEM
+│   ├── tempered-glass.html           # Offer presentation & token entry
+│   ├── generate-token.html           # Generic WhatsApp token generation
+│   ├── generate-token-mng.html       # Maynaguri-specific token generator
+│   ├── generate-token-dpg.html       # Dhupguri-specific token generator
+│   └── generate-token-jmd.html       # Jamaldaha-specific token generator
+│
+├── 🔧 ADMIN & UTILITIES
+│   ├── decode-token.html             # Token validation & management
+│   └── token-generator-advanced.html # Advanced admin token tools
+│
+└── 🖼️ ASSETS
+    ├── tsc-logo.jpg                  # Official TSC branding logo
+    ├── temp_files.txt                # Development backup files
+    └── README.md                     # Project documentation
 ```
 
-## 🚦 Main Flows
+## 🔄 **User Journey Flows**
 
-### 🎡 Spin & Win Flow
-1. **Entry** → `welcome.html?store=MNG`
-2. **Choose Spin & Win**
-3. **Tasks** → `tasks-new.html` (Complete 4 social tasks)
-4. **Reward** → `reward.html` (Spin the wheel)
-5. **Success** → `thank-you.html` (Show prize details)
-
-### 🛡️ Tempered Glass Flow
-1. **Entry** → `welcome.html?store=MNG`
-2. **Choose Tempered Glass**
-3. **Offer** → `tempered-glass.html` (Token entry or generation)
-4. **Generate** → `generate-token.html` or store-specific token page
-5. **Success** → `thank-you.html` (Token verified)
-
-## 🔧 Technical Stack
-
-- **Frontend**: HTML5, CSS3, JavaScript (all inline)
-- **Styling**: Glassmorphism, gradients, mobile-first responsive
-- **Storage**: localStorage for progress tracking
-- **Hosting**: GitHub Pages
-- **Integration**: WhatsApp Web API for messaging
-
-## 🎨 Design Features
-
-- **Mobile-First**: Optimized for smartphones
-- **Glassmorphism**: Modern frosted glass UI effects
-- **Gradient Backgrounds**: Eye-catching color schemes
-- **Responsive**: Works on all screen sizes
-- **Accessibility**: High contrast, readable fonts
-- **Animations**: Smooth transitions and micro-interactions
-- **Branding**: All customer-facing places use:
-  - The Shankar Communications<br>(TSC)<br>[Section/Context]
-
-## 🛠️ Setup & Deployment
-
-### 1. GitHub Repository Setup
-```bash
-git clone https://github.com/your-username/TSC-QR-Reward-System.git
-cd TSC-QR-Reward-System
+### 🎡 **Spin & Win Customer Journey**
+```
+QR Scan → Store Landing → Welcome Page → Choose "Spin & Win" 
+    ↓
+Social Tasks Page → Complete 6 Tasks → Unlock Spin Wheel
+    ↓
+Spin Wheel → Win Prize → Success Page → Share/Collect
 ```
 
-### 2. Local Development
-```bash
-# Serve locally (Python)
-python -m http.server 8000
-# Or use Live Server in VS Code
-# Visit: http://localhost:8000/?store=MNG
+**Required Tasks (6 total):**
+1. 📱 WhatsApp Join (`+917908972637`)
+2. 📢 WhatsApp Channel Follow
+3. ⭐ Google Review Submission
+4. 👥 Facebook Page Follow
+5. 📸 Instagram Account Follow  
+6. 🎥 YouTube Channel Subscribe
+
+### 🛡️ **Tempered Glass Offer Journey**
+```
+QR Scan → Store Landing → Welcome Page → Choose "Tempered Glass"
+    ↓
+Option Selection: [Have Token] OR [Generate New Token]
+    ↓
+Token Entry → Validation → Success Page → Claim Instructions
 ```
 
-### 3. GitHub Pages Deployment
-1. Go to repository → Settings → Pages
-2. Source: Deploy from branch → `main` → `/root`
-3. Save and wait for deployment
-4. Access via: `https://your-username.github.io/TSC-QR-Reward-System/`
+## 🛠️ **Technical Implementation**
 
-### 4. QR Code Generation
-Generate QR codes for each store URL:
+### **Frontend Stack**
+- **HTML5**: Semantic structure with modern standards
+- **CSS3**: Advanced styling with glassmorphism, gradients, animations
+- **Vanilla JavaScript**: Client-side interactivity and state management
+- **FontAwesome 6.5**: Comprehensive icon library
+- **Google Fonts**: Poppins typography family
+
+### **Storage & State Management**
+- **localStorage**: Persistent client-side data storage
+- **Session Management**: Task completion tracking
+- **Cross-Page Data**: Store selection and progress sharing
+
+### **Responsive Design**
+```css
+/* Mobile-First Breakpoints */
+@media (max-width: 480px)  { /* Small phones */ }
+@media (max-width: 768px)  { /* Tablets & large phones */ }
+@media (min-width: 769px)  { /* Desktop & laptops */ }
 ```
-Store MNG: https://your-username.github.io/TSC-QR-Reward-System/?store=MNG
-Store DPG: https://your-username.github.io/TSC-QR-Reward-System/?store=DPG  
-Store JMD: https://your-username.github.io/TSC-QR-Reward-System/?store=JMD
+
+### **Performance Optimizations**
+- **Inline CSS/JS**: Reduced HTTP requests
+- **Optimized Images**: Compressed assets
+- **Efficient Animations**: GPU-accelerated transforms
+- **Minimal Dependencies**: Lightweight external libraries
+
+## 🎨 **Design System & Branding**
+
+### **Color Palette**
+```css
+Primary Gold: #FFD700     /* Main branding color */
+Dark Gradient: #0a0a0a → #1a1a1a → #0a0a0a
+Accent Green: #00ff7f     /* Tempered glass theme */
+Status Colors: #4ECDC4, #FF6B6B, #96CEB4, #45B7D1
 ```
 
-## ⚙️ Customization
+### **Typography**
+```css
+Font Family: 'Poppins', sans-serif
+Weights: 400 (Regular), 600 (Semi-Bold), 700 (Bold)
+Hierarchy: 28px (H1) → 22px (H2) → 16px (Body) → 14px (Small)
+```
 
-### Update Store Information
-Edit the store objects in each HTML file:
+### **Consistent Branding**
+All customer-facing elements display:
+```
+The Shankar Communications
+(TSC)  
+[Relevant Context]
+```
+
+## ⚙️ **Configuration & Customization**
+
+### **Store Information Update**
+Edit store configurations in each HTML file:
 ```javascript
 const storeInfo = {
-    'MNG': 'Maynaguri Branch',
-    'DPG': 'Dhupguri Branch', 
-    'JMD': 'Jamaldaha Branch'
+    'MNG': 'Maynaguri Store',
+    'DPG': 'Dhupguri Store',
+    'JMD': 'Jamaldaha Store'
 };
 ```
 
-### Modify Prizes
-Edit `reward.html` prizes array:
+### **Prize Configuration** (`reward.html`)
 ```javascript
 const prizes = [
-    { text: "10% OFF", emoji: "🎁", description: "Get 10% discount!" },
-    // Add/modify prizes here
+    { text: 'Botel', color: '#FF6B6B', weight: 20 },
+    { text: 'Earbuds', color: '#4ECDC4', weight: 25 },
+    { text: 'Neckband', color: '#45B7D1', weight: 30 },
+    { text: 'Mobile Stand', color: '#96CEB4', weight: 25 }
 ];
 ```
 
-### Update Social Links
-Edit task links in `tasks-new.html`:
+### **Social Media Links** (`tasks-new.html`)
 ```javascript
-// Instagram, YouTube, Google Reviews, WhatsApp Group URLs
+// WhatsApp: https://wa.me/917908972637
+// Channel: https://whatsapp.com/channel/0029VbAoFCtAe5VmITgCtN0E
+// Facebook: https://facebook.com/theshankarcommunications
+// Instagram: https://instagram.com/theshankarcommunications
+// YouTube: [Configure as needed]
+// Google Reviews: [Store-specific Google Business links]
 ```
 
-## 📊 Analytics & Tracking
+## 🚀 **Deployment & Setup**
 
-### LocalStorage Data Tracked
-- `currentStore`: Selected store (MNG/DPG/JMD)
-- `completedTasks`: Array of completed social tasks
-- `hasSpun`: Boolean for spin wheel usage
-- `wonPrize`: Prize object from spin result
-- `verifiedToken`: Successfully verified token
-- `tokenType`: 'local' or 'external' token type
+### **1. Repository Setup**
+```bash
+git clone https://github.com/PsProsen-Dev/TSC-QR-Reward-System.git
+cd TSC-QR-Reward-System
+```
 
-### Usage Monitoring
-Monitor user engagement through:
-- Task completion rates
-- Spin wheel usage
-- Token generation requests
-- Store visit patterns
+### **2. Local Development**
+```bash
+# Using Python HTTP Server
+python -m http.server 8000
 
-## 🚀 Future Enhancements
+# Using Node.js HTTP Server  
+npx http-server -p 8000
 
-- [ ] **Backend Integration**: User accounts, analytics dashboard
-- [ ] **Push Notifications**: Remind users about unused rewards
-- [ ] **Geolocation**: Verify users are actually at store locations
-- [ ] **Advanced Tokens**: Time-limited, usage-limited tokens
-- [ ] **Social Sharing**: Auto-post rewards to social media
-- [ ] **Multi-language**: Hindi/Bengali language support
-- [ ] **Admin Panel**: Store staff interface for token management
+# Using VS Code Live Server Extension
+# Right-click index.html → "Open with Live Server"
 
-## 🤝 Contributing
+# Access: http://localhost:8000/?store=MNG
+```
 
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/new-feature`)
-3. Commit changes (`git commit -am 'Add new feature'`)
-4. Push to branch (`git push origin feature/new-feature`)
-5. Create Pull Request
+### **3. GitHub Pages Deployment**
+1. Navigate to repository **Settings** → **Pages**
+2. Source: **Deploy from branch** → `master` → `/ (root)`
+3. Save and wait for automated deployment
+4. Access via: `https://psprosen-dev.github.io/TSC-QR-Reward-System/`
 
-## 📄 License
+### **4. QR Code Generation**
+Create QR codes for each store entry point:
+```
+MNG Store: https://psprosen-dev.github.io/TSC-QR-Reward-System/?store=MNG
+DPG Store: https://psprosen-dev.github.io/TSC-QR-Reward-System/?store=DPG  
+JMD Store: https://psprosen-dev.github.io/TSC-QR-Reward-System/?store=JMD
+```
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## 📊 **Analytics & Data Tracking**
 
-## 👨‍💻 Developer
+### **localStorage Data Schema**
+```javascript
+// Store Selection
+currentStore: "MNG" | "DPG" | "JMD"
 
-**PsProsen-Dev** 💻✨
-- Framework: RTX Protocol v1.5
-- Engine: Claude Sonnet 4 + VS Code Integration
+// Task Completion (Spin & Win)
+whatsapp_done: "true" | null
+channel_done: "true" | null  
+review_done: "true" | null
+fb_done: "true" | null
+insta_done: "true" | null
+yt_done: "true" | null
 
-## 📞 Support
+// Timestamp Tracking
+[task]_timestamp: ISO 8601 DateTime
 
-For technical support or customization requests:
-- 📧 Email: support@tsc-tech.com
-- 📱 WhatsApp: +91 98765 43210
-- 🌐 Website: https://tsc-tech.com
+// Reward System
+hasSpun: "true" | null
+wonPrize: JSON Prize Object
+flow_type: "spin" | "tg" | "tg_generate"
+
+// Token Management
+spin_token: "4-digit-code"
+tg_token: "4-digit-code"  
+token_digits: "4-digit-code"
+```
+
+### **Usage Monitoring Opportunities**
+- Task completion rates by store
+- Most popular reward path (Spin vs Tempered Glass)
+- Social media engagement effectiveness
+- Token generation and redemption patterns
+- Mobile vs desktop usage analytics
+
+## 🔮 **Future Enhancement Roadmap**
+
+### **Phase 1: Backend Integration**
+- [ ] **User Accounts**: Registration and login system
+- [ ] **Database**: User data and analytics storage
+- [ ] **Admin Dashboard**: Store management interface
+- [ ] **API Integration**: Real-time data synchronization
+
+### **Phase 2: Advanced Features**
+- [ ] **Geolocation Verification**: Ensure users are at physical stores
+- [ ] **Time-Limited Tokens**: Enhanced security with expiration
+- [ ] **Push Notifications**: Remind users about unclaimed rewards
+- [ ] **Social Sharing**: Auto-post achievements to social media
+
+### **Phase 3: Regional Expansion**
+- [ ] **Multi-Language Support**: Hindi, Bengali language options
+- [ ] **Regional Customization**: Local festival and cultural content
+- [ ] **Franchise Support**: Multi-business management capabilities
+- [ ] **Advanced Analytics**: Business intelligence and reporting
+
+### **Phase 4: Technology Upgrades**
+- [ ] **PWA Implementation**: Progressive Web App features
+- [ ] **Offline Support**: Cached content and offline task tracking
+- [ ] **AI Integration**: Personalized recommendations and chatbot
+- [ ] **Blockchain Tokens**: Secure, tradeable reward tokens
+
+## 🛡️ **Security & Best Practices**
+
+### **Client-Side Security**
+- Input validation for all user entries
+- XSS prevention in dynamic content
+- Secure localStorage usage patterns
+- HTTPS enforcement for production
+
+### **Token Security**
+- 4-digit numeric tokens for simplicity
+- Session-based validation
+- Store-specific token generation
+- Timestamp tracking for audit trails
+
+## 🤝 **Contributing Guidelines**
+
+### **Development Workflow**
+1. **Fork** the repository
+2. **Create feature branch**: `git checkout -b feature/enhancement-name`
+3. **Commit changes**: `git commit -am 'Add new feature: description'`
+4. **Push to branch**: `git push origin feature/enhancement-name`
+5. **Create Pull Request** with detailed description
+
+### **Code Standards**
+- Maintain consistent indentation (2 spaces)
+- Use semantic HTML5 elements
+- Follow mobile-first CSS approach
+- Comment complex JavaScript logic
+- Preserve RTX theme consistency
+
+### **Testing Checklist**
+- [ ] Test on multiple mobile devices
+- [ ] Verify all QR code entry points
+- [ ] Validate social media link functionality
+- [ ] Confirm token generation and validation
+- [ ] Check cross-browser compatibility
+
+## 📄 **Licensing & Credits**
+
+### **Project License**
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for complete details.
+
+### **Technology Credits**
+- **Framework**: RTX Protocol v1.5 (Custom Development Framework)
+- **AI Development**: Claude Sonnet 4 + ChatGPT Integration  
+- **IDE Integration**: VS Code with AI-powered assistance
+- **Design System**: Gold Royal Luxe Theme
+
+### **Development Team**
+**Lead Developer**: **Prosenjit Paul (Ps Prosen)**
+- 🌐 Portfolio: [psprosen.me](https://psprosen.me)
+- 💼 GitHub: [@PsProsen-Dev](https://github.com/PsProsen-Dev)
+- 🏢 Studio: [We Digital Mitra](https://we-digital-mitra.tech)
+
+## 📞 **Support & Contact**
+
+### **Technical Support**
+For customization requests, bug reports, or feature suggestions:
+
+- 📧 **Email**: support@we-digital-mitra.tech
+- 💬 **WhatsApp**: +91 79089 72637
+- 🌐 **Website**: [we-digital-mitra.tech](https://we-digital-mitra.tech)
+- 🐛 **Issues**: [GitHub Issues](https://github.com/PsProsen-Dev/TSC-QR-Reward-System/issues)
+
+### **Business Inquiries**
+For similar system development or business partnerships:
+
+- 📞 **Phone**: +91 79089 72637
+- 📧 **Business Email**: business@we-digital-mitra.tech
+- 💼 **LinkedIn**: [Connect with Ps Prosen](https://linkedin.com/in/prosenjitpaul)
+
+---
+
+## 🏆 **Project Achievements**
+
+✅ **Mobile-First Design** - Optimized smartphone experience  
+✅ **Multi-Store Architecture** - Scalable business model  
+✅ **Social Media Integration** - Enhanced customer engagement  
+✅ **Token-Based Security** - Secure reward validation  
+✅ **RTX Theme Implementation** - Premium visual experience  
+✅ **Zero-Backend Deployment** - Cost-effective hosting solution  
+✅ **Real-Time Progress Tracking** - Enhanced user experience  
 
 ---
 
 **Made with ❤️ for The Shankar Communications (TSC)**
 
-*Empowering customer engagement through innovative QR reward systems* 🎯🚀
+*Revolutionizing customer engagement through innovative QR-based reward systems* 🎯✨
+
+**© 2025 We Digital Mitra | Developed by Ps Prosen**
