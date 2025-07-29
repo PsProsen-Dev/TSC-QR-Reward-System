@@ -379,14 +379,17 @@
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
             body {
-                padding: 10px;
+                padding: 5px;
+                min-height: 100vh;
+                padding-bottom: 60px;
             }
             
             .container {
-                padding: 25px 15px;
+                padding: 20px 15px;
                 margin: 5px;
-                max-width: 100%;
+                max-width: calc(100vw - 10px);
                 border-radius: 20px;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
             }
             
             .logo {
@@ -396,129 +399,33 @@
             }
             
             h1 {
-                font-size: 1.4rem;
+                font-size: 1.3rem;
                 margin-bottom: 8px;
+                line-height: 1.3;
             }
             
             .subtitle {
-                font-size: 0.9rem;
-                margin-bottom: 25px;
-            }
-            
-            .reward-summary {
-                padding: 18px;
-                margin: 15px 0;
-                border-radius: 15px;
-            }
-            
-            .reward-summary h3 {
-                font-size: 1.1rem;
-                margin-bottom: 12px;
-            }
-            
-            .reward-item {
-                padding: 8px 0;
                 font-size: 0.85rem;
-            }
-            
-            .input-group {
-                margin: 15px 0;
-            }
-            
-            .input-label {
-                font-size: 0.9rem;
-                margin-bottom: 8px;
-            }
-            
-            .phone-input-container {
-                gap: 8px;
-            }
-            
-            .country-code {
-                font-size: 0.85rem;
-                padding: 10px;
-                min-width: 80px;
-            }
-            
-            .phone-input {
-                font-size: 0.9rem;
-                padding: 10px 12px;
-            }
-            
-            .generate-btn {
-                padding: 12px 30px;
-                font-size: 0.95rem;
-                margin-top: 20px;
-            }
-            
-            .token-display {
-                padding: 18px;
-                margin: 15px 0;
-                border-radius: 15px;
-            }
-            
-            .whatsapp-btn {
-                padding: 12px 25px;
-                font-size: 0.9rem;
-                margin-top: 15px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            body {
-                padding: 5px;
-            }
-            
-            .container {
-                padding: 20px 12px;
-                margin: 2px;
-                border-radius: 15px;
-            }
-            
-            .logo {
-                width: 60px;
-                height: 60px;
-                margin-bottom: 10px;
-            }
-            
-            h1 {
-                font-size: 1.2rem;
-                margin-bottom: 6px;
-            }
-            
-            .subtitle {
-                font-size: 0.8rem;
                 margin-bottom: 20px;
                 line-height: 1.4;
             }
             
             .reward-summary {
-                padding: 15px;
-                margin: 12px 0;
-                border-radius: 12px;
+                padding: 15px 12px;
+                margin: 15px 0;
+                border-radius: 15px;
             }
             
             .reward-summary h3 {
                 font-size: 1rem;
                 margin-bottom: 10px;
+                line-height: 1.3;
             }
             
             .reward-item {
                 padding: 6px 0;
                 font-size: 0.8rem;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 2px;
-            }
-            
-            .reward-label {
-                font-size: 0.75rem;
-                opacity: 0.8;
-            }
-            
-            .reward-value {
-                font-size: 0.85rem;
-                font-weight: 600;
+                line-height: 1.4;
             }
             
             .input-group {
@@ -528,26 +435,270 @@
             .input-label {
                 font-size: 0.85rem;
                 margin-bottom: 6px;
+                line-height: 1.3;
+            }
+            
+            .phone-input-container {
+                gap: 8px;
+                flex-wrap: wrap;
+            }
+            
+            .country-code {
+                font-size: 0.8rem;
+                padding: 10px 8px;
+                min-width: 70px;
+                border-radius: 10px;
+            }
+            
+            .phone-input {
+                font-size: 0.85rem;
+                padding: 10px 8px;
+                border-radius: 10px;
+                flex: 1;
+                min-width: 180px;
+            }
+            
+            .generate-btn {
+                padding: 12px 25px;
+                font-size: 0.9rem;
+                margin-top: 18px;
+                border-radius: 25px;
+                max-width: 200px;
+                width: 100%;
+            }
+            
+            .token-display {
+                padding: 15px 12px;
+                margin: 15px 0;
+                border-radius: 15px;
+            }
+            
+            .whatsapp-btn {
+                padding: 12px 20px;
+                font-size: 0.85rem;
+                margin-top: 12px;
+                border-radius: 20px;
+                max-width: 220px;
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 3px;
+                padding-bottom: 50px;
+            }
+            
+            .container {
+                padding: 15px 10px;
+                margin: 2px;
+                border-radius: 15px;
+                max-width: calc(100vw - 6px);
+            }
+            
+            .logo {
+                width: 55px;
+                height: 55px;
+                margin-bottom: 10px;
+            }
+            
+            h1 {
+                font-size: 1.1rem;
+                margin-bottom: 6px;
+                line-height: 1.2;
+            }
+            
+            .subtitle {
+                font-size: 0.75rem;
+                margin-bottom: 15px;
+                line-height: 1.3;
+            }
+            
+            .reward-summary {
+                padding: 12px 8px;
+                margin: 12px 0;
+                border-radius: 12px;
+            }
+            
+            .reward-summary h3 {
+                font-size: 0.9rem;
+                margin-bottom: 8px;
+                line-height: 1.2;
+            }
+            
+            .reward-item {
+                padding: 5px 0;
+                font-size: 0.75rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 2px;
+                line-height: 1.3;
+            }
+            
+            .reward-label {
+                font-size: 0.7rem;
+                opacity: 0.8;
+            }
+            
+            .reward-value {
+                font-size: 0.8rem;
+                font-weight: 600;
+            }
+            
+            .input-group {
+                margin: 10px 0;
+            }
+            
+            .input-label {
+                font-size: 0.8rem;
+                margin-bottom: 5px;
+                line-height: 1.2;
             }
             
             .phone-input-container {
                 flex-direction: column;
-                gap: 8px;
+                gap: 6px;
                 align-items: stretch;
             }
             
             .country-code {
                 width: 100%;
-                font-size: 0.8rem;
-                padding: 8px;
+                font-size: 0.75rem;
+                padding: 8px 6px;
                 border-radius: 8px;
                 margin-right: 0;
             }
             
             .phone-input {
                 width: 100%;
-                font-size: 0.85rem;
-                padding: 8px 10px;
+                font-size: 0.8rem;
+                padding: 8px 6px;
+                border-radius: 8px;
+            }
+            
+            .generate-btn {
+                padding: 10px 20px;
+                font-size: 0.8rem;
+                margin-top: 15px;
+                border-radius: 20px;
+                max-width: 180px;
+                width: 100%;
+            }
+            
+            .token-display {
+                padding: 12px 8px;
+                margin: 12px 0;
+                border-radius: 12px;
+            }
+            
+            .token-text {
+                font-size: 0.75rem;
+                line-height: 1.3;
+            }
+            
+            .whatsapp-btn {
+                padding: 10px 15px;
+                font-size: 0.75rem;
+                margin-top: 10px;
+                border-radius: 18px;
+                max-width: 200px;
+                width: 100%;
+            }
+        }
+        
+        /* Landscape orientation fixes */
+        @media (max-height: 600px) and (orientation: landscape) {
+            body {
+                padding: 3px;
+                padding-bottom: 40px;
+            }
+            
+            .container {
+                padding: 10px;
+                margin: 3px auto;
+                max-height: calc(100vh - 50px);
+                overflow-y: auto;
+                border-radius: 12px;
+            }
+            
+            .logo {
+                width: 45px;
+                height: 45px;
+                margin-bottom: 6px;
+            }
+            
+            h1 {
+                font-size: 0.9rem;
+                margin-bottom: 4px;
+            }
+            
+            .subtitle {
+                font-size: 0.65rem;
+                margin-bottom: 8px;
+            }
+            
+            .reward-summary {
+                padding: 8px 6px;
+                margin: 8px 0;
+                border-radius: 10px;
+            }
+            
+            .reward-summary h3 {
+                font-size: 0.75rem;
+                margin-bottom: 5px;
+            }
+            
+            .reward-item {
+                padding: 3px 0;
+                font-size: 0.65rem;
+            }
+            
+            .input-group {
+                margin: 6px 0;
+            }
+            
+            .input-label {
+                font-size: 0.7rem;
+                margin-bottom: 3px;
+            }
+            
+            .phone-input-container {
+                gap: 4px;
+            }
+            
+            .country-code,
+            .phone-input {
+                font-size: 0.65rem;
+                padding: 6px 4px;
+                border-radius: 6px;
+            }
+            
+            .generate-btn {
+                padding: 8px 15px;
+                font-size: 0.7rem;
+                margin-top: 8px;
+                border-radius: 15px;
+                max-width: 150px;
+            }
+            
+            .token-display {
+                padding: 8px 6px;
+                margin: 8px 0;
+                border-radius: 10px;
+            }
+            
+            .token-text {
+                font-size: 0.65rem;
+            }
+            
+            .whatsapp-btn {
+                padding: 6px 12px;
+                font-size: 0.65rem;
+                margin-top: 6px;
+                border-radius: 12px;
+                max-width: 140px;
+            }
+        }
                 border-radius: 8px;
             }
             

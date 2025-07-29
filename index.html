@@ -318,112 +318,17 @@
         
         @media (max-width: 768px) {
             body {
-                padding: 10px;
+                padding: 5px;
+                min-height: 100vh;
+                padding-bottom: 60px;
             }
             
             .container {
                 margin: 5px;
-                padding: 25px 15px;
-                max-width: 100%;
-                border-radius: 20px;
-            }
-            
-            .logo {
-                width: 70px;
-                height: 70px;
-                margin-bottom: 12px;
-            }
-            
-            h1 {
-                font-size: 22px;
-                margin-bottom: 8px;
-            }
-            
-            .subtitle {
-                font-size: 12px;
-                margin-bottom: 20px;
-            }
-            
-            .loyalty-hero {
                 padding: 20px 15px;
-                margin-bottom: 20px;
+                max-width: calc(100vw - 10px);
                 border-radius: 15px;
-            }
-            
-            .loyalty-hero h2 {
-                font-size: 18px;
-                margin-bottom: 8px;
-            }
-            
-            .loyalty-hero p {
-                font-size: 12px;
-            }
-            
-            .offers-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
-                margin-bottom: 20px;
-            }
-            
-            .offer-card {
-                padding: 15px 10px;
-                border-radius: 15px;
-            }
-            
-            .offer-icon {
-                font-size: 20px;
-                margin-bottom: 6px;
-            }
-            
-            .offer-title {
-                font-size: 12px;
-                margin-bottom: 4px;
-            }
-            
-            .offer-desc {
-                font-size: 10px;
-            }
-            
-            .benefits-section h3 {
-                font-size: 14px;
-                margin-bottom: 12px;
-            }
-            
-            .benefit {
-                padding: 10px 12px;
-                border-radius: 12px;
-                font-size: 11px;
-                gap: 10px;
-            }
-            
-            .benefit i {
-                font-size: 12px;
-            }
-            
-            .cta-btn {
-                padding: 15px 25px;
-                border-radius: 15px;
-                max-width: 280px;
-            }
-            
-            .btn-text {
-                font-size: 14px;
-            }
-            
-            .btn-subtext {
-                font-size: 10px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            body {
-                padding: 5px;
-            }
-            
-            .container {
-                margin: 2px;
-                padding: 20px 12px;
-                border-radius: 15px;
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
             }
             
             .logo {
@@ -434,19 +339,311 @@
             
             h1 {
                 font-size: 20px;
-                margin-bottom: 6px;
+                margin-bottom: 8px;
+                line-height: 1.3;
             }
             
             .subtitle {
-                font-size: 11px;
-                margin-bottom: 18px;
+                font-size: 12px;
+                margin-bottom: 15px;
+                line-height: 1.4;
             }
             
             .loyalty-hero {
                 padding: 15px 12px;
-                margin-bottom: 18px;
+                margin-bottom: 15px;
                 border-radius: 12px;
             }
+            
+            .loyalty-hero h2 {
+                font-size: 16px;
+                margin-bottom: 6px;
+            }
+            
+            .loyalty-hero p {
+                font-size: 11px;
+                line-height: 1.4;
+            }
+            
+            .offers-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                margin-bottom: 15px;
+            }
+            
+            .offer-card {
+                padding: 12px 8px;
+                border-radius: 12px;
+                min-height: auto;
+            }
+            
+            .offer-icon {
+                font-size: 18px;
+                margin-bottom: 5px;
+            }
+            
+            .offer-title {
+                font-size: 11px;
+                margin-bottom: 3px;
+                line-height: 1.2;
+            }
+            
+            .offer-desc {
+                font-size: 9px;
+                line-height: 1.3;
+            }
+            
+            .benefits-section {
+                margin-bottom: 15px;
+            }
+            
+            .benefits-section h3 {
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+            
+            .benefit {
+                padding: 8px 10px;
+                border-radius: 10px;
+                font-size: 10px;
+                gap: 8px;
+                margin-bottom: 6px;
+            }
+            
+            .benefit i {
+                font-size: 11px;
+                min-width: 16px;
+            }
+            
+            .cta-btn {
+                padding: 12px 20px;
+                border-radius: 12px;
+                max-width: 90%;
+                width: 100%;
+            }
+            
+            .btn-text {
+                font-size: 13px;
+            }
+            
+            .btn-subtext {
+                font-size: 9px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 3px;
+                padding-bottom: 50px;
+            }
+            
+            .container {
+                margin: 2px;
+                padding: 15px 10px;
+                border-radius: 12px;
+                max-width: calc(100vw - 6px);
+            }
+            
+            .logo {
+                width: 50px;
+                height: 50px;
+                margin-bottom: 8px;
+            }
+            
+            h1 {
+                font-size: 18px;
+                margin-bottom: 6px;
+                line-height: 1.2;
+            }
+            
+            .subtitle {
+                font-size: 11px;
+                margin-bottom: 12px;
+                line-height: 1.3;
+            }
+            
+            .loyalty-hero {
+                padding: 12px 10px;
+                margin-bottom: 12px;
+                border-radius: 10px;
+            }
+            
+            .loyalty-hero h2 {
+                font-size: 14px;
+                margin-bottom: 5px;
+            }
+            
+            .loyalty-hero p {
+                font-size: 10px;
+                line-height: 1.3;
+            }
+            
+            .offers-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+                margin-bottom: 12px;
+            }
+            
+            .offer-card {
+                padding: 10px 6px;
+                border-radius: 10px;
+            }
+            
+            .offer-icon {
+                font-size: 16px;
+                margin-bottom: 4px;
+            }
+            
+            .offer-title {
+                font-size: 10px;
+                margin-bottom: 2px;
+                line-height: 1.1;
+            }
+            
+            .offer-desc {
+                font-size: 8px;
+                line-height: 1.2;
+            }
+            
+            .benefits-section {
+                margin-bottom: 12px;
+            }
+            
+            .benefits-section h3 {
+                font-size: 12px;
+                margin-bottom: 8px;
+            }
+            
+            .benefit {
+                padding: 6px 8px;
+                border-radius: 8px;
+                font-size: 9px;
+                gap: 6px;
+                margin-bottom: 4px;
+            }
+            
+            .benefit i {
+                font-size: 10px;
+                min-width: 14px;
+            }
+            
+            .cta-btn {
+                padding: 10px 15px;
+                border-radius: 10px;
+                max-width: 95%;
+                width: 100%;
+            }
+            
+            .btn-text {
+                font-size: 12px;
+            }
+            
+            .btn-subtext {
+                font-size: 8px;
+            }
+        }
+        
+        /* Landscape orientation fixes */
+        @media (max-height: 600px) and (orientation: landscape) {
+            body {
+                padding: 3px;
+                padding-bottom: 40px;
+            }
+            
+            .container {
+                padding: 10px;
+                margin: 3px auto;
+                max-height: calc(100vh - 50px);
+                overflow-y: auto;
+            }
+            
+            .logo {
+                width: 40px;
+                height: 40px;
+                margin-bottom: 5px;
+            }
+            
+            h1 {
+                font-size: 16px;
+                margin-bottom: 4px;
+            }
+            
+            .subtitle {
+                font-size: 10px;
+                margin-bottom: 8px;
+            }
+            
+            .loyalty-hero {
+                padding: 8px 10px;
+                margin-bottom: 8px;
+            }
+            
+            .loyalty-hero h2 {
+                font-size: 12px;
+                margin-bottom: 3px;
+            }
+            
+            .loyalty-hero p {
+                font-size: 9px;
+            }
+            
+            .offers-grid {
+                gap: 6px;
+                margin-bottom: 8px;
+            }
+            
+            .offer-card {
+                padding: 8px 5px;
+            }
+            
+            .offer-icon {
+                font-size: 14px;
+                margin-bottom: 2px;
+            }
+            
+            .offer-title {
+                font-size: 9px;
+                margin-bottom: 1px;
+            }
+            
+            .offer-desc {
+                font-size: 7px;
+            }
+            
+            .benefits-section {
+                margin-bottom: 8px;
+            }
+            
+            .benefits-section h3 {
+                font-size: 10px;
+                margin-bottom: 5px;
+            }
+            
+            .benefit {
+                padding: 4px 6px;
+                font-size: 8px;
+                gap: 4px;
+                margin-bottom: 2px;
+            }
+            
+            .benefit i {
+                font-size: 8px;
+                min-width: 12px;
+            }
+            
+            .cta-btn {
+                padding: 8px 12px;
+                border-radius: 8px;
+            }
+            
+            .btn-text {
+                font-size: 10px;
+            }
+            
+            .btn-subtext {
+                font-size: 7px;
+            }
+        }
             
             .loyalty-badge {
                 padding: 6px 12px;
