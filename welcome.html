@@ -965,18 +965,54 @@
                 localStorage.setItem('flow_type', 'tg_generate');
                 console.log('Flow type saved:', localStorage.getItem('flow_type'));
                 
+                // Get current store from localStorage or default to MNG
+                const currentStore = localStorage.getItem('current_store') || 'MNG';
+                
                 // Close modal first
                 closeModal('tgOptionModal');
                 console.log('Modal closed');
                 
-                // Debug log to check if function is called
-                console.log('Redirecting to token generation page...');
+                // Get customer information via prompt
+                const customerName = prompt("Enter customer name:", "");
+                if (!customerName) return;
                 
-                // Add a small delay before redirect to ensure modal closes
-                setTimeout(() => {
-                    // Redirect to token generation page
-                    window.location.href = './generate-token.html';
-                }, 100);
+                const customerMobile = prompt("Enter customer mobile number:", "");
+                if (!customerMobile) return;
+                
+                const customerLocation = prompt("Enter customer location:", "");
+                if (!customerLocation) return;
+                
+                const customerPin = prompt("Enter customer PIN code:", "");
+                if (!customerPin) return;
+                
+                const customerModel = prompt("Enter phone model:", "");
+                if (!customerModel) return;
+                
+                // Generate token
+                const nextSerial = getNextAvailableSerial(currentStore);
+                const tokenData = {
+                    store: currentStore,
+                    date: new Date(),
+                    brand: "TSC", // Default brand for Tempered Glass
+                    offerType: 5, // Offer type 5 for Tempered Glass
+                    serial: nextSerial,
+                    name: customerName,
+                    mobile: customerMobile,
+                    location: customerLocation,
+                    pin: customerPin,
+                    model: customerModel
+                };
+                
+                const result = generateToken(tokenData);
+                
+                // If token generation failed
+                if (!result) {
+                    alert('Token generation failed. Please try again.');
+                    return;
+                }
+                
+                // Redirect to the token display page with the token parameter
+                window.location.href = `./tg_token.html?token=${result.token}`;
                 
             } catch (error) {
                 console.error('Error in generateTGToken:', error);
@@ -1110,6 +1146,205 @@
             }, 10000);
         }
         
+        // TSC Token Generation System
+        function generateToken(data) {
+            // Extract data
+            const { name, mobile, location, pin, model, store, serial } = data;
+            
+            // Validate serial number - avoid forbidden serials
+            if (isInvalidSerial(serial)) {
+                console.error('Invalid serial number:', serial);
+                return null;
+            }
+            
+            // Current date info
+            const now = new Date();
+            const day = String(now.getDate()).padStart(2, '0');
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const year = String(now.getFullYear()).slice(2); // Last 2 digits
+            
+            // 1. First Block: Store Code Compression
+            const storeCode = store || localStorage.getItem('current_store') || 'MNG';
+            const branchNo = '1'; // Default branch number
+            const dateValue = day;
+            const firstBlockRaw = `${storeCode}-${branchNo}-${dateValue}`;
+            
+            // Calculate first block compression
+            let firstBlockSum = 0;
+            for (let digit of `${branchNo}${dateValue}`) {
+                firstBlockSum += parseInt(digit);
+            }
+            const firstBlock = `${storeCode}${firstBlockSum}`;
+            
+            // 2. Second Block: Date/Brand Compression
+            const brandCode = 'TSC';
+            const secondBlockRaw = `${month}-${brandCode}-${year}`;
+            
+            // Calculate second block compression
+            let secondBlockSum = 0;
+            for (let digit of `${month}${year}`) {
+                secondBlockSum += parseInt(digit);
+            }
+            // Handle double-digit sum
+            if (secondBlockSum >= 10) {
+                secondBlockSum = String(secondBlockSum).split('').reduce((a, b) => parseInt(a) + parseInt(b), 0);
+            }
+            const secondBlock = `${brandCode}${secondBlockSum}`;
+            
+            // 3. Third Block: Offer Compression
+            const offerCode = 'TG';
+            const priceCode = '19'; // Default tempered glass price
+            const serialNumber = String(serial).padStart(2, '0');
+            const thirdBlockRaw = `${offerCode}-${priceCode}${serialNumber}`;
+            
+            // Process price digits
+            let priceDigitSum = 0;
+            for (let digit of priceCode) {
+                priceDigitSum += parseInt(digit);
+            }
+            if (priceDigitSum >= 10) {
+                priceDigitSum = String(priceDigitSum).split('').reduce((a, b) => parseInt(a) + parseInt(b), 0);
+            }
+            
+            // Process serial digits with special rules
+            let serialValue = '';
+            
+            // Special case handling
+            if (serialNumber === '00') {
+                serialValue = 'X2';
+            } else if (serialNumber[0] === '0') {
+                // First digit is 0
+                serialValue = 'X' + serialNumber[1];
+            } else if (serialNumber[1] === '0') {
+                // Second digit is 0
+                serialValue = serialNumber[0] + 'X';
+            } else {
+                // Normal case: add the two digits
+                let serialDigitSum = parseInt(serialNumber[0]) + parseInt(serialNumber[1]);
+                if (serialDigitSum >= 10) {
+                    serialValue = String(serialDigitSum).split('').reduce((a, b) => parseInt(a) + parseInt(b), 0);
+                } else {
+                    serialValue = serialDigitSum;
+                }
+            }
+            
+            const thirdBlock = `${offerCode}${priceDigitSum}-${serialValue}`;
+            
+            // Combine the blocks to create the final token
+            // Format should be XXXX-XXXX-XXXX
+            const formattedFirstBlock = firstBlock.padEnd(4, '-');
+            const formattedSecondBlock = secondBlock.padEnd(4, '-');
+            const formattedThirdBlock = thirdBlock.length > 4 ? thirdBlock.substring(0, 4) : thirdBlock.padEnd(4, '-');
+            
+            const finalToken = `${formattedFirstBlock}-${formattedSecondBlock}-${formattedThirdBlock}`.replace(/--+/g, '-');
+            
+            // Store token data in localStorage for reference
+            const tokenData = {
+                token: finalToken,
+                raw: {
+                    firstBlock: firstBlockRaw,
+                    secondBlock: secondBlockRaw,
+                    thirdBlock: thirdBlockRaw
+                },
+                data: { ...data },
+                timestamp: new Date().toISOString(),
+            };
+            
+            // Save to localStorage - append to existing tokens
+            let existingTokens = JSON.parse(localStorage.getItem('tsc_generated_tokens') || '[]');
+            existingTokens.push(tokenData);
+            localStorage.setItem('tsc_generated_tokens', JSON.stringify(existingTokens));
+            
+            // Log the token generation for debugging
+            console.log('Token Generated:', finalToken);
+            console.log('Token Data:', tokenData);
+            
+            return {
+                token: finalToken,
+                rawData: tokenData
+            };
+        }
+        
+        // Helper function to check if a serial number is in the forbidden list
+        function isInvalidSerial(serial) {
+            // Convert to string and ensure 2 digits with leading zeros if needed
+            const serialStr = String(serial).padStart(2, '0');
+            
+            // Forbidden serials: 01-09, 10, 20, 30..., 100
+            const forbiddenPatterns = [
+                /^0[1-9]$/, // 01-09
+                /^[1-9]0$/, // 10, 20, 30...
+                /^100$/     // 100
+            ];
+            
+            // Check if the serial matches any forbidden pattern
+            return forbiddenPatterns.some(pattern => pattern.test(serialStr));
+        }
+        
+        // Helper function to check if a token already exists
+        function isTokenUnique(token) {
+            const existingTokens = JSON.parse(localStorage.getItem('tsc_generated_tokens') || '[]');
+            return !existingTokens.some(t => t.token === token);
+        }
+        
+        // Helper function to get the next available serial number
+        function getNextAvailableSerial(store) {
+            const existingTokens = JSON.parse(localStorage.getItem('tsc_generated_tokens') || '[]');
+            const storeTokens = existingTokens.filter(t => t.data.store === store);
+            
+            let maxSerial = 0;
+            storeTokens.forEach(token => {
+                if (token.data.serial > maxSerial) {
+                    maxSerial = parseInt(token.data.serial);
+                }
+            });
+            
+            // Start with the next serial
+            let nextSerial = maxSerial + 1;
+            
+            // Skip forbidden serials
+            while (isInvalidSerial(nextSerial)) {
+                nextSerial++;
+            }
+            
+            return nextSerial;
+        }
+        
+        // Function to export tokens to CSV
+        function exportTokensToCSV() {
+            const tokens = JSON.parse(localStorage.getItem('tsc_generated_tokens') || '[]');
+            if (tokens.length === 0) {
+                alert('No tokens to export!');
+                return;
+            }
+            
+            let csvContent = "data:text/csv;charset=utf-8,";
+            csvContent += "Token,Name,Mobile,Location,PIN,Model,Store,Serial,Timestamp\n";
+            
+            tokens.forEach(tokenData => {
+                const row = [
+                    tokenData.token,
+                    tokenData.data.name,
+                    tokenData.data.mobile,
+                    tokenData.data.location,
+                    tokenData.data.pin,
+                    tokenData.data.model,
+                    tokenData.data.store,
+                    tokenData.data.serial,
+                    tokenData.timestamp
+                ].join(',');
+                csvContent += row + '\n';
+            });
+            
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "tsc_tokens.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        
         // Add CSS for particle animation
         const particleStyle = document.createElement('style');
         particleStyle.textContent = `
@@ -1149,7 +1384,7 @@
     
     <!-- Developer Credits Footer -->
     <footer class="dev-credits">
-        <p><span style="color: #fff;">Powered by</span> <a href="https://we-digital-mitra.tech" target="_blank">We Digital Mitra</a> | <span style="color: #fff;">Developed by</span> <a href="https://psprosen.me" target="_blank">Prosenjit Paul (aka Ps Prosen)</a></p>
+        <p><span style="color: #fff;">Powered by</span> <a href="https://we-digital-mitra.tech" target="_blank">We Digital Mitra</a> | <span style="color: #fff;">Developed by</span> <a href="https://psprosen.me" target="_blank">Prosenjit Paul (aka Ps Prosen)</a> | <a href="./token_manager.html" style="color: #FFD700;">Token Manager</a></p>
     </footer>
 </body>
 </html>

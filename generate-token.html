@@ -815,156 +815,6 @@
             }
         }
         
-        // Advanced Token Generation System for TSC Unified QR System
-        
-        // Store configurations
-        const STORE_CONFIG = {
-            'MNG': { branch: 1, name: 'Maynaguri' },
-            'DPG': { branch: 2, name: 'Dhupguri' },
-            'JMD': { branch: 3, name: 'Jamaldaha' }
-        };
-        
-        // Forbidden serials that should be skipped
-        const FORBIDDEN_SERIALS = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '20', '30', '40', '50', '60', '70', '80', '90', '100'];
-        
-        // Token log for tracking
-        let tokenLog = JSON.parse(localStorage.getItem('tsc_token_log') || '[]');
-        
-        // Digit sum helper with special rules
-        function calculateDigitSum(number) {
-            const str = number.toString();
-            
-            // Special cases for leading zeros
-            if (str.match(/^0/)) {
-                return str.replace(/^0+/, 'X');
-            }
-            
-            // Special case for double zeros
-            if (str.includes('00')) {
-                return str.replace(/00/g, 'X2');
-            }
-            
-            // Normal digit sum calculation
-            let sum = str.split('').reduce((acc, digit) => acc + parseInt(digit), 0);
-            
-            // If sum is two digits, sum again
-            while (sum >= 10) {
-                sum = sum.toString().split('').reduce((acc, digit) => acc + parseInt(digit), 0);
-            }
-            
-            // Replace 0 with X
-            return sum === 0 ? 'X' : sum.toString();
-        }
-        
-        // Generate unique serial number
-        function generateUniqueSerial() {
-            let serial;
-            let attempts = 0;
-            const maxAttempts = 1000;
-            
-            do {
-                serial = Math.floor(Math.random() * 9000) + 1000; // 4-digit number starting from 1000
-                attempts++;
-            } while (
-                (FORBIDDEN_SERIALS.includes(serial.toString()) || 
-                 tokenLog.some(log => log.serial === serial)) && 
-                attempts < maxAttempts
-            );
-            
-            if (attempts >= maxAttempts) {
-                throw new Error('Unable to generate unique serial number');
-            }
-            
-            return serial;
-        }
-        
-        // Main token generation function
-        function generateTSCToken(customerData) {
-            try {
-                const now = new Date();
-                const store = customerData.store || localStorage.getItem('current_store') || 'MNG';
-                const storeConfig = STORE_CONFIG[store];
-                
-                if (!storeConfig) {
-                    throw new Error('Invalid store code');
-                }
-                
-                // Generate unique serial
-                const serial = generateUniqueSerial();
-                
-                // Get current date components
-                const day = now.getDate();
-                const month = now.getMonth() + 1; // 0-indexed
-                const year = now.getFullYear().toString().slice(-2);
-                
-                // BLOCK 1: Store Code Compression
-                // Format: MNG-1-20 → Add digits: 1+2+0 = 3 → Final: MNG3
-                const storeDigitSum = calculateDigitSum(`${storeConfig.branch}${day}`);
-                const block1 = `${store}${storeDigitSum}`;
-                
-                // BLOCK 2: Date/Brand Compression  
-                // Format: 07-TSC-25 → Add: 0+7+2+5 = 14 → 1+4 = 5 → Final: TSC5
-                const monthStr = month.toString().padStart(2, '0');
-                const dateDigitSum = calculateDigitSum(`${monthStr}${year}`);
-                const block2 = `TSC${dateDigitSum}`;
-                
-                // BLOCK 3: Offer Compression
-                // Format: TG-1911 → TG + price compression + serial compression
-                const offerType = customerData.offerType || localStorage.getItem('flow_type') === 'tg_generate' ? 'TG' : 'SP';
-                const price = customerData.price || (offerType === 'TG' ? '19' : '00');
-                const priceSum = calculateDigitSum(price);
-                const serialSum = calculateDigitSum(serial.toString().slice(-2)); // Last 2 digits
-                const block3 = `${offerType}${priceSum}${serialSum}`;
-                
-                // Generate final customer-facing token
-                const customerToken = `${block1}-${block2}-${block3}`;
-                
-                // Internal raw format for reference
-                const internalFormat = {
-                    store: `${store}-${storeConfig.branch}-${day}`,
-                    date: `${monthStr}-TSC-${year}`,
-                    offer: `${offerType}-${price}${serial.toString().slice(-2)}`
-                };
-                
-                // Create comprehensive token data
-                const tokenData = {
-                    customerToken: customerToken,
-                    internalFormat: internalFormat,
-                    customerData: customerData,
-                    serial: serial,
-                    timestamp: now.toISOString(),
-                    store: store,
-                    generatedAt: {
-                        date: now.toLocaleDateString(),
-                        time: now.toLocaleTimeString()
-                    }
-                };
-                
-                // Log the token
-                tokenLog.push(tokenData);
-                localStorage.setItem('tsc_token_log', JSON.stringify(tokenLog));
-                
-                // Console log for debugging
-                console.log('🎯 Token Generated:', {
-                    'Customer Token': customerToken,
-                    'Internal Format': internalFormat,
-                    'Customer Data': customerData,
-                    'Serial': serial,
-                    'Breakdown': {
-                        'Block 1 (Store)': `${store}-${storeConfig.branch}-${day} → ${storeDigitSum} → ${block1}`,
-                        'Block 2 (Date)': `${monthStr}-TSC-${year} → ${dateDigitSum} → ${block2}`,
-                        'Block 3 (Offer)': `${offerType}-${price}${serial.toString().slice(-2)} → ${priceSum}${serialSum} → ${block3}`
-                    }
-                });
-                
-                return tokenData;
-                
-            } catch (error) {
-                console.error('Token generation error:', error);
-                throw error;
-            }
-        }
-        
         // Generate token
         function generateToken() {
             const phoneNumber = document.getElementById('phoneNumber').value;
@@ -983,48 +833,33 @@
             generateBtn.disabled = true;
             generateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating Token...';
             
-            try {
-                // Prepare customer data
-                const customerData = {
+            // Generate unique token
+            const timestamp = Date.now();
+            const random = Math.random().toString(36).substring(2, 8).toUpperCase();
+            generatedToken = `TSC-${random}-${timestamp.toString().slice(-4)}`;
+            
+            // Simulate API delay
+            setTimeout(() => {
+                document.getElementById('tokenValue').textContent = generatedToken;
+                tokenDisplay.classList.add('show');
+                generateBtn.innerHTML = '<i class="fas fa-check"></i> Token Generated';
+                
+                // Setup WhatsApp link
+                setupWhatsAppLink();
+                
+                // Store token data
+                const tokenData = {
+                    token: generatedToken,
                     phone: userPhone,
-                    store: localStorage.getItem('current_store') || 'MNG',
-                    offerType: localStorage.getItem('flow_type') === 'tg_generate' ? 'TG' : 'SP',
-                    price: localStorage.getItem('flow_type') === 'tg_generate' ? '19' : '00'
+                    timestamp: new Date().toISOString(),
+                    flowType: localStorage.getItem('tsc_flow_type')
                 };
+                localStorage.setItem('tsc_whatsapp_token', JSON.stringify(tokenData));
                 
-                // Generate advanced token
-                const tokenResult = generateTSCToken(customerData);
-                generatedToken = tokenResult.customerToken;
+                // Add success animation
+                tokenDisplay.classList.add('success-animation');
                 
-                // Simulate API delay
-                setTimeout(() => {
-                    document.getElementById('tokenValue').textContent = generatedToken;
-                    tokenDisplay.classList.add('show');
-                    generateBtn.innerHTML = '<i class="fas fa-check"></i> Token Generated';
-                    
-                    // Setup WhatsApp link
-                    setupWhatsAppLink();
-                    
-                    // Store token data
-                    const finalTokenData = {
-                        token: generatedToken,
-                        phone: userPhone,
-                        timestamp: new Date().toISOString(),
-                        flowType: localStorage.getItem('flow_type'),
-                        advanced: tokenResult
-                    };
-                    localStorage.setItem('tsc_whatsapp_token', JSON.stringify(finalTokenData));
-                    
-                    // Add success animation
-                    tokenDisplay.classList.add('success-animation');
-                    
-                }, 2000);
-                
-            } catch (error) {
-                alert('Error generating token: ' + error.message);
-                generateBtn.disabled = false;
-                generateBtn.innerHTML = '<i class="fas fa-mobile-alt"></i> Generate WhatsApp Token';
-            }
+            }, 2000);
         }
         
         // Setup WhatsApp link
@@ -1118,132 +953,6 @@
                         window.location.href = 'thank-you.html';
                     }
                 }, 3000);
-            }
-        });
-        
-        // CSV Export functionality (BONUS)
-        function exportTokensToCSV() {
-            try {
-                const logs = JSON.parse(localStorage.getItem('tsc_token_log') || '[]');
-                
-                if (logs.length === 0) {
-                    alert('No tokens generated yet to export.');
-                    return;
-                }
-                
-                // CSV Headers
-                const headers = [
-                    'Customer Token',
-                    'Internal Format',
-                    'Phone Number',
-                    'Store',
-                    'Offer Type',
-                    'Serial Number',
-                    'Generated Date',
-                    'Generated Time',
-                    'Block 1 (Store)',
-                    'Block 2 (Date)',
-                    'Block 3 (Offer)'
-                ];
-                
-                // Convert logs to CSV format
-                const csvContent = [
-                    headers.join(','),
-                    ...logs.map(log => {
-                        const internal = `"${log.internalFormat.store}|${log.internalFormat.date}|${log.internalFormat.offer}"`;
-                        return [
-                            log.customerToken,
-                            internal,
-                            log.customerData.phone || 'N/A',
-                            log.store,
-                            log.customerData.offerType || 'SP',
-                            log.serial,
-                            log.generatedAt.date,
-                            log.generatedAt.time,
-                            log.customerToken.split('-')[0],
-                            log.customerToken.split('-')[1],
-                            log.customerToken.split('-')[2]
-                        ].join(',');
-                    })
-                ].join('\n');
-                
-                // Create and download CSV file
-                const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-                const link = document.createElement('a');
-                const url = URL.createObjectURL(blob);
-                link.setAttribute('href', url);
-                link.setAttribute('download', `TSC_Tokens_${new Date().toISOString().split('T')[0]}.csv`);
-                link.style.visibility = 'hidden';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                
-                console.log(`📊 Exported ${logs.length} tokens to CSV`);
-                
-            } catch (error) {
-                console.error('Export error:', error);
-                alert('Error exporting tokens: ' + error.message);
-            }
-        }
-        
-        // Clear token logs (Admin function)
-        function clearTokenLogs() {
-            if (confirm('Are you sure you want to clear all token logs? This action cannot be undone.')) {
-                localStorage.removeItem('tsc_token_log');
-                tokenLog = [];
-                console.log('🗑️ Token logs cleared');
-                alert('Token logs cleared successfully.');
-            }
-        }
-        
-        // Get token statistics
-        function getTokenStats() {
-            const logs = JSON.parse(localStorage.getItem('tsc_token_log') || '[]');
-            const stats = {
-                total: logs.length,
-                byStore: {},
-                byOfferType: {},
-                today: 0
-            };
-            
-            const today = new Date().toLocaleDateString();
-            
-            logs.forEach(log => {
-                // By store
-                stats.byStore[log.store] = (stats.byStore[log.store] || 0) + 1;
-                
-                // By offer type
-                const offerType = log.customerData.offerType || 'SP';
-                stats.byOfferType[offerType] = (stats.byOfferType[offerType] || 0) + 1;
-                
-                // Today's count
-                if (log.generatedAt.date === today) {
-                    stats.today++;
-                }
-            });
-            
-            console.log('📈 Token Statistics:', stats);
-            return stats;
-        }
-        
-        // Keyboard shortcuts for admin functions
-        document.addEventListener('keydown', function(e) {
-            // Ctrl + Shift + E = Export CSV
-            if (e.ctrlKey && e.shiftKey && e.key === 'E') {
-                e.preventDefault();
-                exportTokensToCSV();
-            }
-            
-            // Ctrl + Shift + S = Show Stats
-            if (e.ctrlKey && e.shiftKey && e.key === 'S') {
-                e.preventDefault();
-                getTokenStats();
-            }
-            
-            // Ctrl + Shift + C = Clear Logs (Admin only)
-            if (e.ctrlKey && e.shiftKey && e.key === 'C') {
-                e.preventDefault();
-                clearTokenLogs();
             }
         });
     </script>

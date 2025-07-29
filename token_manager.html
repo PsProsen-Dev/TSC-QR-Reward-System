@@ -1,0 +1,914 @@
+<!--
+🔧 Developed by Jarvis (RTX⚡)
+🤝 Engineered for The Shankar Communications (TSC - The Shankar Communications)
+🧠 AI Assistant: ChatGPT Jarvis, Visual Dev: VS Code Jarvis (Claude Sonnet 4)
+🎨 Theme: Gold Royal Luxe ✨
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔐 TSC Token Management System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="theme-color" content="#FFD700">
+    <meta name="description" content="TSC Token Management System - Admin Panel">
+    <meta property="og:title" content="TSC Token Management">
+    <meta property="og:description" content="Manage and export tokens for The Shankar Communications">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        /* RTX Enhanced Background Effects */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
+            animation: rtx-glow 8s ease-in-out infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        @keyframes rtx-glow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            color: #FFD700;
+            text-align: center;
+            padding: 1.5rem 0;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6),
+                        0 0 0 1px rgba(255, 215, 0, 0.1) inset;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin: 0 0 1rem;
+            color: #FFD700;
+            text-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        h2 {
+            color: #FFD700;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            padding-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(255, 215, 0, 0.2);
+        }
+
+        .control-panel {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .search-box {
+            flex-grow: 1;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 14px 20px 14px 45px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 50px;
+            font-size: 1rem;
+            color: #fff;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .search-box::before {
+            content: '\f002';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 215, 0, 0.5);
+            z-index: 1;
+        }
+
+        .search-box input:focus {
+            border-color: #FFD700;
+            outline: none;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.2);
+        }
+        
+        .search-box input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .export-button, .back-button {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #000;
+            border: none;
+            padding: 14px 28px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .export-button::before, .back-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+        
+        .export-button:hover::before, .back-button:hover::before {
+            left: 100%;
+        }
+
+        .export-button:hover, .back-button:hover {
+            background: linear-gradient(135deg, #FFC107, #FF8C00);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .export-button::before {
+            content: '\f56e';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            margin-right: 8px;
+        }
+        
+        .back-button::before {
+            content: '\f060';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            margin-right: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 1.5rem;
+            overflow-x: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px 20px;
+            text-align: left;
+        }
+
+        th {
+            background: rgba(255, 215, 0, 0.15);
+            font-weight: 600;
+            color: #FFD700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        td {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        tr:hover {
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .token-code {
+            font-weight: 700;
+            color: #FFD700;
+            background: rgba(255, 215, 0, 0.05);
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .token-code:hover {
+            background: rgba(255, 215, 0, 0.1);
+            border-color: rgba(255, 215, 0, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .pagination button {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 10px 16px;
+            margin: 0 5px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 40px;
+            font-weight: 600;
+        }
+
+        .pagination button.active {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #000;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: scale(1.1);
+        }
+
+        .pagination button:hover:not(.active) {
+            background: rgba(255, 215, 0, 0.1);
+            color: #FFD700;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            
+            .control-panel {
+                flex-direction: column;
+                padding: 15px;
+            }
+            
+            .search-box {
+                max-width: none;
+                margin-bottom: 1rem;
+            }
+            
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                font-size: 0.9rem;
+            }
+            
+            th, td {
+                padding: 10px 15px;
+            }
+            
+            .pagination {
+                padding: 10px;
+                border-radius: 30px;
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+            
+            .pagination button {
+                margin: 2px;
+                padding: 8px 12px;
+                font-size: 0.8rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 3rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-style: italic;
+            font-size: 1.2rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            border: 1px dashed rgba(255, 215, 0, 0.2);
+            margin: 2rem 0;
+        }
+        
+        /* Stats Panel */
+        .stats-panel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 215, 0, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+        
+        .stat-title {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .stat-value {
+            color: #FFD700;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+        }
+        
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: rgba(255, 215, 0, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>✨ The Shankar Communications</h1>
+        <p>🔐 Admin Token Management System</p>
+    </header>
+    
+    <div class="container">
+        <h2><i class="fas fa-shield-alt"></i> Token Management Dashboard</h2>
+        
+        <!-- Stats Panel -->
+        <div class="stats-panel">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-ticket-alt"></i></div>
+                <div class="stat-title">Total Tokens</div>
+                <div class="stat-value" id="totalTokens">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-store"></i></div>
+                <div class="stat-title">MNG Store</div>
+                <div class="stat-value" id="mngTokens">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-store-alt"></i></div>
+                <div class="stat-title">DPG Store</div>
+                <div class="stat-value" id="dpgTokens">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-shopping-bag"></i></div>
+                <div class="stat-title">JMD Store</div>
+                <div class="stat-value" id="jmdTokens">0</div>
+            </div>
+        </div>
+        
+        <div class="control-panel">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search by token, name, mobile...">
+            </div>
+            <div>
+                <button class="export-button" onclick="exportToCSV()">Export Data</button>
+                <button class="back-button" onclick="goBack()">Back to Main</button>
+            </div>
+        </div>
+        
+        <div id="tableContainer">
+            <table id="tokenTable">
+                <thead>
+                    <tr>
+                        <th>Token</th>
+                        <th>Customer</th>
+                        <th>Mobile</th>
+                        <th>Location</th>
+                        <th>Model</th>
+                        <th>Store</th>
+                        <th>Date Generated</th>
+                    </tr>
+                </thead>
+                <tbody id="tokenTableBody">
+                    <!-- Token data will be populated here -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="pagination" id="pagination">
+            <!-- Pagination controls will be added here -->
+        </div>
+    </div>
+    
+    <script>
+        // Variables for pagination
+        let currentPage = 1;
+        const rowsPerPage = 10;
+        let filteredTokens = [];
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load tokens from localStorage
+            loadTokens();
+            
+            // Set up search functionality with debounce
+            const searchInput = document.getElementById('searchInput');
+            let debounceTimeout;
+            
+            searchInput.addEventListener('input', function() {
+                clearTimeout(debounceTimeout);
+                debounceTimeout = setTimeout(() => {
+                    filterTokens(this.value);
+                }, 300); // 300ms debounce
+            });
+            
+            // Add focus effects to search box
+            searchInput.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'scale(1.02)';
+                this.parentElement.style.boxShadow = '0 8px 25px rgba(255, 215, 0, 0.15)';
+            });
+            
+            searchInput.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'scale(1)';
+                this.parentElement.style.boxShadow = 'none';
+            });
+        });
+        
+        function loadTokens() {
+            try {
+                const tokens = JSON.parse(localStorage.getItem('tsc_generated_tokens') || '[]');
+                
+                // Sort tokens by timestamp (newest first)
+                tokens.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                
+                filteredTokens = tokens;
+                
+                // Update stats
+                updateStats(tokens);
+                
+                if (tokens.length === 0) {
+                    document.getElementById('tableContainer').innerHTML = '<div class="no-data"><i class="fas fa-database" style="font-size: 3rem; margin-bottom: 15px; color: rgba(255, 215, 0, 0.3);"></i><br>No tokens have been generated yet</div>';
+                    return;
+                }
+                
+                // Display the first page
+                displayTokens(1);
+                setupPagination(tokens.length);
+                
+            } catch (error) {
+                console.error('Error loading tokens:', error);
+                document.getElementById('tableContainer').innerHTML = '<div class="no-data"><i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 15px; color: rgba(255, 0, 0, 0.5);"></i><br>Error loading tokens</div>';
+            }
+        }
+        
+        function updateStats(tokens) {
+            // Update total tokens count
+            document.getElementById('totalTokens').textContent = tokens.length;
+            
+            // Count tokens by store
+            const mngTokens = tokens.filter(token => token.data?.store === 'MNG').length;
+            const dpgTokens = tokens.filter(token => token.data?.store === 'DPG').length;
+            const jmdTokens = tokens.filter(token => token.data?.store === 'JMD').length;
+            
+            document.getElementById('mngTokens').textContent = mngTokens;
+            document.getElementById('dpgTokens').textContent = dpgTokens;
+            document.getElementById('jmdTokens').textContent = jmdTokens;
+            
+            // Add animation to the numbers
+            animateNumbers('totalTokens', 0, tokens.length);
+            animateNumbers('mngTokens', 0, mngTokens);
+            animateNumbers('dpgTokens', 0, dpgTokens);
+            animateNumbers('jmdTokens', 0, jmdTokens);
+        }
+        
+        function animateNumbers(elementId, start, end) {
+            const element = document.getElementById(elementId);
+            const duration = 1000; // 1 second
+            const frameRate = 30; // 30 frames per second
+            const totalFrames = duration / (1000 / frameRate);
+            const increment = (end - start) / totalFrames;
+            
+            let currentFrame = 0;
+            let currentValue = start;
+            
+            const animation = setInterval(() => {
+                currentFrame++;
+                currentValue += increment;
+                
+                if (currentFrame === totalFrames) {
+                    clearInterval(animation);
+                    element.textContent = end;
+                } else {
+                    element.textContent = Math.floor(currentValue);
+                }
+            }, 1000 / frameRate);
+        }
+        
+        function displayTokens(page) {
+            currentPage = page;
+            const tableBody = document.getElementById('tokenTableBody');
+            tableBody.innerHTML = '';
+            
+            const startIndex = (page - 1) * rowsPerPage;
+            const endIndex = Math.min(startIndex + rowsPerPage, filteredTokens.length);
+            
+            // Show loading animation
+            tableBody.innerHTML = `
+                <tr>
+                    <td colspan="7" style="text-align: center; padding: 30px;">
+                        <div style="display: inline-block; border: 3px solid rgba(255,215,0,0.2); border-top: 3px solid #FFD700; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite;"></div>
+                        <style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>
+                    </td>
+                </tr>
+            `;
+            
+            // Small delay to show loading animation
+            setTimeout(() => {
+                tableBody.innerHTML = '';
+                
+                for (let i = startIndex; i < endIndex; i++) {
+                    const token = filteredTokens[i];
+                    const row = document.createElement('tr');
+                    
+                    // Format date
+                    const date = new Date(token.timestamp);
+                    const formattedDate = date.toLocaleString();
+                    
+                    // Get color indicator based on store
+                    let storeColorClass = '';
+                    switch(token.data?.store) {
+                        case 'MNG':
+                            storeColorClass = 'color: gold;';
+                            break;
+                        case 'DPG':
+                            storeColorClass = 'color: #00ff7f;';
+                            break;
+                        case 'JMD':
+                            storeColorClass = 'color: #ff7f50;';
+                            break;
+                        default:
+                            storeColorClass = '';
+                    }
+                    
+                    row.innerHTML = `
+                        <td><span class="token-code">${token.token}</span></td>
+                        <td>${token.data?.name || '-'}</td>
+                        <td>${token.data?.mobile || '-'}</td>
+                        <td>${token.data?.location || '-'}</td>
+                        <td>${token.data?.model || '-'}</td>
+                        <td style="${storeColorClass} font-weight: 600;">${token.data?.store || '-'}</td>
+                        <td>${formattedDate}</td>
+                    `;
+                    
+                    // Add row with fade-in animation
+                    row.style.opacity = '0';
+                    row.style.animation = `fadeIn 0.3s forwards ${i * 0.05}s`;
+                    tableBody.appendChild(row);
+                }
+                
+                // Add fade-in keyframes if they don't exist
+                if (!document.getElementById('fadeInStyle')) {
+                    const style = document.createElement('style');
+                    style.id = 'fadeInStyle';
+                    style.textContent = `
+                        @keyframes fadeIn {
+                            from { opacity: 0; transform: translateY(10px); }
+                            to { opacity: 1; transform: translateY(0); }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
+            }, 300);
+        }
+        
+        function setupPagination(totalItems) {
+            const paginationElement = document.getElementById('pagination');
+            paginationElement.innerHTML = '';
+            
+            const totalPages = Math.ceil(totalItems / rowsPerPage);
+            
+            if (totalPages <= 1) {
+                return;
+            }
+            
+            // Previous button
+            const prevBtn = document.createElement('button');
+            prevBtn.textContent = '< Prev';
+            prevBtn.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    displayTokens(currentPage - 1);
+                    updatePaginationButtons();
+                }
+            });
+            paginationElement.appendChild(prevBtn);
+            
+            // Page numbers
+            for (let i = 1; i <= totalPages; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.textContent = i;
+                if (i === currentPage) {
+                    pageBtn.classList.add('active');
+                }
+                pageBtn.addEventListener('click', () => {
+                    displayTokens(i);
+                    updatePaginationButtons();
+                });
+                paginationElement.appendChild(pageBtn);
+            }
+            
+            // Next button
+            const nextBtn = document.createElement('button');
+            nextBtn.textContent = 'Next >';
+            nextBtn.addEventListener('click', () => {
+                if (currentPage < totalPages) {
+                    displayTokens(currentPage + 1);
+                    updatePaginationButtons();
+                }
+            });
+            paginationElement.appendChild(nextBtn);
+        }
+        
+        function updatePaginationButtons() {
+            const buttons = document.querySelectorAll('#pagination button');
+            buttons.forEach((button, index) => {
+                if (index === 0) { // Previous button
+                    return;
+                }
+                if (index === buttons.length - 1) { // Next button
+                    return;
+                }
+                
+                const pageNumber = parseInt(button.textContent);
+                if (pageNumber === currentPage) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+        }
+        
+        function filterTokens(searchTerm) {
+            searchTerm = searchTerm.toLowerCase();
+            
+            const tokens = JSON.parse(localStorage.getItem('tsc_generated_tokens') || '[]');
+            
+            if (searchTerm === '') {
+                filteredTokens = tokens;
+            } else {
+                filteredTokens = tokens.filter(token => {
+                    return (
+                        token.token.toLowerCase().includes(searchTerm) ||
+                        (token.data?.name && token.data.name.toLowerCase().includes(searchTerm)) ||
+                        (token.data?.mobile && token.data.mobile.toLowerCase().includes(searchTerm)) ||
+                        (token.data?.location && token.data.location.toLowerCase().includes(searchTerm)) ||
+                        (token.data?.model && token.data.model.toLowerCase().includes(searchTerm)) ||
+                        (token.data?.store && token.data.store.toLowerCase().includes(searchTerm))
+                    );
+                });
+            }
+            
+            // Update display
+            displayTokens(1);
+            setupPagination(filteredTokens.length);
+        }
+        
+        function exportToCSV() {
+            const tokens = JSON.parse(localStorage.getItem('tsc_generated_tokens') || '[]');
+            if (tokens.length === 0) {
+                showNotification('No tokens to export!', 'error');
+                return;
+            }
+            
+            // Show loading notification
+            showNotification('Preparing CSV export...', 'info');
+            
+            setTimeout(() => {
+                let csvContent = "data:text/csv;charset=utf-8,";
+                csvContent += "Token,Name,Mobile,Location,PIN,Model,Store,Serial,Date Generated\n";
+                
+                tokens.forEach(token => {
+                    const row = [
+                        token.token,
+                        token.data?.name || '',
+                        token.data?.mobile || '',
+                        token.data?.location || '',
+                        token.data?.pin || '',
+                        token.data?.model || '',
+                        token.data?.store || '',
+                        token.data?.serial || '',
+                        token.timestamp
+                    ].map(item => `"${item}"`).join(',');
+                    csvContent += row + '\n';
+                });
+                
+                const encodedUri = encodeURI(csvContent);
+                const link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", `tsc_tokens_${new Date().toISOString().slice(0,10)}.csv`);
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // Show success notification
+                showNotification('Export completed successfully!', 'success');
+            }, 800);
+        }
+        
+        function goBack() {
+            window.location.href = './welcome.html';
+        }
+        
+        // Notification function
+        function showNotification(message, type = 'info') {
+            // Remove existing notifications
+            const existingNotifications = document.querySelectorAll('.notification');
+            existingNotifications.forEach(notification => {
+                notification.remove();
+            });
+            
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            
+            // Set icon based on type
+            let icon;
+            switch(type) {
+                case 'success':
+                    icon = '<i class="fas fa-check-circle"></i>';
+                    break;
+                case 'error':
+                    icon = '<i class="fas fa-exclamation-circle"></i>';
+                    break;
+                case 'warning':
+                    icon = '<i class="fas fa-exclamation-triangle"></i>';
+                    break;
+                default:
+                    icon = '<i class="fas fa-info-circle"></i>';
+            }
+            
+            notification.innerHTML = `
+                <div class="notification-content">
+                    ${icon}
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            // Append to body
+            document.body.appendChild(notification);
+            
+            // Style the notification
+            const style = document.createElement('style');
+            if (!document.getElementById('notification-styles')) {
+                style.id = 'notification-styles';
+                style.textContent = `
+                    .notification {
+                        position: fixed;
+                        top: 20px;
+                        right: 20px;
+                        padding: 15px 25px;
+                        border-radius: 10px;
+                        color: #fff;
+                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                        z-index: 1000;
+                        opacity: 0;
+                        transform: translateY(-20px);
+                        animation: notification-in 0.3s forwards, notification-out 0.3s forwards 5s;
+                        backdrop-filter: blur(10px);
+                        border: 1px solid rgba(255, 255, 255, 0.1);
+                    }
+                    
+                    .notification-content {
+                        display: flex;
+                        align-items: center;
+                    }
+                    
+                    .notification i {
+                        margin-right: 10px;
+                        font-size: 1.2rem;
+                    }
+                    
+                    .notification.info {
+                        background: rgba(0, 123, 255, 0.8);
+                    }
+                    
+                    .notification.success {
+                        background: rgba(40, 167, 69, 0.8);
+                    }
+                    
+                    .notification.warning {
+                        background: rgba(255, 193, 7, 0.8);
+                    }
+                    
+                    .notification.error {
+                        background: rgba(220, 53, 69, 0.8);
+                    }
+                    
+                    @keyframes notification-in {
+                        from {
+                            opacity: 0;
+                            transform: translateY(-20px);
+                        }
+                        to {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+                    }
+                    
+                    @keyframes notification-out {
+                        from {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+                        to {
+                            opacity: 0;
+                            transform: translateY(-20px);
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            // Auto-remove after animation
+            setTimeout(() => {
+                notification.remove();
+            }, 5500);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,428 @@
+<!--
+🔧 Developed by Jarvis (RTX⚡)
+🤝 Engineered for The Shankar Communications (TSC - The Shankar Communications)
+🧠 AI Assistant: ChatGPT Jarvis, Visual Dev: VS Code Jarvis (Claude Sonnet 4)
+🎨 Theme: Gold Royal Luxe ✨
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🛡️ TSC Tempered Glass Token</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="theme-color" content="#FFD700">
+    <meta name="description" content="Your TSC Tempered Glass token has been generated">
+    <meta property="og:title" content="TSC Tempered Glass Token">
+    <meta property="og:description" content="Premium quality tempered glass at an unbeatable price!">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #fff;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* RTX Enhanced Background Effects */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
+            animation: rtx-glow 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes rtx-glow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        
+        header {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            color: #FFD700;
+            text-align: center;
+            padding: 1.5rem 0;
+            border-radius: 15px;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6),
+                        0 0 0 1px rgba(255, 215, 0, 0.1) inset;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            flex: 1;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin: 0 0 1rem;
+            color: #FFD700;
+            text-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        h2 {
+            color: #FFD700;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            padding-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(255, 215, 0, 0.2);
+        }
+
+        .token-display {
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px dashed rgba(255, 215, 0, 0.5);
+            padding: 1.8rem;
+            border-radius: 15px;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3),
+                        inset 0 0 15px rgba(255, 215, 0, 0.1);
+            animation: glow-pulse 3s infinite;
+        }
+        
+        @keyframes glow-pulse {
+            0%, 100% { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), inset 0 0 15px rgba(255, 215, 0, 0.1); }
+            50% { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(255, 215, 0, 0.2); }
+        }
+
+        .token-code {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: #000;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            display: inline-block;
+            margin: 1.5rem 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4),
+                        inset 0 0 5px rgba(255, 255, 255, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .token-code::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        .customer-info {
+            margin: 2rem 0;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .info-row {
+            display: flex;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+            padding: 0.8rem 0;
+        }
+
+        .info-label {
+            width: 40%;
+            font-weight: 600;
+            color: rgba(255, 215, 0, 0.8);
+            padding-right: 1rem;
+        }
+
+        .info-value {
+            width: 60%;
+            color: #fff;
+        }
+
+        .back-button, .print-button {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #000;
+            border: none;
+            padding: 14px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            margin: 0.8rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .back-button::before, .print-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .back-button:hover::before, .print-button:hover::before {
+            left: 100%;
+        }
+
+        .back-button:hover, .print-button:hover {
+            background: linear-gradient(135deg, #FFC107, #FF8C00);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 2.5rem;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(15px);
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            width: 100%;
+            max-width: 800px;
+            border-radius: 15px;
+            border-top: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        @media print {
+            .no-print {
+                display: none;
+            }
+            body {
+                background: #fff;
+                color: #000;
+            }
+            .container {
+                margin: 0;
+                padding: 20px;
+                box-shadow: none;
+                background: #fff;
+                color: #000;
+            }
+            .token-display {
+                border: 2px solid #000;
+                background: #fff;
+                box-shadow: none;
+                animation: none;
+            }
+            .token-code {
+                background: #FFD700;
+                color: #000;
+                box-shadow: none;
+            }
+            .token-code::before {
+                display: none;
+            }
+            .info-row {
+                border-bottom: 1px solid #ccc;
+            }
+            .info-label {
+                color: #333;
+            }
+            .info-value {
+                color: #000;
+            }
+            .customer-info {
+                border: 1px solid #ccc;
+                background: #f9f9f9;
+                box-shadow: none;
+            }
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .token-code {
+                font-size: 1.5rem;
+                padding: 0.6rem 1rem;
+            }
+            
+            .back-button, .print-button {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="no-print">
+        <h1>✨ The Shankar Communications</h1>
+        <p>🛡️ Premium Tempered Glass Token</p>
+    </header>
+    
+    <div class="container">
+        <h2>Your Tempered Glass Token</h2>
+        
+        <div class="token-display">
+            <p style="color: rgba(255, 215, 0, 0.8); margin-bottom: 10px; font-size: 1.1rem;">Your exclusive token code:</p>
+            <div class="token-code" id="tokenDisplay">Loading...</div>
+            <p style="color: #aaa; font-size: 0.9rem; margin-top: 10px;">Present this token to claim your ₹19 Premium Tempered Glass</p>
+        </div>
+        
+        <div class="customer-info">
+            <div class="info-row">
+                <div class="info-label">Customer Name:</div>
+                <div class="info-value" id="customerName">-</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Mobile Number:</div>
+                <div class="info-value" id="customerMobile">-</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Location:</div>
+                <div class="info-value" id="customerLocation">-</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">PIN Code:</div>
+                <div class="info-value" id="customerPin">-</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Phone Model:</div>
+                <div class="info-value" id="customerModel">-</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Store:</div>
+                <div class="info-value" id="customerStore">-</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Generated On:</div>
+                <div class="info-value" id="generatedDate">-</div>
+            </div>
+        </div>
+        
+        <div class="action-buttons no-print">
+            <button class="back-button" onclick="goBack()">Back to Main Page</button>
+            <button class="print-button" onclick="window.print()">Print Token</button>
+        </div>
+    </div>
+    
+    <footer class="no-print">
+        <p><span style="color: rgba(255, 215, 0, 0.8);">© 2025</span> The Shankar Communications. All rights reserved. | <a href="./welcome.html" style="color: #FFD700; text-decoration: none;">Home</a></p>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                // Set page title dynamically
+                document.title = "🛡️ TSC Tempered Glass Token | The Shankar Communications";
+                
+                // Get token from URL parameter
+                const urlParams = new URLSearchParams(window.location.search);
+                const token = urlParams.get('token');
+                
+                if (!token) {
+                    document.getElementById('tokenDisplay').textContent = 'Invalid Token';
+                    return;
+                }
+                
+                // Display the token with animation
+                const tokenDisplay = document.getElementById('tokenDisplay');
+                tokenDisplay.textContent = token;
+                tokenDisplay.style.opacity = '0';
+                setTimeout(() => {
+                    tokenDisplay.style.transition = 'opacity 0.8s ease-in-out';
+                    tokenDisplay.style.opacity = '1';
+                }, 300);
+                
+                // Get token data from localStorage
+                const tokens = JSON.parse(localStorage.getItem('tsc_generated_tokens') || '[]');
+                const tokenData = tokens.find(t => t.token === token);
+                
+                if (tokenData) {
+                    // Fill in customer information
+                    document.getElementById('customerName').textContent = tokenData.data.name || '-';
+                    document.getElementById('customerMobile').textContent = tokenData.data.mobile || '-';
+                    document.getElementById('customerLocation').textContent = tokenData.data.location || '-';
+                    document.getElementById('customerPin').textContent = tokenData.data.pin || '-';
+                    document.getElementById('customerModel').textContent = tokenData.data.model || '-';
+                    document.getElementById('customerStore').textContent = tokenData.data.store || '-';
+                    
+                    // Format date
+                    const date = new Date(tokenData.timestamp);
+                    const formattedDate = date.toLocaleString();
+                    document.getElementById('generatedDate').textContent = formattedDate;
+                }
+            } catch (error) {
+                console.error('Error loading token data:', error);
+                document.getElementById('tokenDisplay').textContent = 'Error loading token';
+            }
+        });
+        
+        function goBack() {
+            window.location.href = './welcome.html';
+        }
+    </script>
+</body>
+</html>
