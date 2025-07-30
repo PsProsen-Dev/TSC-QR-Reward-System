@@ -290,28 +290,174 @@
             }
         }
         
-        /* Mobile Responsive */
+        /* Enhanced Mobile Responsive */
         @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                align-items: flex-start;
+                padding-top: 10px;
+            }
+            
+            header {
+                padding: 1rem 0;
+                margin-bottom: 1rem;
+                border-radius: 10px;
+            }
+            
             .container {
                 padding: 1.5rem;
+                border-radius: 15px;
+                max-width: calc(100vw - 20px);
             }
             
             h1 {
                 font-size: 1.8rem;
+                line-height: 1.3;
             }
             
             h2 {
                 font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .token-display {
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+                border-radius: 15px;
             }
             
             .token-code {
                 font-size: 1.5rem;
                 padding: 0.6rem 1rem;
+                border-radius: 10px;
+                word-break: break-all;
+                line-height: 1.3;
+            }
+            
+            .customer-info {
+                border-radius: 15px;
+                padding: 1.5rem;
+            }
+            
+            .info-row {
+                margin-bottom: 1rem;
+                padding: 0.8rem;
+                border-radius: 8px;
+            }
+            
+            .info-label {
+                font-size: 0.9rem;
+                margin-bottom: 0.3rem;
+            }
+            
+            .info-value {
+                font-size: 1rem;
+                word-break: break-word;
             }
             
             .back-button, .print-button {
-                padding: 10px 20px;
+                padding: 12px 24px;
                 font-size: 0.9rem;
+                border-radius: 25px;
+                margin: 5px;
+                width: calc(50% - 10px);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
+                padding-top: 5px;
+            }
+            
+            header {
+                padding: 0.8rem 0;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .container {
+                padding: 1rem;
+                border-radius: 12px;
+            }
+            
+            .token-display {
+                padding: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .token-code {
+                font-size: 1.2rem;
+                padding: 0.5rem 0.8rem;
+                margin: 0.5rem 0;
+            }
+            
+            .customer-info {
+                padding: 1rem;
+            }
+            
+            .info-row {
+                padding: 0.6rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .info-label {
+                font-size: 0.8rem;
+            }
+            
+            .info-value {
+                font-size: 0.9rem;
+            }
+            
+            .back-button, .print-button {
+                width: 100%;
+                margin: 3px 0;
+                padding: 10px 20px;
+                font-size: 0.85rem;
+            }
+        }
+        
+        /* Landscape orientation for small screens */
+        @media (max-height: 600px) and (orientation: landscape) {
+            body {
+                padding: 5px;
+                padding-top: 5px;
+            }
+            
+            header {
+                padding: 0.5rem 0;
+                margin-bottom: 0.5rem;
+            }
+            
+            h1 {
+                font-size: 1.3rem;
+            }
+            
+            .container {
+                padding: 1rem;
+                max-height: calc(100vh - 80px);
+                overflow-y: auto;
+            }
+            
+            .token-display {
+                padding: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .token-code {
+                font-size: 1rem;
+                padding: 0.4rem 0.6rem;
+            }
+            
+            .customer-info {
+                padding: 1rem;
+            }
+            
+            .info-row {
+                padding: 0.4rem;
+                margin-bottom: 0.5rem;
             }
         }
     </style>
