@@ -109,34 +109,37 @@ TSC-QR-Reward-System/
 
 ---
 
-## 🤝 Contributing
+## 🔒 Private Client Project
 
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/new-feature`)
-3. Commit changes (`git commit -am 'Add new feature'`)
-4. Push to branch (`git push origin feature/new-feature`)
-5. Create Pull Request
+This is a proprietary project developed for **The Shankar Communications (TSC)**. 
+- **Client**: The Shankar Communications
+- **Developer**: PsProsen-Dev
+- **Status**: Private/Commercial Project
+- **Access**: Restricted to authorized personnel only
 
 ---
 
-## 👨‍💻 Developer & Credits
+## 👨‍💻 Development Team & Credits
 
-- **Lead Developer**: PsProsen-Dev
+- **Lead Developer**: Prosenjit Paul (Ps Prosen)
+- **Client**: The Shankar Communications (TSC)
+- **Project Type**: Private Commercial Development
 - **Framework**: RTX Protocol v1.5
 - **Engine**: Claude Sonnet 4 + VS Code Integration
 - **Design**: Gold Royal Luxe, glassmorphism, mobile-first
-- **Branding**: The Shankar Communications (TSC)
+- **Status**: Proprietary Solution for TSC
 
 ---
 
-## 📞 Support
+## 📞 Client Support & Contact
 
-- 📧 Email: support@tsc-tech.com
-- 📱 WhatsApp: +91 98765 43210
-- 🌐 Website: https://tsc-tech.com
+- 📧 **Technical Support**: Contact through designated channels only
+- 📱 **Client Contact**: The Shankar Communications (TSC)
+- 🔧 **Developer Contact**: Ps Prosen (for authorized modifications only)
+- 🚫 **Public Access**: Not available - Private commercial project
 
 ---
 
-**Made with ❤️ for The Shankar Communications (TSC)**
+**Developed exclusively for The Shankar Communications (TSC)**
 
-*Empowering customer engagement through innovative QR reward systems* 🎯🚀
+*Custom QR reward system solution - Proprietary & Confidential* 🔒�
