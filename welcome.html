@@ -1365,8 +1365,11 @@
                 localStorage.setItem('flow_type', 'tg_generate');
                 console.log('Flow type saved:', localStorage.getItem('flow_type'));
                 
-                // Redirect to beautiful token generator page
-                window.location.href = 'token-generator.html';
+                // Get current store to maintain the flow
+                const currentStore = localStorage.getItem('current_store') || 'MNG';
+                
+                // Redirect to beautiful token generator page with store parameter
+                window.location.href = `token-generator.html?store=${currentStore}`;
                 
             } catch (error) {
                 console.error('Error redirecting to token generator:', error);

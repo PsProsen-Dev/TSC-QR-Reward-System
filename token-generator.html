@@ -712,7 +712,9 @@
         }
         
         function goBack() {
-            window.location.href = 'welcome.html';
+            // Get current store to maintain the flow
+            const currentStore = document.getElementById('store').value || localStorage.getItem('current_store') || 'MNG';
+            window.location.href = `welcome.html?store=${currentStore}`;
         }
         
         // Mobile number formatting
@@ -735,6 +737,32 @@
         
         // Entrance animation
         document.addEventListener('DOMContentLoaded', function() {
+            // Auto-select store from URL parameter or localStorage
+            const urlParams = new URLSearchParams(window.location.search);
+            const storeFromUrl = urlParams.get('store');
+            const storeFromStorage = localStorage.getItem('current_store');
+            const selectedStore = storeFromUrl || storeFromStorage || 'MNG';
+            
+            // Store names mapping
+            const storeNames = {
+                'MNG': 'Maynaguri Store',
+                'DPG': 'Dhupguri Store',
+                'JMD': 'Jamaldaha Store'
+            };
+            
+            // Set the store dropdown
+            const storeSelect = document.getElementById('store');
+            if (storeSelect && selectedStore) {
+                storeSelect.value = selectedStore;
+                console.log('Auto-selected store:', selectedStore);
+                
+                // Update header subtitle to show current store
+                const subtitle = document.querySelector('.subtitle');
+                if (subtitle) {
+                    subtitle.innerHTML = `Generate internal and external tokens<br>for The Shankar Communications tempered glass services<br><span style="color: #FFD700; font-weight: 600;">📍 Current Store: ${storeNames[selectedStore]}</span>`;
+                }
+            }
+            
             const elements = document.querySelectorAll('.header, .form-container');
             elements.forEach((el, index) => {
                 el.style.opacity = '0';
