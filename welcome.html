@@ -1154,19 +1154,31 @@
 
         function getNextWeekendTime() {
             const now = new Date();
-            const day = now.getDay();
-            const hour = now.getHours();
-            const minute = now.getMinutes();
-            const second = now.getSeconds();
+            const day = now.getDay(); // 0=Sunday, 1=Monday, 2=Tuesday, 3=Wednesday, 4=Thursday, 5=Friday, 6=Saturday
             
             // Calculate days until next Saturday (day 6)
-            let daysUntilWeekend = 6 - day;
-            if (daysUntilWeekend < 0) daysUntilWeekend += 7; // If today is Sunday, we count to next Saturday
+            let daysUntilWeekend;
+            
+            if (day === 0) {
+                // If today is Sunday, next Saturday is 6 days away
+                daysUntilWeekend = 6;
+            } else if (day === 6) {
+                // If today is Saturday, next Saturday is 7 days away
+                daysUntilWeekend = 7;
+            } else {
+                // For Monday-Friday, calculate normally
+                daysUntilWeekend = 6 - day;
+            }
+            
+            console.log(`Today: ${['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][day]} (${day})`);
+            console.log(`Days until next Saturday: ${daysUntilWeekend}`);
             
             // Create the next weekend date at 00:00:00
             const nextWeekend = new Date(now);
             nextWeekend.setDate(now.getDate() + daysUntilWeekend);
             nextWeekend.setHours(0, 0, 0, 0);
+            
+            console.log(`Next Saturday: ${nextWeekend.toDateString()}`);
             
             return nextWeekend;
         }
