@@ -284,14 +284,17 @@
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
             body {
-                padding: 10px;
+                padding: 5px;
+                min-height: 100vh;
+                padding-bottom: 60px;
             }
             
             .container {
-                padding: 25px 15px;
+                padding: 20px 15px;
                 margin: 5px;
-                max-width: 100%;
+                max-width: calc(100vw - 10px);
                 border-radius: 20px;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
             }
             
             .logo {
@@ -301,140 +304,269 @@
             }
             
             h1 {
-                font-size: 1.4rem;
+                font-size: 1.3rem;
                 margin-bottom: 8px;
+                line-height: 1.3;
             }
             
             .subtitle {
-                font-size: 0.9rem;
-                margin-bottom: 25px;
+                font-size: 0.85rem;
+                margin-bottom: 20px;
+                line-height: 1.4;
             }
             
             .wheel-container {
-                width: 280px;
-                height: 280px;
-                margin-bottom: 25px;
+                width: 260px;
+                height: 260px;
+                margin: 0 auto 20px;
+                max-width: calc(100vw - 60px);
             }
             
             .wheel-center {
-                width: 45px;
-                height: 45px;
-                font-size: 0.7rem;
+                width: 42px;
+                height: 42px;
+                font-size: 0.65rem;
+                line-height: 42px;
+            }
+            
+            .wheel-pointer {
+                top: -10px;
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent;
+                border-top: 20px solid #FFD700;
             }
             
             .spin-button {
-                padding: 12px 30px;
-                font-size: 0.95rem;
+                padding: 12px 25px;
+                font-size: 0.9rem;
                 margin-bottom: 15px;
+                border-radius: 25px;
+                max-width: 200px;
+                width: 100%;
             }
             
             .result {
-                padding: 18px;
+                padding: 15px 12px;
                 margin-top: 15px;
+                border-radius: 15px;
             }
             
             .result h3 {
-                font-size: 1.1rem;
-                margin-bottom: 8px;
+                font-size: 1rem;
+                margin-bottom: 6px;
+                line-height: 1.3;
+            }
+            
+            .result p {
+                font-size: 0.8rem;
+                line-height: 1.4;
             }
             
             .prize-value {
-                font-size: 1.1rem;
+                font-size: 1rem;
             }
             
             .continue-btn {
-                padding: 10px 25px;
-                font-size: 0.9rem;
+                padding: 10px 20px;
+                font-size: 0.85rem;
                 margin-top: 12px;
+                border-radius: 20px;
+                max-width: 180px;
+                width: 100%;
             }
             
             .loading {
-                font-size: 1rem;
+                font-size: 0.9rem;
                 margin-top: 15px;
             }
         }
         
         @media (max-width: 480px) {
             body {
-                padding: 5px;
+                padding: 3px;
+                padding-bottom: 50px;
             }
             
             .container {
-                padding: 20px 12px;
+                padding: 15px 10px;
                 margin: 2px;
                 border-radius: 15px;
+                max-width: calc(100vw - 6px);
             }
             
             .logo {
-                width: 60px;
-                height: 60px;
+                width: 55px;
+                height: 55px;
                 margin-bottom: 10px;
             }
             
             h1 {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
                 margin-bottom: 6px;
+                line-height: 1.2;
             }
             
             .subtitle {
-                font-size: 0.8rem;
-                margin-bottom: 20px;
+                font-size: 0.75rem;
+                margin-bottom: 15px;
+                line-height: 1.3;
             }
             
             .wheel-container {
-                width: 240px;
-                height: 240px;
-                margin-bottom: 20px;
+                width: 220px;
+                height: 220px;
+                margin: 0 auto 15px;
+                max-width: calc(100vw - 40px);
             }
             
             .wheel-center {
-                width: 40px;
-                height: 40px;
-                font-size: 0.6rem;
+                width: 35px;
+                height: 35px;
+                font-size: 0.55rem;
+                line-height: 35px;
             }
             
             .wheel-pointer {
-                top: -12px;
-                border-left: 12px solid transparent;
-                border-right: 12px solid transparent;
-                border-top: 25px solid #FFD700;
+                top: -8px;
+                border-left: 8px solid transparent;
+                border-right: 8px solid transparent;
+                border-top: 18px solid #FFD700;
             }
             
             .spin-button {
-                padding: 10px 25px;
-                font-size: 0.85rem;
+                padding: 10px 20px;
+                font-size: 0.8rem;
                 margin-bottom: 12px;
+                border-radius: 20px;
+                max-width: 180px;
+                width: 100%;
             }
             
             .result {
-                padding: 15px;
+                padding: 12px 8px;
                 margin-top: 12px;
                 border-radius: 12px;
             }
             
             .result h3 {
-                font-size: 1rem;
-                margin-bottom: 6px;
+                font-size: 0.9rem;
+                margin-bottom: 5px;
+                line-height: 1.2;
             }
             
             .result p {
-                font-size: 0.85rem;
+                font-size: 0.75rem;
+                line-height: 1.3;
             }
             
             .prize-value {
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
             
             .continue-btn {
-                padding: 8px 20px;
-                font-size: 0.8rem;
+                padding: 8px 15px;
+                font-size: 0.75rem;
                 margin-top: 10px;
-                border-radius: 20px;
+                border-radius: 18px;
+                max-width: 160px;
+                width: 100%;
             }
             
             .loading {
-                font-size: 0.9rem;
+                font-size: 0.8rem;
                 margin-top: 12px;
+            }
+        }
+        
+        /* Landscape orientation fixes */
+        @media (max-height: 600px) and (orientation: landscape) {
+            body {
+                padding: 3px;
+                padding-bottom: 40px;
+            }
+            
+            .container {
+                padding: 10px;
+                margin: 3px auto;
+                max-height: calc(100vh - 50px);
+                overflow-y: auto;
+                border-radius: 12px;
+            }
+            
+            .logo {
+                width: 45px;
+                height: 45px;
+                margin-bottom: 8px;
+            }
+            
+            h1 {
+                font-size: 0.9rem;
+                margin-bottom: 4px;
+            }
+            
+            .subtitle {
+                font-size: 0.65rem;
+                margin-bottom: 8px;
+            }
+            
+            .wheel-container {
+                width: 180px;
+                height: 180px;
+                margin: 0 auto 10px;
+            }
+            
+            .wheel-center {
+                width: 30px;
+                height: 30px;
+                font-size: 0.45rem;
+                line-height: 30px;
+            }
+            
+            .wheel-pointer {
+                top: -6px;
+                border-left: 6px solid transparent;
+                border-right: 6px solid transparent;
+                border-top: 15px solid #FFD700;
+            }
+            
+            .spin-button {
+                padding: 8px 15px;
+                font-size: 0.7rem;
+                margin-bottom: 8px;
+                border-radius: 18px;
+                max-width: 150px;
+            }
+            
+            .result {
+                padding: 8px 6px;
+                margin-top: 8px;
+                border-radius: 10px;
+            }
+            
+            .result h3 {
+                font-size: 0.75rem;
+                margin-bottom: 3px;
+            }
+            
+            .result p {
+                font-size: 0.65rem;
+            }
+            
+            .prize-value {
+                font-size: 0.75rem;
+            }
+            
+            .continue-btn {
+                padding: 6px 12px;
+                font-size: 0.65rem;
+                margin-top: 6px;
+                border-radius: 15px;
+                max-width: 130px;
+            }
+            
+            .loading {
+                font-size: 0.7rem;
+                margin-top: 8px;
             }
         }
         
