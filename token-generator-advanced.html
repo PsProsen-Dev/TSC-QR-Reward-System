@@ -395,15 +395,10 @@
                         <label for="phoneModel">📱 Phone Model *</label>
                         <input type="text" id="phoneModel" placeholder="e.g., iPhone 14, Samsung Galaxy S23" required>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="serialNumber">🔢 Serial Number *</label>
-                        <input type="number" id="serialNumber" placeholder="Enter serial number (avoid blacklisted)" required min="1">
-                    </div>
                 </div>
                 
                 <div class="blacklist-info">
-                    ✅ <strong>All Serial Numbers Valid:</strong> Enhanced encoding supports all numbers 1-999 with unique X-encoding and checksums
+                    ✅ <strong>Auto Serial Generation:</strong> System automatically assigns unique day-wise serial numbers for each store
                 </div>
                 
                 <button type="submit" class="generate-btn">
@@ -474,15 +469,15 @@
                 const store = document.getElementById('store').value;
                 const date = new Date(); // Automatically use current date/time
                 const phoneModel = document.getElementById('phoneModel').value.trim();
-                const serialNumber = parseInt(document.getElementById('serialNumber').value);
+                const serialNumber = generateAutoSerial(store, date); // Auto-generate serial number
                 
                 // Validation
-                if (!validateInputs(customerName, mobileNumber, store, serialNumber)) {
+                if (!validateInputs(customerName, mobileNumber, store)) {
                     return;
                 }
                 
-                // No blacklisted serials check needed - all numbers are valid now
-                // The enhanced encoding ensures uniqueness and security
+                // Auto serial generation ensures uniqueness - no manual input needed
+                // Day-wise serial numbering per store location
                 
                 // Generate internal token
                 const internalToken = generateInternalToken(store, date, serialNumber);
@@ -508,7 +503,7 @@
             }
         }
         
-        function validateInputs(customerName, mobileNumber, store, serialNumber) {
+        function validateInputs(customerName, mobileNumber, store) {
             if (!customerName) {
                 showError('Customer name is required');
                 return false;
@@ -524,12 +519,23 @@
                 return false;
             }
             
-            if (!serialNumber || serialNumber < 1) {
-                showError('Serial number must be a positive number');
-                return false;
-            }
-            
             return true;
+        }
+        
+        function generateAutoSerial(store, date) {
+            // Create a unique key for store + date combination
+            const dateKey = date.toDateString(); // e.g., "Thu Jul 31 2025"
+            const storeKey = `${store}_${dateKey}`;
+            
+            // Get existing count from localStorage or start at 1
+            let currentCount = parseInt(localStorage.getItem(storeKey) || '0');
+            currentCount++;
+            
+            // Store the updated count
+            localStorage.setItem(storeKey, currentCount.toString());
+            
+            // Return the serial number (1, 2, 3, etc. for each day per store)
+            return currentCount;
         }
         
         function generateInternalToken(store, date, serialNumber) {
