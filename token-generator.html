@@ -112,6 +112,24 @@
             margin-bottom: 30px;
         }
         
+        /* Special grid layout for better positioning */
+        .form-grid-special {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .form-grid-center {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
         .form-group {
             margin-bottom: 20px;
         }
@@ -303,9 +321,13 @@
                 padding: 10px;
             }
             
-            .form-grid {
+            .form-grid, .form-grid-special {
                 grid-template-columns: 1fr;
                 gap: 15px;
+            }
+            
+            .form-grid-center {
+                max-width: 100%;
             }
             
             .header, .form-container, .results-container {
@@ -373,7 +395,8 @@
         
         <div class="form-container">
             <form id="tokenForm">
-                <div class="form-grid">
+                <!-- First row: Name and WhatsApp -->
+                <div class="form-grid-special">
                     <div class="form-group">
                         <label for="customerName">👤 Your Name *</label>
                         <input type="text" id="customerName" placeholder="Enter your full name" required>
@@ -383,22 +406,31 @@
                         <label for="mobileNumber">📱 Your WhatsApp Number *</label>
                         <input type="tel" id="mobileNumber" placeholder="Enter your 10-digit WhatsApp number" required pattern="[0-9]{10}">
                     </div>
+                </div>
+                
+                <!-- Second row: Location and Phone Model (center aligned) -->
+                <div class="form-grid-special">
+                    <div class="form-group">
+                        <label for="location">📍 Your Location *</label>
+                        <input type="text" id="location" placeholder="Enter your location" required>
+                    </div>
                     
                     <div class="form-group">
                         <label for="phoneModel">� Your Phone Model *</label>
                         <input type="text" id="phoneModel" placeholder="Enter your phone model (e.g., iPhone 14, Samsung Galaxy S23)" required>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="location">� Your Location *</label>
-                        <input type="text" id="location" placeholder="Enter your location" required>
-                    </div>
-                    
+                </div>
+                
+                <!-- Third row: Area PIN Code (centered below Location and Phone Model) -->
+                <div class="form-grid-center">
                     <div class="form-group">
                         <label for="pinCode">� Your Area PIN Code *</label>
                         <input type="text" id="pinCode" placeholder="Enter your 6-digit area PIN code" required pattern="[0-9]{6}" maxlength="6">
                     </div>
-                    
+                </div>
+                
+                <!-- Fourth row: Store Selection (when visible) -->
+                <div class="form-grid-center">
                     <div class="form-group" id="storeSelectionGroup">
                         <label for="store">🏪 Choose your nearest TSC Store *</label>
                         <select id="store" required>
