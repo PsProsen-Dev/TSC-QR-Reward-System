@@ -399,7 +399,7 @@
                         <input type="text" id="phoneModel" placeholder="Enter your phone model (e.g., iPhone 14, Samsung Galaxy S23)" required>
                     </div>
                     
-                    <div class="form-group">
+                    <div class="form-group" id="storeSelectionGroup">
                         <label for="store">🏪 Choose your nearest TSC Store *</label>
                         <select id="store" required>
                             <option value="">Select your nearest store</option>
@@ -752,9 +752,17 @@
             
             // Set the store dropdown
             const storeSelect = document.getElementById('store');
+            const storeGroup = document.getElementById('storeSelectionGroup');
+            
             if (storeSelect && selectedStore) {
                 storeSelect.value = selectedStore;
                 console.log('Auto-selected store:', selectedStore);
+                
+                // Hide store selection if store is determined from URL or localStorage
+                if (storeFromUrl || storeFromStorage) {
+                    storeGroup.style.display = 'none';
+                    console.log('Store selection hidden - store pre-determined:', selectedStore);
+                }
                 
                 // Update header subtitle to show current store
                 const subtitle = document.querySelector('.subtitle');
