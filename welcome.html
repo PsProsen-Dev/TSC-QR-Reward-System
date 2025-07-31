@@ -1365,58 +1365,12 @@
                 localStorage.setItem('flow_type', 'tg_generate');
                 console.log('Flow type saved:', localStorage.getItem('flow_type'));
                 
-                // Get current store from localStorage or default to MNG
-                const currentStore = localStorage.getItem('current_store') || 'MNG';
-                
-                // Close modal first
-                closeModal('tgOptionModal');
-                console.log('Modal closed');
-                
-                // Get customer information via prompt
-                const customerName = prompt("Enter customer name:", "");
-                if (!customerName) return;
-                
-                const customerMobile = prompt("Enter customer mobile number:", "");
-                if (!customerMobile) return;
-                
-                const customerLocation = prompt("Enter customer location:", "");
-                if (!customerLocation) return;
-                
-                const customerPin = prompt("Enter customer PIN code:", "");
-                if (!customerPin) return;
-                
-                const customerModel = prompt("Enter phone model:", "");
-                if (!customerModel) return;
-                
-                // Generate token
-                const nextSerial = getNextAvailableSerial(currentStore);
-                const tokenData = {
-                    store: currentStore,
-                    date: new Date(),
-                    brand: "TSC", // Default brand for Tempered Glass
-                    offerType: 5, // Offer type 5 for Tempered Glass
-                    serial: nextSerial,
-                    name: customerName,
-                    mobile: customerMobile,
-                    location: customerLocation,
-                    pin: customerPin,
-                    model: customerModel
-                };
-                
-                const result = generateToken(tokenData);
-                
-                // If token generation failed
-                if (!result) {
-                    alert('Token generation failed. Please try again.');
-                    return;
-                }
-                
-                // Redirect to the token display page with the token parameter
-                window.location.href = `./tg_token.html?token=${result.token}`;
+                // Redirect to beautiful token generator page
+                window.location.href = 'token-generator.html';
                 
             } catch (error) {
-                console.error('Error in generateTGToken:', error);
-                alert('Error occurred. Please try again.');
+                console.error('Error redirecting to token generator:', error);
+                alert('Error: Unable to redirect to token generator');
             }
         }
 

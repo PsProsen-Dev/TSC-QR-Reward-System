@@ -366,6 +366,9 @@
                 Generate internal and external tokens<br>
                 for The Shankar Communications tempered glass services
             </p>
+            <button onclick="goBack()" style="margin-top: 15px; background: rgba(255, 215, 0, 0.2); border: 2px solid rgba(255, 215, 0, 0.4); border-radius: 15px; padding: 10px 20px; color: #FFD700; cursor: pointer; font-size: 14px; transition: all 0.3s ease;">
+                <i class="fas fa-arrow-left"></i> Back to Main Page
+            </button>
         </div>
         
         <div class="form-container">
@@ -706,6 +709,10 @@
         
         function hideError() {
             document.getElementById('errorMessage').style.display = 'none';
+        }
+        
+        function goBack() {
+            window.location.href = 'welcome.html';
         }
         
         // Mobile number formatting
