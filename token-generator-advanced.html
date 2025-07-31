@@ -387,8 +387,8 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="pinCode">📮 Your PIN Code *</label>
-                        <input type="text" id="pinCode" placeholder="Enter your 6-digit PIN code" required pattern="[0-9]{6}" maxlength="6">
+                        <label for="pinCode">📮 Your Area PIN Code *</label>
+                        <input type="text" id="pinCode" placeholder="Enter your 6-digit area PIN code" required pattern="[0-9]{6}" maxlength="6">
                     </div>
                     
                     <div class="form-group">
@@ -534,7 +534,7 @@
             }
             
             if (!/^[0-9]{6}$/.test(pinCode)) {
-                showError('PIN code must be exactly 6 digits');
+                showError('Area PIN code must be exactly 6 digits');
                 return false;
             }
             
@@ -683,7 +683,7 @@
 👤 *Customer:* ${customerName}
 📱 *WhatsApp:* ${mobileNumber}
 📍 *Location:* ${location}
-📮 *PIN Code:* ${pinCode}
+📮 *Area PIN Code:* ${pinCode}
 📱 *Phone Model:* ${phoneModel}
 🏪 *Store:* ${store}
 🎟️ *Token:* ${externalToken}
