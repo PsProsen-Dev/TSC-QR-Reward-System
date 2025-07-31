@@ -382,6 +382,21 @@
                     </div>
                     
                     <div class="form-group">
+                        <label for="location">📍 Location *</label>
+                        <input type="text" id="location" placeholder="Enter your location/address" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pinCode">📮 PIN Code *</label>
+                        <input type="text" id="pinCode" placeholder="Enter 6-digit PIN code" required pattern="[0-9]{6}" maxlength="6">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phoneModel">📱 Phone Model *</label>
+                        <input type="text" id="phoneModel" placeholder="e.g., iPhone 14, Samsung Galaxy S23" required>
+                    </div>
+                    
+                    <div class="form-group">
                         <label for="store">🏪 Choose your nearest TSC Store *</label>
                         <select id="store" required>
                             <option value="">Select Store</option>
@@ -389,11 +404,6 @@
                             <option value="DPG">Dhupguri Store</option>
                             <option value="JMD">Jamaldaha Store</option>
                         </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="phoneModel">📱 Phone Model *</label>
-                        <input type="text" id="phoneModel" placeholder="e.g., iPhone 14, Samsung Galaxy S23" required>
                     </div>
                 </div>
                 
@@ -466,13 +476,15 @@
                 // Get form data
                 const customerName = document.getElementById('customerName').value.trim();
                 const mobileNumber = document.getElementById('mobileNumber').value.trim();
+                const location = document.getElementById('location').value.trim();
+                const pinCode = document.getElementById('pinCode').value.trim();
+                const phoneModel = document.getElementById('phoneModel').value.trim();
                 const store = document.getElementById('store').value;
                 const date = new Date(); // Automatically use current date/time
-                const phoneModel = document.getElementById('phoneModel').value.trim();
                 const serialNumber = generateAutoSerial(store, date); // Auto-generate serial number
                 
                 // Validation
-                if (!validateInputs(customerName, mobileNumber, store)) {
+                if (!validateInputs(customerName, mobileNumber, location, pinCode, phoneModel, store)) {
                     return;
                 }
                 
@@ -489,6 +501,8 @@
                 currentTokenData = {
                     customerName,
                     mobileNumber,
+                    location,
+                    pinCode,
                     phoneModel,
                     externalToken,
                     store: storeMapping[store].code
@@ -503,7 +517,7 @@
             }
         }
         
-        function validateInputs(customerName, mobileNumber, store) {
+        function validateInputs(customerName, mobileNumber, location, pinCode, phoneModel, store) {
             if (!customerName) {
                 showError('Customer name is required');
                 return false;
@@ -511,6 +525,21 @@
             
             if (!/^[0-9]{10}$/.test(mobileNumber)) {
                 showError('WhatsApp number must be exactly 10 digits');
+                return false;
+            }
+            
+            if (!location) {
+                showError('Location is required');
+                return false;
+            }
+            
+            if (!/^[0-9]{6}$/.test(pinCode)) {
+                showError('PIN code must be exactly 6 digits');
+                return false;
+            }
+            
+            if (!phoneModel) {
+                showError('Phone model is required');
                 return false;
             }
             
@@ -647,12 +676,15 @@
         }
         
         function sendWhatsApp() {
-            const { customerName, mobileNumber, phoneModel, externalToken, store } = currentTokenData;
+            const { customerName, mobileNumber, location, pinCode, phoneModel, externalToken, store } = currentTokenData;
             
             const message = `🎫 *TSC Token Generated*
 
 👤 *Customer:* ${customerName}
-📱 *Phone:* ${phoneModel}
+📱 *WhatsApp:* ${mobileNumber}
+📍 *Location:* ${location}
+📮 *PIN Code:* ${pinCode}
+📱 *Phone Model:* ${phoneModel}
 🏪 *Store:* ${store}
 🎟️ *Token:* ${externalToken}
 
@@ -685,28 +717,13 @@
             e.target.value = value;
         });
         
-        // Serial number validation - enhanced to show encoding preview
-        document.getElementById('serialNumber').addEventListener('input', function(e) {
-            const value = parseInt(e.target.value);
-            const warning = document.querySelector('.blacklist-info');
-            
-            if (value && value >= 1 && value <= 999) {
-                const encoded = encodeSerialWithChecksum(value);
-                warning.style.background = 'rgba(40, 167, 69, 0.1)';
-                warning.style.borderColor = 'rgba(40, 167, 69, 0.4)';
-                warning.style.color = '#28a745';
-                warning.innerHTML = `✅ <strong>Serial ${value} → ${encoded}</strong> (X-encoded with checksum)`;
-            } else if (value) {
-                warning.style.background = 'rgba(255, 193, 7, 0.1)';
-                warning.style.borderColor = 'rgba(255, 193, 7, 0.4)';
-                warning.style.color = '#FFC107';
-                warning.innerHTML = '⚠️ <strong>Please enter a number between 1-999</strong>';
-            } else {
-                warning.style.background = 'rgba(255, 193, 7, 0.1)';
-                warning.style.borderColor = 'rgba(255, 193, 7, 0.4)';
-                warning.style.color = '#FFC107';
-                warning.innerHTML = '✅ <strong>All Serial Numbers Valid:</strong> Enhanced encoding supports all numbers 1-999 with unique X-encoding and checksums';
+        // PIN code validation - only allow 6 digits
+        document.getElementById('pinCode').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 6) {
+                value = value.slice(0, 6);
             }
+            e.target.value = value;
         });
         
         // Entrance animation
