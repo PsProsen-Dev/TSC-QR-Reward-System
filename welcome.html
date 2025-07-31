@@ -1162,14 +1162,19 @@
             if (day === 0) {
                 // If today is Sunday, next weekend (Saturday) is 6 days away
                 daysUntilWeekend = 6;
+            } else if (day === 6) {
+                // If today is Saturday, next Saturday is 7 days away
+                daysUntilWeekend = 7;
             } else {
                 // For all other days, calculate normally
+                // Thursday (4) -> Saturday (6) = 6 - 4 = 2 days
                 daysUntilWeekend = 6 - day;
             }
             
-            // Debug logging
+            // Debug logging with better details
             console.log(`Today: ${['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][day]} (${day})`);
             console.log(`Days until next Saturday: ${daysUntilWeekend}`);
+            console.log(`Current time: ${now.toLocaleString()}`);
             
             // Create the next weekend date at 00:00:00
             const nextWeekend = new Date(now);
@@ -1177,6 +1182,7 @@
             nextWeekend.setHours(0, 0, 0, 0);
             
             console.log(`Next Saturday: ${nextWeekend.toDateString()}`);
+            console.log(`Time remaining until Saturday: ${Math.floor((nextWeekend - now) / (1000 * 60 * 60 * 24))} days`);
             
             return nextWeekend;
         }
