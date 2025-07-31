@@ -1160,16 +1160,14 @@
             let daysUntilWeekend;
             
             if (day === 0) {
-                // If today is Sunday, next Saturday is 6 days away
+                // If today is Sunday, next weekend (Saturday) is 6 days away
                 daysUntilWeekend = 6;
-            } else if (day === 6) {
-                // If today is Saturday, next Saturday is 7 days away
-                daysUntilWeekend = 7;
             } else {
-                // For Monday-Friday, calculate normally
+                // For all other days, calculate normally
                 daysUntilWeekend = 6 - day;
             }
             
+            // Debug logging
             console.log(`Today: ${['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][day]} (${day})`);
             console.log(`Days until next Saturday: ${daysUntilWeekend}`);
             
