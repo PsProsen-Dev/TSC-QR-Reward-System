@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎁 Claim Your TSC Reward - The Shankar Communications</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta name="theme-color" content="#FFD700">
+    <meta name="description" content="Claim your reward from TSC Lucky Wheel - Tempered Glass & Mobile Accessories">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: #fff;
+            position: relative;
+            overflow-x: hidden;
+            padding: 20px 0 80px 0;
+        }
+        
+        /* RTX Enhanced Background Effects */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
+            animation: rtx-glow 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes rtx-glow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 30px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+            animation: header-glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes header-glow {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(255, 215, 0, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 0 60px rgba(255, 215, 0, 0.6); }
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 3px solid rgba(255, 215, 0, 0.5);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+        
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+        
+        .reward-info {
+            background: rgba(0, 255, 0, 0.1);
+            border: 2px solid rgba(0, 255, 0, 0.4);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .reward-info h2 {
+            color: #00FF00;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .reward-info p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+        }
+        
+        .form-container {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 30px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #FFD700;
+            font-size: 14px;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: rgba(255, 215, 0, 0.6);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            transform: scale(1.02);
+        }
+        
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .claim-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            border: none;
+            border-radius: 15px;
+            color: #000;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+        }
+        
+        .claim-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.6);
+            background: linear-gradient(135deg, #FFA500 0%, #FFD700 100%);
+        }
+        
+        .back-btn {
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            border-radius: 15px;
+            padding: 10px 20px;
+            color: #FFD700;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 215, 0, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .required-info {
+            background: rgba(255, 193, 7, 0.1);
+            border: 2px solid rgba(255, 193, 7, 0.4);
+            color: #FFC107;
+            padding: 15px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .header, .form-container {
+                padding: 20px;
+                border-radius: 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .reward-info h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="reward.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Wheel
+        </a>
+        
+        <div class="header">
+            <img src="tsc-logo.jpg" alt="TSC Logo" class="logo">
+            <h1>🎁 Claim Your TSC Reward</h1>
+            <p class="subtitle">
+                Fill in your details to claim your prize<br>
+                The Shankar Communications
+            </p>
+        </div>
+        
+        <div class="reward-info" id="rewardDisplay">
+            <h2>🎉 Congratulations!</h2>
+            <p id="rewardText">You won: Loading...</p>
+        </div>
+        
+        <div class="form-container">
+            <form id="claimForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="customerName">👤 Your Full Name *</label>
+                        <input type="text" id="customerName" placeholder="e.g., Prosen Paul" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mobileNumber">📱 Your WhatsApp Number *</label>
+                        <input type="tel" id="mobileNumber" placeholder="e.g., 7872423473" required pattern="[0-9]{10}">
+                    </div>
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="location">📍 Your Location *</label>
+                        <input type="text" id="location" placeholder="e.g., Panbari Bazar" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pinCode">📮 Your Area PIN Code *</label>
+                        <input type="text" id="pinCode" placeholder="e.g., 735219" required pattern="[0-9]{6}" maxlength="6">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phoneModel">📱 Your Phone Model *</label>
+                    <input type="text" id="phoneModel" placeholder="e.g., IQOO Neo 6, iPhone 14, Samsung Galaxy S23" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="nearestStore">🏪 Which TSC Store are you in? *</label>
+                    <select id="nearestStore" required>
+                        <option value="">Select your current store</option>
+                        <option value="Maynaguri Store">Maynaguri Store</option>
+                        <option value="Dhupguri Store">Dhupguri Store</option>
+                        <option value="Jamaldaha Store">Jamaldaha Store</option>
+                    </select>
+                </div>
+                
+                <div class="required-info">
+                    ✅ <strong>Prize Claim Process:</strong> After submitting, you'll be redirected to WhatsApp to confirm your reward claim with TSC team
+                </div>
+                
+                <button type="submit" class="claim-btn">
+                    <i class="fas fa-gift"></i> Claim via WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Get reward from localStorage when page loads
+        window.addEventListener('load', function() {
+            const reward = localStorage.getItem('tsc_spin_result') || 'Your Prize';
+            document.getElementById('rewardText').textContent = `You won: ${reward}`;
+        });
+
+        // Handle form submission
+        document.getElementById('claimForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('customerName').value,
+                mobile: document.getElementById('mobileNumber').value,
+                location: document.getElementById('location').value,
+                pinCode: document.getElementById('pinCode').value,
+                phoneModel: document.getElementById('phoneModel').value,
+                store: document.getElementById('nearestStore').value,
+                reward: localStorage.getItem('tsc_spin_result') || 'Prize'
+            };
+            
+            // Create WhatsApp message
+            const message = `🎉 *TSC REWARD CLAIM REQUEST* 🎉
+
+🎁 *Prize Won:* ${formData.reward}
+
+👤 *Customer Details:*
+• Name: ${formData.name}
+• Mobile: ${formData.mobile}
+• Location: ${formData.location}
+• PIN Code: ${formData.pinCode}
+• Phone Model: ${formData.phoneModel}
+
+🏪 *Current Store:* ${formData.store}
+
+---
+*Generated from TSC Lucky Wheel*
+*Please confirm this reward claim*`;
+            
+            // WhatsApp number (replace with actual TSC WhatsApp number)
+            const whatsappNumber = '917872423473'; // TSC ka WhatsApp number yahan daliye
+            
+            // Create WhatsApp URL
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+            
+            // Redirect to WhatsApp
+            window.open(whatsappURL, '_blank');
+        });
+    </script>
+</body>
+</html>
