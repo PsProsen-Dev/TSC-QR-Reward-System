@@ -109,15 +109,40 @@
             font-size: 1.8rem;
             font-weight: 700;
             margin-bottom: 10px;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            text-shadow: 
+                0 0 20px rgba(255, 215, 0, 0.5),
+                0 2px 4px rgba(0, 0, 0, 0.8),
+                0 0 40px rgba(255, 215, 0, 0.3);
+            animation: title-glow 4s ease-in-out infinite;
         }
         
+        @keyframes title-glow {
+            0%, 100% { 
+                text-shadow: 
+                    0 0 20px rgba(255, 215, 0, 0.5),
+                    0 2px 4px rgba(0, 0, 0, 0.8),
+                    0 0 40px rgba(255, 215, 0, 0.3);
+            }
+            50% { 
+                text-shadow: 
+                    0 0 30px rgba(255, 215, 0, 0.8),
+                    0 2px 6px rgba(0, 0, 0, 0.9),
+                    0 0 60px rgba(255, 215, 0, 0.5);
+            }
+        }
         
         .subtitle {
             color: rgba(255, 215, 0, 0.9);
             font-size: 1rem;
             margin-bottom: 30px;
             font-weight: 400;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+            animation: subtitle-shimmer 3s ease-in-out infinite;
+        }
+        
+        @keyframes subtitle-shimmer {
+            0%, 100% { opacity: 0.9; }
+            50% { opacity: 1; }
         }
         
         /* Spin Wheel Container */
@@ -140,10 +165,42 @@
                 inset 0 0 20px rgba(0, 0, 0, 0.3);
             transition: transform 4s cubic-bezier(0.23, 1, 0.32, 1);
             cursor: pointer;
+            animation: wheel-idle 6s ease-in-out infinite;
+        }
+        
+        @keyframes wheel-idle {
+            0%, 100% { 
+                box-shadow: 
+                    0 0 0 8px rgba(255, 215, 0, 0.3),
+                    0 0 30px rgba(255, 215, 0, 0.6),
+                    inset 0 0 20px rgba(0, 0, 0, 0.3);
+            }
+            50% { 
+                box-shadow: 
+                    0 0 0 12px rgba(255, 215, 0, 0.5),
+                    0 0 50px rgba(255, 215, 0, 0.8),
+                    inset 0 0 30px rgba(0, 0, 0, 0.2);
+            }
         }
         
         .wheel.spinning {
             cursor: not-allowed;
+            animation: wheel-spin-glow 0.5s ease-in-out infinite;
+        }
+        
+        @keyframes wheel-spin-glow {
+            0%, 100% { 
+                box-shadow: 
+                    0 0 0 15px rgba(255, 215, 0, 0.6),
+                    0 0 60px rgba(255, 215, 0, 1),
+                    inset 0 0 40px rgba(255, 255, 255, 0.1);
+            }
+            50% { 
+                box-shadow: 
+                    0 0 0 20px rgba(255, 215, 0, 0.8),
+                    0 0 80px rgba(255, 215, 0, 1),
+                    inset 0 0 50px rgba(255, 255, 255, 0.2);
+            }
         }
         
         /* Wheel Pointer */
@@ -159,6 +216,18 @@
             border-top: 30px solid #FFD700;
             z-index: 10;
             filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.5));
+            animation: pointer-pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pointer-pulse {
+            0%, 100% { 
+                filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 15px rgba(255, 215, 0, 0.6));
+                transform: translateX(-50%) scale(1);
+            }
+            50% { 
+                filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 25px rgba(255, 215, 0, 0.9));
+                transform: translateX(-50%) scale(1.1);
+            }
         }
         
         /* Center Circle */
@@ -180,6 +249,18 @@
             font-weight: 700;
             font-size: 0.8rem;
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+            animation: center-glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes center-glow {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.3);
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 30px rgba(255, 215, 0, 0.9), inset 0 0 15px rgba(255, 255, 255, 0.5);
+                transform: translate(-50%, -50%) scale(1.05);
+            }
         }
         
         /* Spin Button */
@@ -201,6 +282,25 @@
             letter-spacing: 1px;
             margin-bottom: 20px;
             animation: pulse-glow 2s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .spin-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            animation: button-shine 3s ease-in-out infinite;
+        }
+        
+        @keyframes button-shine {
+            0%, 100% { transform: translateX(-100%) rotate(45deg); }
+            50% { transform: translateX(100%) rotate(45deg); }
         }
         
         .spin-button:hover:not(:disabled) {
@@ -223,25 +323,44 @@
         
         /* Result Display */
         .result {
-            background: rgba(255, 215, 0, 0.1);
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            border-radius: 15px;
-            padding: 20px;
-            margin-top: 20px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.05));
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 25px;
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(30px) scale(0.9);
             transition: all 0.5s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(255, 215, 0, 0.2) inset;
         }
         
         .result.show {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
+            animation: result-celebration 0.8s ease-out;
+        }
+        
+        @keyframes result-celebration {
+            0% { transform: translateY(30px) scale(0.8); }
+            50% { transform: translateY(-10px) scale(1.05); }
+            100% { transform: translateY(0) scale(1); }
         }
         
         .result h3 {
             color: #FFD700;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             margin-bottom: 10px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+            animation: prize-glow 2s ease-in-out infinite;
+        }
+        
+        @keyframes prize-glow {
+            0%, 100% { text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.5); }
+            50% { text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9), 0 0 30px rgba(255, 215, 0, 0.8); }
         }
         
         .result p {
@@ -256,7 +375,14 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+            animation: prize-shimmer 2s ease-in-out infinite;
+        }
+        
+        @keyframes prize-shimmer {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
         }
         
         /* Continue Button */
@@ -710,10 +836,32 @@
         
         // Prize segments with different weights
         const prizes = [
-            { text: 'Botel', color: '#FF6B6B', weight: 20 },
-            { text: 'Earbuds', color: '#4ECDC4', weight: 25 },
-            { text: 'Neckband', color: '#45B7D1', weight: 30 },
-            { text: 'Mobile Stand', color: '#96CEB4', weight: 25 }
+            { 
+                text: '', 
+                color: 'url(#gradient1)', 
+                weight: 25,
+                image: './tempred-glass.png'
+            },
+            { 
+                text: '', 
+                color: 'url(#gradient2)', 
+                weight: 25,
+                image: './mobile-stand.png'
+            },
+            { 
+                text: '', 
+                color: 'url(#gradient3)', 
+                weight: 20,
+                image: './tempred-glass.png',
+                isCombo: true,
+                comboImages: ['./tempred-glass.png', './mobile-stand.png']
+            },
+            { 
+                text: '', 
+                color: 'url(#gradient4)', 
+                weight: 30,
+                image: './headphone.webp'
+            }
         ];
         
         // Draw the wheel
@@ -725,6 +873,81 @@
             const anglePerSegment = 360 / prizes.length;
             
             svg.innerHTML = ''; // Clear existing content
+            
+            // Add premium gradients and effects
+            const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+            
+            // Premium gradient definitions
+            const gradients = [
+                { id: 'gradient1', colors: ['#FFD700', '#FF8C00', '#FFD700'], shadow: '#FFD700' },
+                { id: 'gradient2', colors: ['#00CED1', '#1E90FF', '#00CED1'], shadow: '#00CED1' },
+                { id: 'gradient3', colors: ['#FF69B4', '#8A2BE2', '#FF69B4'], shadow: '#FF69B4' },
+                { id: 'gradient4', colors: ['#32CD32', '#228B22', '#32CD32'], shadow: '#32CD32' }
+            ];
+            
+            gradients.forEach(grad => {
+                const gradient = document.createElementNS('http://www.w3.org/2000/svg', 'radialGradient');
+                gradient.setAttribute('id', grad.id);
+                gradient.setAttribute('cx', '50%');
+                gradient.setAttribute('cy', '30%');
+                gradient.setAttribute('r', '70%');
+                
+                const stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+                stop1.setAttribute('offset', '0%');
+                stop1.setAttribute('stop-color', grad.colors[0]);
+                stop1.setAttribute('stop-opacity', '0.9');
+                
+                const stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+                stop2.setAttribute('offset', '50%');
+                stop2.setAttribute('stop-color', grad.colors[1]);
+                stop2.setAttribute('stop-opacity', '0.8');
+                
+                const stop3 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+                stop3.setAttribute('offset', '100%');
+                stop3.setAttribute('stop-color', grad.colors[2]);
+                stop3.setAttribute('stop-opacity', '0.7');
+                
+                gradient.appendChild(stop1);
+                gradient.appendChild(stop2);
+                gradient.appendChild(stop3);
+                defs.appendChild(gradient);
+                
+                // Add glow filter
+                const filter = document.createElementNS('http://www.w3.org/2000/svg', 'filter');
+                filter.setAttribute('id', `glow${grad.id.slice(-1)}`);
+                filter.setAttribute('x', '-50%');
+                filter.setAttribute('y', '-50%');
+                filter.setAttribute('width', '200%');
+                filter.setAttribute('height', '200%');
+                
+                const feMorphology = document.createElementNS('http://www.w3.org/2000/svg', 'feMorphology');
+                feMorphology.setAttribute('operator', 'dilate');
+                feMorphology.setAttribute('radius', '2');
+                feMorphology.setAttribute('in', 'SourceAlpha');
+                feMorphology.setAttribute('result', 'thicken');
+                
+                const feGaussianBlur = document.createElementNS('http://www.w3.org/2000/svg', 'feGaussianBlur');
+                feGaussianBlur.setAttribute('in', 'thicken');
+                feGaussianBlur.setAttribute('stdDeviation', '3');
+                feGaussianBlur.setAttribute('result', 'colored');
+                
+                const feFlood = document.createElementNS('http://www.w3.org/2000/svg', 'feFlood');
+                feFlood.setAttribute('flood-color', grad.shadow);
+                feFlood.setAttribute('flood-opacity', '0.8');
+                
+                const feComposite = document.createElementNS('http://www.w3.org/2000/svg', 'feComposite');
+                feComposite.setAttribute('in', 'colored');
+                feComposite.setAttribute('in2', 'SourceGraphic');
+                feComposite.setAttribute('operator', 'over');
+                
+                filter.appendChild(feMorphology);
+                filter.appendChild(feGaussianBlur);
+                filter.appendChild(feFlood);
+                filter.appendChild(feComposite);
+                defs.appendChild(filter);
+            });
+            
+            svg.appendChild(defs);
             
             prizes.forEach((prize, index) => {
                 const startAngle = index * anglePerSegment;
@@ -749,33 +972,221 @@
                     'Z'
                 ].join(' ');
                 
-                // Create segment path
+                // Create segment path with premium effects
                 const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
                 path.setAttribute('d', pathData);
                 path.setAttribute('fill', prize.color);
-                path.setAttribute('stroke', '#000');
-                path.setAttribute('stroke-width', '2');
+                path.setAttribute('stroke', '#FFD700');
+                path.setAttribute('stroke-width', '3');
+                path.setAttribute('filter', `url(#glow${index + 1})`);
+                path.setAttribute('opacity', '0.95');
+                path.style.transition = 'all 0.3s ease';
                 svg.appendChild(path);
                 
-                // Add text
+                // Add inner shadow effect
+                const shadowPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                shadowPath.setAttribute('d', pathData);
+                shadowPath.setAttribute('fill', 'none');
+                shadowPath.setAttribute('stroke', 'rgba(0,0,0,0.3)');
+                shadowPath.setAttribute('stroke-width', '1');
+                shadowPath.setAttribute('opacity', '0.6');
+                svg.appendChild(shadowPath);
+                
+                // Calculate positions for image and text
                 const textAngle = startAngle + anglePerSegment / 2;
                 const textRad = (textAngle - 90) * (Math.PI / 180);
-                const textRadius = radius * 0.7;
-                const textX = centerX + textRadius * Math.cos(textRad);
-                const textY = centerY + textRadius * Math.sin(textRad);
                 
-                const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                text.setAttribute('x', textX);
-                text.setAttribute('y', textY);
-                text.setAttribute('text-anchor', 'middle');
-                text.setAttribute('dominant-baseline', 'middle');
-                text.setAttribute('fill', '#000');
-                text.setAttribute('font-family', 'Poppins');
-                text.setAttribute('font-size', '11');
-                text.setAttribute('font-weight', '600');
-                text.setAttribute('transform', `rotate(${textAngle}, ${textX}, ${textY})`);
-                text.textContent = prize.text;
-                svg.appendChild(text);
+                // Add premium image with effects if available
+                if (prize.image) {
+                    const imageRadius = radius * 0.45;
+                    const imageX = centerX + imageRadius * Math.cos(textRad);
+                    const imageY = centerY + imageRadius * Math.sin(textRad);
+                    
+                    // Create image container with premium styling
+                    const imageGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+                    
+                    // Check if this is a combo item with multiple images
+                    if (prize.isCombo && prize.comboImages) {
+                        // For combo items, show both images side by side
+                        prize.comboImages.forEach((comboImg, imgIndex) => {
+                            const offsetX = imgIndex === 0 ? -15 : 15; // Position images left and right
+                            const comboImageX = imageX + offsetX;
+                            
+                            // Add background circle for each combo image
+                            const imageBg = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                            imageBg.setAttribute('cx', comboImageX);
+                            imageBg.setAttribute('cy', imageY);
+                            imageBg.setAttribute('r', '20');
+                            imageBg.setAttribute('fill', 'rgba(255,255,255,0.9)');
+                            imageBg.setAttribute('stroke', '#FFD700');
+                            imageBg.setAttribute('stroke-width', '2');
+                            imageBg.setAttribute('filter', 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))');
+                            imageGroup.appendChild(imageBg);
+                            
+                            // Create clipPath for circular combo image
+                            const clipPath = document.createElementNS('http://www.w3.org/2000/svg', 'clipPath');
+                            clipPath.setAttribute('id', `comboClip${index}_${imgIndex}`);
+                            const clipCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                            clipCircle.setAttribute('cx', comboImageX);
+                            clipCircle.setAttribute('cy', imageY);
+                            clipCircle.setAttribute('r', '18');
+                            clipPath.appendChild(clipCircle);
+                            defs.appendChild(clipPath);
+                            
+                            const image = document.createElementNS('http://www.w3.org/2000/svg', 'image');
+                            image.setAttribute('x', comboImageX - 18);
+                            image.setAttribute('y', imageY - 18);
+                            image.setAttribute('width', '36');
+                            image.setAttribute('height', '36');
+                            image.setAttribute('href', comboImg);
+                            image.setAttribute('clip-path', `url(#comboClip${index}_${imgIndex})`);
+                            image.setAttribute('transform', `rotate(${textAngle}, ${comboImageX}, ${imageY})`);
+                            imageGroup.appendChild(image);
+                        });
+                        
+                        // Add "+" symbol between combo images
+                        const plusText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                        plusText.setAttribute('x', imageX);
+                        plusText.setAttribute('y', imageY + 25);
+                        plusText.setAttribute('text-anchor', 'middle');
+                        plusText.setAttribute('dominant-baseline', 'middle');
+                        plusText.setAttribute('fill', '#FFD700');
+                        plusText.setAttribute('font-family', 'Poppins');
+                        plusText.setAttribute('font-size', '12');
+                        plusText.setAttribute('font-weight', '900');
+                        plusText.setAttribute('stroke', '#000');
+                        plusText.setAttribute('stroke-width', '0.5');
+                        plusText.setAttribute('filter', 'drop-shadow(0 2px 4px rgba(0,0,0,0.8))');
+                        plusText.setAttribute('transform', `rotate(${textAngle}, ${imageX}, ${imageY + 25})`);
+                        plusText.textContent = '+';
+                        imageGroup.appendChild(plusText);
+                    } else {
+                        // Single image display (existing code)
+                        // Add background circle for image
+                        const imageBg = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                        imageBg.setAttribute('cx', imageX);
+                        imageBg.setAttribute('cy', imageY);
+                        imageBg.setAttribute('r', '28');
+                        imageBg.setAttribute('fill', 'rgba(255,255,255,0.9)');
+                        imageBg.setAttribute('stroke', '#FFD700');
+                        imageBg.setAttribute('stroke-width', '2');
+                        imageBg.setAttribute('filter', 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))');
+                        imageGroup.appendChild(imageBg);
+                        
+                        // Create clipPath for circular image
+                        const clipPath = document.createElementNS('http://www.w3.org/2000/svg', 'clipPath');
+                        clipPath.setAttribute('id', `clip${index}`);
+                        const clipCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                        clipCircle.setAttribute('cx', imageX);
+                        clipCircle.setAttribute('cy', imageY);
+                        clipCircle.setAttribute('r', '24');
+                        clipPath.appendChild(clipCircle);
+                        defs.appendChild(clipPath);
+                        
+                        const image = document.createElementNS('http://www.w3.org/2000/svg', 'image');
+                        image.setAttribute('x', imageX - 24);
+                        image.setAttribute('y', imageY - 24);
+                        image.setAttribute('width', '48');
+                        image.setAttribute('height', '48');
+                        image.setAttribute('href', prize.image);
+                        image.setAttribute('clip-path', `url(#clip${index})`);
+                        image.setAttribute('transform', `rotate(${textAngle}, ${imageX}, ${imageY})`);
+                        imageGroup.appendChild(image);
+                    }
+                    
+                    svg.appendChild(imageGroup);
+                    
+                    // Position premium text below image with smart wrapping
+                    const textRadius = radius * 0.88;
+                    const textX = centerX + textRadius * Math.cos(textRad);
+                    const textY = centerY + textRadius * Math.sin(textRad);
+                    
+                    // Smart text handling for different lengths
+                    const maxCharsPerLine = 12;
+                    let lines = [];
+                    
+                    // Check if text already has line breaks
+                    if (prize.text.includes('\n')) {
+                        lines = prize.text.split('\n');
+                    } else {
+                        // Auto-break long text
+                        const words = prize.text.split(/[\s\+]/);
+                        let currentLine = '';
+                        
+                        words.forEach(word => {
+                            if ((currentLine + word).length <= maxCharsPerLine) {
+                                currentLine += (currentLine ? ' ' : '') + word;
+                            } else {
+                                if (currentLine) lines.push(currentLine);
+                                currentLine = word;
+                            }
+                        });
+                        if (currentLine) lines.push(currentLine);
+                    }
+                    
+                    // Create text lines with proper spacing
+                    lines.forEach((line, lineIndex) => {
+                        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                        const lineY = textY + (lineIndex - (lines.length - 1) / 2) * 8;
+                        
+                        text.setAttribute('x', textX);
+                        text.setAttribute('y', lineY);
+                        text.setAttribute('text-anchor', 'middle');
+                        text.setAttribute('dominant-baseline', 'middle');
+                        text.setAttribute('fill', '#FFFFFF');
+                        text.setAttribute('font-family', 'Poppins');
+                        text.setAttribute('font-size', lines.length > 1 ? '7' : '8');
+                        text.setAttribute('font-weight', '700');
+                        text.setAttribute('stroke', '#000');
+                        text.setAttribute('stroke-width', '0.3');
+                        text.setAttribute('filter', 'drop-shadow(0 1px 2px rgba(0,0,0,0.8))');
+                        text.setAttribute('transform', `rotate(${textAngle}, ${textX}, ${lineY})`);
+                        text.textContent = line;
+                        svg.appendChild(text);
+                    });
+                } else {
+                    // Premium text styling for no image with smart wrapping
+                    const textRadius = radius * 0.7;
+                    const textX = centerX + textRadius * Math.cos(textRad);
+                    const textY = centerY + textRadius * Math.sin(textRad);
+                    
+                    // Smart text handling for different lengths
+                    const maxCharsPerLine = 10;
+                    const words = prize.text.split(/[\s\+\-]/);
+                    const lines = [];
+                    let currentLine = '';
+                    
+                    words.forEach(word => {
+                        if ((currentLine + word).length <= maxCharsPerLine) {
+                            currentLine += (currentLine ? ' ' : '') + word;
+                        } else {
+                            if (currentLine) lines.push(currentLine);
+                            currentLine = word;
+                        }
+                    });
+                    if (currentLine) lines.push(currentLine);
+                    
+                    // Create text lines with proper spacing
+                    lines.forEach((line, lineIndex) => {
+                        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                        const lineY = textY + (lineIndex - (lines.length - 1) / 2) * 10;
+                        
+                        text.setAttribute('x', textX);
+                        text.setAttribute('y', lineY);
+                        text.setAttribute('text-anchor', 'middle');
+                        text.setAttribute('dominant-baseline', 'middle');
+                        text.setAttribute('fill', '#FFFFFF');
+                        text.setAttribute('font-family', 'Poppins');
+                        text.setAttribute('font-size', lines.length > 1 ? '9' : '11');
+                        text.setAttribute('font-weight', '700');
+                        text.setAttribute('stroke', '#000');
+                        text.setAttribute('stroke-width', '0.5');
+                        text.setAttribute('filter', 'drop-shadow(0 2px 4px rgba(0,0,0,0.8))');
+                        text.setAttribute('transform', `rotate(${textAngle}, ${textX}, ${lineY})`);
+                        text.textContent = line;
+                        svg.appendChild(text);
+                    });
+                }
             });
         }
         

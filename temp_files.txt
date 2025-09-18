@@ -4917,10 +4917,10 @@ Thank you!`;
         
         // Prize segments with different weights
         const prizes = [
-            { text: 'Botel', color: '#FF6B6B', weight: 20 },
-            { text: 'Earbuds', color: '#4ECDC4', weight: 25 },
-            { text: 'Neckband', color: '#45B7D1', weight: 30 },
-            { text: 'Mobile Stand', color: '#96CEB4', weight: 25 }
+            { text: '1 Piece Temper', color: '#FF6B6B', weight: 20 },
+            { text: '1 Piece Mobile Stand', color: '#4ECDC4', weight: 25 },
+            { text: '1 Piece Temper + 1 Piece Mobile Stand', color: '#45B7D1', weight: 30 },
+            { text: '1 Piece Wire Earphone', color: '#96CEB4', weight: 25 }
         ];
         
         // Draw the wheel
@@ -4978,7 +4978,7 @@ Thank you!`;
                 text.setAttribute('dominant-baseline', 'middle');
                 text.setAttribute('fill', '#000');
                 text.setAttribute('font-family', 'Poppins');
-                text.setAttribute('font-size', '11');
+                text.setAttribute('font-size', '9');
                 text.setAttribute('font-weight', '600');
                 text.setAttribute('transform', `rotate(${textAngle}, ${textX}, ${textY})`);
                 text.textContent = prize.text;
