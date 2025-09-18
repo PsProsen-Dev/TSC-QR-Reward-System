@@ -327,8 +327,14 @@
     <script>
         // Get reward from localStorage when page loads
         window.addEventListener('load', function() {
-            const reward = localStorage.getItem('tsc_spin_result') || 'Your Prize';
-            document.getElementById('rewardText').textContent = `You won: ${reward}`;
+            const reward = localStorage.getItem('tsc_spin_result');
+            console.log('Reward from localStorage:', reward);
+            
+            if (reward) {
+                document.getElementById('rewardText').textContent = `You won: ${reward}`;
+            } else {
+                document.getElementById('rewardText').textContent = 'You won: Please spin the wheel first';
+            }
         });
 
         // Handle form submission

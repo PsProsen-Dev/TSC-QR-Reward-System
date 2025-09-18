@@ -834,22 +834,34 @@
         // Prevent duplicate spins
         let hasSpun = localStorage.getItem('tsc_has_spun') === 'true';
         
+        // Add reset function for debugging
+        function resetSpin() {
+            localStorage.removeItem('tsc_has_spun');
+            localStorage.removeItem('tsc_spin_result');
+            location.reload();
+        }
+        
+        // Debugging: Add reset option (remove in production)
+        if (window.location.search.includes('reset=1')) {
+            resetSpin();
+        }
+        
         // Prize segments with different weights
         const prizes = [
             { 
-                text: '', 
+                text: '1 Tempered Glass', 
                 color: 'url(#gradient1)', 
                 weight: 25,
                 image: './tempred-glass.png'
             },
             { 
-                text: '', 
+                text: '1 Mobile Stand', 
                 color: 'url(#gradient2)', 
                 weight: 25,
                 image: './mobile-stand.png'
             },
             { 
-                text: '', 
+                text: '1 Tempered Glass + 1 Mobile Stand', 
                 color: 'url(#gradient3)', 
                 weight: 20,
                 image: './tempred-glass.png',
@@ -857,7 +869,7 @@
                 comboImages: ['./tempred-glass.png', './mobile-stand.png']
             },
             { 
-                text: '', 
+                text: '1 Wire Earphone', 
                 color: 'url(#gradient4)', 
                 weight: 30,
                 image: './headphone.webp'
@@ -1208,7 +1220,7 @@
         // Spin wheel function
         function spinWheel() {
             if (hasSpun) {
-                alert('🎯 You have already spun the wheel! Each user gets only one chance.');
+                alert('🎯 You have already completed the spin! Each user gets only one chance.');
                 return;
             }
             
@@ -1306,6 +1318,10 @@
                 localStorage.setItem('tsc_current_store', storeCode);
             }
             
+            // Debug localStorage values
+            console.log('Has spun:', localStorage.getItem('tsc_has_spun'));
+            console.log('Spin result:', localStorage.getItem('tsc_spin_result'));
+            
             drawWheel();
             
             // Check if already spun
@@ -1315,9 +1331,10 @@
                 const savedResult = localStorage.getItem('tsc_spin_result');
                 
                 spinBtn.disabled = true;
-                spinBtn.innerHTML = '<i class="fas fa-check"></i> ALREADY SPUN';
+                spinBtn.innerHTML = '<i class="fas fa-check"></i> COMPLETED';
                 
                 if (savedResult) {
+                    console.log('Displaying result:', savedResult);
                     document.getElementById('prizeText').textContent = savedResult;
                     document.getElementById('continueBtn').style.display = 'inline-block';
                     result.classList.add('show');
