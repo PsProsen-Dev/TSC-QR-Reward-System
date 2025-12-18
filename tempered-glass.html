@@ -870,11 +870,6 @@
             
             const timeDiff = nextSaturday.getTime() - now.getTime();
             
-            // Debug logging
-            console.log(`Today: ${['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][day]} (${day})`);
-            console.log(`Days until Saturday: ${daysUntilSaturday}`);
-            console.log(`Next Saturday: ${nextSaturday.toDateString()}`);
-            
             const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
@@ -883,12 +878,16 @@
             return { days, hours, minutes, seconds };
         }
         
+        let cachedCountdownElement = null;
         function updateWeekendCountdown() {
             const timeLeft = getTimeUntilWeekend();
-            const countdownElement = document.getElementById('weekendCountdown');
+            if (!cachedCountdownElement) {
+                cachedCountdownElement = document.getElementById('weekendCountdown');
+            }
+            const countdownElement = cachedCountdownElement;
             
             if (timeLeft.days === 0 && timeLeft.hours === 0 && timeLeft.minutes === 0 && timeLeft.seconds === 0) {
-                countdownElement.textContent = 'Weekend is here!';
+                if (countdownElement) countdownElement.textContent = 'Weekend is here!';
                 checkWeekendStatus(); // Refresh status
                 return;
             }
@@ -922,7 +921,7 @@
                 storeSelection.style.opacity = '1';
                 storeSelection.style.pointerEvents = 'auto';
                 
-                console.log('Weekend mode: Offer is ACTIVE');
+                // console.log('Weekend mode: Offer is ACTIVE');
                 
                 // Clear weekend countdown interval
                 if (weekendChecker) {
@@ -943,7 +942,7 @@
                 storeSelection.style.opacity = '0.5';
                 storeSelection.style.pointerEvents = 'none';
                 
-                console.log('Weekday mode: Offer is DIMMED');
+                // console.log('Weekday mode: Offer is DIMMED');
                 
                 // Start weekend countdown
                 updateWeekendCountdown();

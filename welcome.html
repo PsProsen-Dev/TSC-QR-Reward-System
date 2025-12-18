@@ -1142,6 +1142,23 @@
             console.log('TG Timer initialized and running');
         });
 
+        // Cache DOM elements
+        let cachedTimerElements = null;
+
+        function getTimerElements() {
+            if (!cachedTimerElements) {
+                cachedTimerElements = {
+                    timerLabel: document.getElementById('tgTimerLabel'),
+                    statusText: document.getElementById('tgStatusText'),
+                    daysElement: document.getElementById('tgDays'),
+                    hoursElement: document.getElementById('tgHours'),
+                    minutesElement: document.getElementById('tgMinutes'),
+                    secondsElement: document.getElementById('tgSeconds')
+                };
+            }
+            return cachedTimerElements;
+        }
+
         // Weekend logic for Tempered Glass offer
         function isTGWeekend() {
             const now = new Date();
@@ -1171,18 +1188,10 @@
                 daysUntilWeekend = 6 - day;
             }
             
-            // Debug logging with better details
-            console.log(`Today: ${['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][day]} (${day})`);
-            console.log(`Days until next Saturday: ${daysUntilWeekend}`);
-            console.log(`Current time: ${now.toLocaleString()}`);
-            
             // Create the next weekend date at 00:00:00
             const nextWeekend = new Date(now);
             nextWeekend.setDate(now.getDate() + daysUntilWeekend);
             nextWeekend.setHours(0, 0, 0, 0);
-            
-            console.log(`Next Saturday: ${nextWeekend.toDateString()}`);
-            console.log(`Time remaining until Saturday: ${Math.floor((nextWeekend - now) / (1000 * 60 * 60 * 24))} days`);
             
             return nextWeekend;
         }
@@ -1209,18 +1218,12 @@
         function updateTGTimer() {
             const isWeekend = isTGWeekend();
             const now = new Date();
-            const timerLabel = document.getElementById('tgTimerLabel');
-            const statusText = document.getElementById('tgStatusText');
             
-            // Check if timer elements exist
-            const daysElement = document.getElementById('tgDays');
-            const hoursElement = document.getElementById('tgHours');
-            const minutesElement = document.getElementById('tgMinutes');
-            const secondsElement = document.getElementById('tgSeconds');
+            const { timerLabel, statusText, daysElement, hoursElement, minutesElement, secondsElement } = getTimerElements();
             
             // Exit if timer elements don't exist
             if (!timerLabel || !daysElement || !hoursElement || !minutesElement || !secondsElement) {
-                console.error('Timer elements not found');
+                // Only log error once if we want, but for now silent return is better for perf loop
                 return;
             }
             
@@ -1266,28 +1269,16 @@
                 secondsElement.style.transform = 'scale(1)';
             }, 200);
             
-            // Debug log with force display
-            console.log('Timer updated:', { isWeekend, days, hours, minutes, seconds });
-            console.log('DOM Days Element:', daysElement.textContent);
-            
             // Force visual update for Thursday
             if (days === 2 && !isWeekend) {
                 daysElement.style.backgroundColor = '#ff6b6b';
                 daysElement.style.color = '#fff';
-                console.log('FORCED UPDATE: Thursday should show 2 days!');
             }
             
-            // Additional debug for Thursday
+            // Additional debug for Thursday (Auto-fix only)
             if (now.getDay() === 4) { // Thursday
-                console.log('🔧 THURSDAY DEBUG:');
-                console.log('- Calculated days:', days);
-                console.log('- Days element text:', daysElement.textContent);
-                console.log('- Target date:', targetDate);
-                console.log('- Time remaining (ms):', timeRemaining);
-                
                 // Force Thursday to show 2 days
                 if (days !== 2) {
-                    console.log('⚠️ FIXING: Days should be 2, but showing:', days);
                     daysElement.textContent = '02';
                     daysElement.style.backgroundColor = '#00ff7f';
                     daysElement.style.color = '#000';
@@ -1305,7 +1296,7 @@
             }
 
             const isWeekend = isTGWeekend();
-            console.log('Updating TG weekend state:', isWeekend ? 'Weekend Active' : 'Weekday');
+            // console.log('Updating TG weekend state:', isWeekend ? 'Weekend Active' : 'Weekday');
 
             if (isWeekend) {
                 // Weekend is active - enable the card and show active styling
@@ -1350,7 +1341,7 @@
 
         function selectTGOption() {
             // Debug log
-            console.log('TG Option selected, showing modal...');
+            // console.log('TG Option selected, showing modal...');
             showModal('tgOptionModal');
         }
 
