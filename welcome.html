@@ -18,48 +18,8 @@
     <meta name="description" content="Choose between Spin & Win Game or ₹19 Tempered Glass offer at The Shankar Communications (TSC)">
     <meta property="og:title" content="The Shankar Communications (TSC) Unified Reward System">
     <meta property="og:description" content="Two amazing offers in one place - Choose your reward path!">
+    <link rel="stylesheet" href="shared.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
-            background-attachment: fixed;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            color: #fff;
-            position: relative;
-            overflow-x: hidden;
-        }
-        
-        /* RTX Enhanced Background Effects */
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 25% 25%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 75% 75%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
-            animation: rtx-glow 8s ease-in-out infinite;
-            pointer-events: none;
-        }
-        
-        @keyframes rtx-glow {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.05); }
-        }
-        
         .container {
             max-width: 500px;
             width: 100%;
@@ -94,11 +54,6 @@
             margin-bottom: 20px;
             box-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
             animation: logo-pulse 3s ease-in-out infinite;
-        }
-        
-        @keyframes logo-pulse {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(255, 215, 0, 0.4); }
-            50% { transform: scale(1.05); box-shadow: 0 0 60px rgba(255, 215, 0, 0.6); }
         }
         
         h1 {
@@ -425,56 +380,6 @@
             transform: translateY(-2px);
         }
         
-        /* Branding Footer */
-        .branding {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 215, 0, 0.2);
-            font-size: 12px;
-            color: rgba(255, 215, 0, 0.7);
-        }
-        
-        .branding a {
-            color: #FFD700;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .branding a:hover {
-            color: #FFA500;
-            text-shadow: 0 0 5px rgba(255, 215, 0, 0.8);
-        }
-        
-        .tooltip {
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.9);
-            color: #FFD700;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 11px;
-            white-space: nowrap;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid #FFD700;
-            z-index: 1000;
-        }
-        
-        .tooltip-white {
-            color: #fff !important;
-        }
-        
-        .branding a:hover .tooltip {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) translateY(-5px);
-        }
-        
         @media (max-width: 768px) {
             body {
                 padding: 10px;
@@ -625,41 +530,6 @@
                 font-size: 14px;
                 margin-bottom: 10px;
             }
-        }
-        
-        /* Developer Credits Footer */
-        .dev-credits {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(15px);
-            padding: 8px 15px;
-            text-align: center;
-            border-top: 2px solid rgba(255, 215, 0, 0.4);
-            border-radius: 15px 15px 0 0;
-            z-index: 1000;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 193, 7, 0.05) 100%);
-        }
-        
-        .dev-credits p {
-            margin: 0;
-            font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.2;
-        }
-        
-        .dev-credits a {
-            color: #FFD700;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .dev-credits a:hover {
-            color: #FFA500;
-            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
         }
         
         /* Enhanced Mobile Optimizations */
