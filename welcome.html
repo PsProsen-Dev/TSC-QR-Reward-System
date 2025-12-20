@@ -1259,12 +1259,24 @@
             minutesElement.textContent = minutes.toString().padStart(2, '0');
             secondsElement.textContent = seconds.toString().padStart(2, '0');
             
-            // Timer animation effect for seconds
-            secondsElement.style.transition = 'all 0.2s ease';
-            secondsElement.style.transform = 'scale(1.1)';
-            setTimeout(() => {
-                secondsElement.style.transform = 'scale(1)';
-            }, 200);
+            // Timer animation effect for seconds (Optimized with Web Animations API)
+            if (secondsElement.animate) {
+                secondsElement.animate([
+                    { transform: 'scale(1)', offset: 0 },
+                    { transform: 'scale(1.1)', offset: 0.5 },
+                    { transform: 'scale(1)', offset: 1 }
+                ], {
+                    duration: 400,
+                    easing: 'ease'
+                });
+            } else {
+                // Fallback for older browsers
+                secondsElement.style.transition = 'all 0.2s ease';
+                secondsElement.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    secondsElement.style.transform = 'scale(1)';
+                }, 200);
+            }
             
             // Debug log with force display
             console.log('Timer updated:', { isWeekend, days, hours, minutes, seconds });
