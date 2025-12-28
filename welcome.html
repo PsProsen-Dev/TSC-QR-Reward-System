@@ -1126,8 +1126,23 @@
     </div>
 
     <script>
+        // Cache for timer elements
+        let cachedTimerElements = null;
+
+        function initTimerElements() {
+            cachedTimerElements = {
+                timerLabel: document.getElementById('tgTimerLabel'),
+                statusText: document.getElementById('tgStatusText'),
+                days: document.getElementById('tgDays'),
+                hours: document.getElementById('tgHours'),
+                minutes: document.getElementById('tgMinutes'),
+                seconds: document.getElementById('tgSeconds')
+            };
+        }
+
         // Initialize page
         document.addEventListener('DOMContentLoaded', function() {
+            initTimerElements();
             initializePage();
             initRTXEffects();
             
@@ -1209,14 +1224,12 @@
         function updateTGTimer() {
             const isWeekend = isTGWeekend();
             const now = new Date();
-            const timerLabel = document.getElementById('tgTimerLabel');
-            const statusText = document.getElementById('tgStatusText');
             
-            // Check if timer elements exist
-            const daysElement = document.getElementById('tgDays');
-            const hoursElement = document.getElementById('tgHours');
-            const minutesElement = document.getElementById('tgMinutes');
-            const secondsElement = document.getElementById('tgSeconds');
+            if (!cachedTimerElements) {
+                initTimerElements();
+            }
+
+            const { timerLabel, statusText, days: daysElement, hours: hoursElement, minutes: minutesElement, seconds: secondsElement } = cachedTimerElements;
             
             // Exit if timer elements don't exist
             if (!timerLabel || !daysElement || !hoursElement || !minutesElement || !secondsElement) {
