@@ -1,0 +1,3 @@
+## 2026-01-17 - [LCP Optimization via Resource Hints]
+**Learning:** The static pages (`index.html`, `welcome.html`, `tempered-glass.html`) rely heavily on a hero image (`tsc-logo.jpg`) for LCP. However, they lack `link rel="preload"` and `fetchpriority="high"`, causing the browser to discover these critical assets late in the waterfall, especially with render-blocking CSS (FontAwesome, Google Fonts) present.
+**Action:** Always check for LCP candidates in static HTML and explicitly prioritize them using `<link rel="preload" as="image">` and `fetchpriority="high"` to decouple their loading from the DOM/CSSOM construction.
