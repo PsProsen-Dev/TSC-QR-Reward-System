@@ -834,18 +834,6 @@
         // Prevent duplicate spins
         let hasSpun = localStorage.getItem('tsc_has_spun') === 'true';
         
-        // Add reset function for debugging
-        function resetSpin() {
-            localStorage.removeItem('tsc_has_spun');
-            localStorage.removeItem('tsc_spin_result');
-            location.reload();
-        }
-        
-        // Debugging: Add reset option (remove in production)
-        if (window.location.search.includes('reset=1')) {
-            resetSpin();
-        }
-        
         // Prize segments with different weights
         const prizes = [
             { 
