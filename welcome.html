@@ -1248,7 +1248,12 @@
             }
             
             // Calculate days, hours, minutes, seconds
-            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            // Use ceil for days when counting down to start (weekdays) to show calendar days remaining
+            // Use floor for days when counting down to end (weekend) for standard remaining duration
+            const days = isWeekend
+                ? Math.floor(timeRemaining / (1000 * 60 * 60 * 24))
+                : Math.ceil(timeRemaining / (1000 * 60 * 60 * 24));
+
             const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
@@ -1266,33 +1271,8 @@
                 secondsElement.style.transform = 'scale(1)';
             }, 200);
             
-            // Debug log with force display
+            // Debug log
             console.log('Timer updated:', { isWeekend, days, hours, minutes, seconds });
-            console.log('DOM Days Element:', daysElement.textContent);
-            
-            // Force visual update for Thursday
-            if (days === 2 && !isWeekend) {
-                daysElement.style.backgroundColor = '#ff6b6b';
-                daysElement.style.color = '#fff';
-                console.log('FORCED UPDATE: Thursday should show 2 days!');
-            }
-            
-            // Additional debug for Thursday
-            if (now.getDay() === 4) { // Thursday
-                console.log('🔧 THURSDAY DEBUG:');
-                console.log('- Calculated days:', days);
-                console.log('- Days element text:', daysElement.textContent);
-                console.log('- Target date:', targetDate);
-                console.log('- Time remaining (ms):', timeRemaining);
-                
-                // Force Thursday to show 2 days
-                if (days !== 2) {
-                    console.log('⚠️ FIXING: Days should be 2, but showing:', days);
-                    daysElement.textContent = '02';
-                    daysElement.style.backgroundColor = '#00ff7f';
-                    daysElement.style.color = '#000';
-                }
-            }
         }
 
         function updateTGWeekendState() {
